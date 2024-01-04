@@ -1,0 +1,16 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- メルマガ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<p>
+		登録無料で期間限定の割引情報や新人情報等､お得な情報を随時配信してます｡<br />
+		登録をご希望の方は､｢ﾒﾙﾏｶﾞ登録｣からﾒｰﾙを送信下さい｡
+	</p>
+	<!-- //メルマガ -->
+
+	→<a href="mailto:<!--{$smarty.const.SHOP_MAIL_MAGA_REGIST}-->?subject=メルマガ登録&amp;body=このまま送信して下さい。">メルマガ登録</a><br />
+	→<a href="mailto:<!--{$smarty.const.SHOP_MAIL_MAGA_CANCEL}-->?subject=メルマガ解除&amp;body=このまま送信して下さい。">メルマガ解除</a><br /><br />
+<!--{/block}-->

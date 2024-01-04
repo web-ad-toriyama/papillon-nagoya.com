@@ -1,0 +1,27 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- スタッフ一覧 -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<!--{foreach $staff as $v}-->
+	<div style="padding-bottom: 20px;">
+		<p style="float:left; margin:3px;"><!--{include file="./common/staff/thumbnail.html" width=60 height=90}--></p>
+			<!--{include file="./common/staff/icon_class.html"}--><br />
+			<!--{include file="./common/staff/icon_check.html"}--><br />
+			<!--{$v.name}-->(<!--{$v.age}-->)&nbsp;<!--{include file="./common/staff/icon_new.html"}--><br />
+			<!--{include file="./common/staff/size.html"}--><br />
+			<font color="#ff007e"><!--{$v.schedule.time}--></font>&nbsp;<!--{include file="./common/staff/work_info.html"}--><br />
+			<a href="<!--{$smarty.const.MB_URL}-->/profile.php?sid=<!--{$v.id}-->">詳細はこちら</a>
+	</div>
+	<hr size="1" style="clear:both;" color="#fafafa" />
+	<!--{/foreach}-->
+
+	<p align="center">
+	<!--{if $page_info.prev.url != ''}--><a href="<!--{$page_info.prev.url}-->">←&nbsp;BACK</a><!--{/if}-->
+	<!--{if $page_info.next.url != ''}--><a href="<!--{$page_info.next.url}-->">NEXT&nbsp;→</a><!--{/if}-->
+	</p>
+	<!-- //スタッフ一覧 -->
+
+<!--{/block}-->

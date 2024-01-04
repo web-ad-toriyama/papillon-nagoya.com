@@ -1,0 +1,171 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->予約設定<!--{/block}-->
+<!--{block name="main"}-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" >
+
+
+
+<div class="form-panel mb">
+<!--{if $data|@count > 0}-->
+    <!--{if $params.id != ''}-->
+    <ul class="nav nav-tabs mb15">
+        <li><a href="edit.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">基本情報</a></li>
+        <li><a href="photo.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">画像</a></li>
+        <li class="active"><a href="#">スケジュール</a></li>
+    </ul>
+    <!--{/if}-->
+        <ul class="pager">
+            <!--{if $params.w <= 1}-->
+            <li class="previous disabled"><a href="#">&larr; 前の週へ</a></li>
+            <!--{else}-->
+            <li class="previous"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w-1}-->">&larr; 前の週へ</a></li>
+            <!--{/if}-->
+            <li class="next"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w+1}-->">次の週へ &rarr;</a></li>
+        </ul>
+        <form class="form-horizontal style-form" method="post" >
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <table class="table">
+            <tr>
+                <td width="15%">日付選択</td>
+                <td><input type="text" id="day" name="day" value="<!--{$today}-->" readonly>
+                    <script>
+                        $(function() {
+                            $('#day').datepicker({
+                                dateFormat: "yy年mm月dd日",
+                                minDate: "<!--{$today}-->",
+                                showButtonPanel : true,
+
+                            });
+                        });
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td><!--{$smarty.const.STAFF_CALL}-->選択</td>
+                <td><!--{html_options  name="staff_id" options=$form.staff_list}--></td>
+            </tr>
+            <tr>
+                <td>開始時間</td>
+                <td><!--{html_options name="going_hour" options=$form.hour selected=$value.sch.$k.going_hour}-->:
+                    <!--{html_options name="going_min" options=$form.min selected=$value.sch.$k.going_min}--></td>
+            </tr>
+            <tr>
+                <td>終了時間</td>
+                <td><!--{html_options name="leave_hour" options=$form.hour selected=$value.sch.$k.leave_hour}-->:
+                    <!--{html_options name="leave_min" options=$form.min selected=$value.sch.$k.going_min}--></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="submit" value="登録" class="btn btn-primary" onclick="return get_therapist()" ></td>
+            </tr>
+        </table>
+
+    </form>        
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf table-box">
+            <thead class="cf">
+            <!--{foreach $data as $value}-->
+            <tr id="anc_<!--{$value.id}-->">
+                <th class="text-center"><!--{$smarty.const.STAFF_CALL}--></th>
+                <!--{foreach $week as $v}-->
+                    <th class="text-center <!--{if $v|day_of_week == '土'}-->info<!--{elseif $v|day_of_week == '日'}-->danger<!--{/if}-->">
+                    <!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+                    </th>
+                <!--{/foreach}-->
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-title="<!--{$smarty.const.STAFF_CALL}-->">
+                        <a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$value.id}-->">
+                            <p><!--{$value.name}--></p>
+                            <!--{if $value.photo != ''}-->
+                            <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$value.id}-->/<!--{$value.photo}-->"
+                                    width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                                    height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                            <!--{else}-->
+                            <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg"
+                                    width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                                    height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                            <!--{/if}-->
+                        </a>
+                    </td>
+                    <!--{foreach $week as $k => $v}-->
+                    <td data-title="<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)" class="reserves">
+                        <p><span class="txt-sm">出勤時間：</span><br />
+                        <!--{if $value.sch.$k.allow_mode == 0 || $value.sch.$k.allow_mode == $smarty.const.SCH_TYPE_LAST}-->
+                        <!--{$value.sch.$k.going_time}--> 〜
+                         <!--{if $value.sch.$k.allow_mode == $smarty.const.SCH_TYPE_LAST}-->
+                         <!--{$form.allow_mode[$smarty.const.SCH_TYPE_LAST]}-->
+                        <!--{else}-->
+                        <!--{$value.sch.$k.leave_time}-->
+                        <!--{/if}-->
+                        <!--{/if}-->
+                        <!--{if $value.sch.$k.allow_mode == $smarty.const.SCH_TYPE_TEL || $value.sch.$k.allow_mode == $smarty.const.SCH_TYPE_REST}-->
+                        <!--{$form.allow_mode[$value.sch.$k.allow_mode]}-->
+                        </p>
+                        <!--{/if}-->
+                        <p><span class="txt-sm">予約時間：</span><br />
+                        <!--{foreach $value.sch.$k.reserve as $k2 => $v2}-->
+                        <!--{$v2.going_time}--> 〜 <!--{$v2.leave_time}--><a href="?delete=<!--{$v2.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w}-->" onclick="return confirm('予約を削除しますか？');" class="badge" style="background: #ff0000; margin-left: 5px;">削除</a>
+                        </p>
+                        <!--{/foreach}-->
+
+                    </td>
+                    <!--{/foreach}-->
+                </tr>
+            <!--{/foreach}-->
+            </tbody>
+            </table>
+
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        </section> 
+<!--{else}-->
+<div class="alert alert-warning">データが登録されていません。</div>
+<p class="mt text-center">
+    <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+</p>
+<!--{/if}-->
+</div>
+<script>
+    function get_therapist()
+    {
+        $.ajax({
+            url: '../../pwc-admin/ajax/reserve.php',
+            data: {
+                day: $('[name=day]').val(),
+                staff_id: $('[name=staff_id]').val(),
+                going_hour: $('[name=going_hour]').val(),
+                going_min: $('[name=going_min]').val(),
+                leave_hour: $('[name=leave_hour]').val(),
+                leave_min: $('[name=leave_min]').val()
+            },
+            async: false,
+            dataType: 'json',
+            cache: false,
+            type: 'POST',
+            success: function(data) {
+                if (data == true) {
+                    if (confirm('予約情報の登録を行いますか？')) {
+                        $('form').submit();
+                    }
+                } else {
+                    alert(data);
+                }
+            },
+            error: function(data) {
+                alert('エラーチェックに失敗しました。');
+            }
+        });
+        return false;
+    }      
+ </script>
+<!-- /content-panel -->
+<!--{/block}-->

@@ -1,0 +1,49 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- クレジット -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_credit.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+
+            <!-- 決済の流れ -->
+            <section class="wrap">
+                <h3 class="subtitle">決済の流れ</h3>
+                <dl class="txt_box_01 list_box_02">
+                    <dt class="atten_01">1.お客様のご利用は&nbsp;(店舗名：<!--{$smarty.const.SHOP_NAME}-->)&nbsp;です。</dt>
+                    <dd>※ご利用店舗をご確認ください。</dd>
+                    <dt class="atten_01">2.当店&nbsp;(TEL：<!--{$smarty.const.SHOP_TEL}-->)&nbsp;にお電話頂き、ご予約及びご利用金額ご確認下さい。</dt>
+                    <dd>
+                        ※必ずご予約を先にしてご利用金額をご確認下さい。<br>
+                        ※カード手数料はご利用額の15%になります。<br>
+                        ※お支払いは１回のみとなります。<br>
+                        ※サービス開始後のオプションの追加、延長等は現金でお願いします。
+                    </dd>
+                    <dt class="atten_01">3.予約完了後、お客様ご自身でクレジット情報をご入力下さい。</dt>
+                    <dd>※必ずご本人様カードで決済をお願い致します。場合によっては身分証明書の提示が必要となります。</dd>
+                    <dt class="atten_01">4.有効期限が有効なVISA・MASTER・JCB・AMEXのマークが付いたクレジットカードであるかご確認下さい。</dt>
+                    <dd>※カードの種類、有効期限をご確認下さい。</dd>
+                    <dt class="atten_01">5.必ず予約された電話番号をカード決済時に入力して下さい。</dt>
+                    <dd>※カード決済時には電話番号が必要です。</dd>
+                    <dt class="atten_01">6.申込み完了後、■■■■■■■■■■■ にお電話して本人認証を行ってください。</dt>
+                    <dd>※本人認証が完了致しませんと、決済処理は完了されません。</dd>
+                </dl>
+            </section>
+            <!-- //決済の流れ -->
+            <!-- 注意事項 -->
+            <section class="wrap">
+                <h3 class="subtitle">注意事項</h3>
+                <p class="txt_box_01">
+                    カード会社からの請求名は店舗名ではなく<span class="atten_01">「STAR-PAY」</span>と表記されます。<br>
+                    カード手数料はご利用額の15%になり、お支払い回数は一回のみとなります。 <br>
+                    決済通貨は安心安全の円建て決済となりますので、為替リスクなどは一切ございません。<br>
+                    STAR-PAYのネットで簡単決済システムはお客様に直接カード情報をご入力頂きますので個人情報保護に繋がります。 <br>
+                    不正カード防止システムが導入されている為、不正カード発覚時は警察に通報させて頂きます。<br>
+                    海外発行カードについてはご利用いただけません。
+                </p>
+            </section>
+            <!-- //注意事項 -->
+        </section>
+        <!-- //クレジット -->
+        <p class="mb_10"><a href="#" class="btn_one_01"><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_credit.png" alt="クレジット決済ページへ" width="34">&nbsp;&nbsp;クレジット決済ページへ</a></p>
+
+<!--{/block}-->

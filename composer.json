@@ -1,0 +1,18 @@
+{
+    "require": {
+		"smarty/smarty": "dev-trunk",
+        "swiftmailer/swiftmailer": "@stable",
+        "woothee/woothee": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "app/core/",
+            "app/db/",
+            "app/utility/"
+        ],
+        "files": [
+            "pwc-admin/common/functions.php",
+            "pwc-pages/common/functions.php"
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- スケジュール一覧 -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<p>☆★☆★日付選択★☆★☆</p>
+	<!--{foreach $week as $k => $v}-->
+		■<a href="<!--{$smarty.const.MB_URL}-->/schedule.php?day=<!--{$k+1}-->">
+		<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+		</a><br />
+	<!--{/foreach}-->
+	<br />
+	<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444"><!--{$week.$day|substr:4:2}-->月<!--{$week.$day|substr:6:2}-->日(<!--{$week.$day|day_of_week}-->)の出勤</font>
+	</div>
+
+	<!--{foreach $schedule as $v}-->
+	<div style="padding-bottom: 20px;">
+		<p style="float:left; margin:3px;"><!--{include file="./common/staff/thumbnail.html" width=60 height=90}--></p>
+		<!--{include file="./common/staff/icon_check.html"}--><br />
+		<!--{$v.name}-->(<!--{$v.age}-->)&nbsp;<!--{include file="./common/staff/icon_new.html"}--><!--{include file="./common/staff/icon_class.html"}--><br />
+		<!--{include file="./common/staff/size.html"}--><br />
+		<font color="#ff007e"><!--{$v.schedule.time}--></font>&nbsp;<!--{include file="./common/staff/work_info.html"}--><br />
+		<a href="<!--{$smarty.const.MB_URL}-->/profile.php?sid=<!--{$v.id}-->">詳細はこちら</a>
+	</div>
+	<hr size="1" style="clear:both;" color="#fafafa" />
+	<!--{/foreach}-->
+<!--{/block}-->

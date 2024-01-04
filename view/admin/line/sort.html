@@ -1,0 +1,31 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->ヘッドラインニュース並べ替え<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $data|@count > 0}-->
+    <form class="form-horizontal style-form" action="finish.php" method="post" onsubmit="return sortCheck();">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" id="seq" name="seq"/>
+        <ul id="sort">
+            <!--{foreach $data as $v}-->
+            <li id="<!--{$v.id}-->" class="pn">
+                <p>
+                    <!--{$v.name}-->
+                </p>
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <p class="mt text-center">
+            <input type="submit" name="sort" class="btn btn-primary btn-smart" value="並べ替え">
+            <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <p class="mt text-center">
+        <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+    </p>
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

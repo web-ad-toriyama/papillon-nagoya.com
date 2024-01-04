@@ -1,0 +1,76 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<div class="shutter"><div class="spinner"></div><p class="text">Papillon</p></div>
+<section id="contents_link">
+    <!-- サブビジュアル -->
+    <div class="subvisual">
+            <p class="center">
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+            </p>
+            <p class="left">
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+            </p>
+            <p class="right">
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+            </p>
+        <h2 class="contents_title">
+            <p class="main"><!--{$page.name}--></p>
+            <p class="sub"><!--{$html.name_kana.access}--></p>
+        </h2>
+    </div>
+    <!-- //サブビジュアル -->
+
+    <div id="contents" class="inner">
+        <h3>LINK<br><span class="fs_05em">当サイトはリンクフリーです。</span></h3>
+        <table class="table02">
+            <tr>
+                <th>サイト名</th>
+                <td>
+                    <!--{$smarty.const.SHOP_NAME}-->
+                </td>
+            </tr>
+            <tr>
+                <th>リンク先</th>
+                <td><a href="<!--{$smarty.const.ROOT_URL}-->"><!--{$smarty.const.ROOT_URL}--></a></td>
+            </tr>
+            <tr>
+                <th>alt属性</th>
+                <td><!--{$smarty.const.SHOP_NAME}--></td>
+            </tr>
+            <tr class="pc">
+                <th>各種バナー</th>
+                <td>
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/bnr_88_31.jpg" width="88" height="31" alt="<!--{$smarty.const.SHOP_NAME}-->"><br>
+                    88*31(px)<br>
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/bnr_160_45.jpg" width="160" height="45" alt="<!--{$smarty.const.SHOP_NAME}-->"><br>
+                    160*45(px)<br>
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/bnr_200_40.jpg" width="200" height="40" alt="<!--{$smarty.const.SHOP_NAME}-->"><br>
+                    200*40(px)<br>
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/bnr_468_60.jpg" width="468" height="60" alt="<!--{$smarty.const.SHOP_NAME}-->"><br>
+                    468*60(px)<br>
+
+                  </td>
+            </tr>
+        </table>
+        <aside>
+            <h3>相互リンク集</h3>
+            <div class="mb_20">
+                <!--{if $free != ''}-->
+                <p><!--{$free.detail_pc}--></p>
+                <!--{/if}-->
+            </div>
+            <ul class="list_link_box">
+            <!--{foreach $banner as $v}-->
+            <li>
+                <a href="<!--{$v.url}-->" target="_blank">
+                <img src="<!--{$smarty.const.IMG_BANNER_URL}-->/<!--{$v.file_name}-->" alt="<!--{$v.title}-->" width="88" height="31">
+                <br />
+                <!--{$v.title}-->
+                </a>
+            </li>
+            <!--{/foreach}-->
+            </ul>
+        </aside>
+    </div>
+</section>
+<!--{/block}-->

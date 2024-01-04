@@ -1,0 +1,116 @@
+    <!-- ヘッダー -->
+    <header id="header" role="banner">
+        <div class="inner">
+            <h1><!--{$page.h1}--></h1>
+            <h2><a href="/"><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/img_header.png" alt="<!--{$page.h2}-->" width="320"></a></h2>
+        </div>
+        <div id="header_menu">
+            <!-- グローバルメニュー（ドロワー） -->
+            <button type="button" class="drawer-toggle drawer-hamburger">
+                <span class="sr-only">toggle navigation</span>
+                <span class="drawer-hamburger-icon"></span>
+                <span class="drawer_txt">MENU</span>
+            </button>
+            <nav class="drawer-nav" role="navigation">
+                <div>
+                <ul class="drawer-menu">
+                    <!-- テキストメニュー -->
+                    <li class="menu_t"><i class="fa fa-caret-down fa-lg fa-fw" aria-hidden="true"></i>MENU</li>
+                    <li class="menu_t"><a href="top.php" class="drawer-menu-item"><i class="fa fa-home fa-lg fa-fw" aria-hidden="true"></i>トップページ</a></li>
+                    <li class="menu_t"><a href="topics.php" class="drawer-menu-item"><!--{$html.name.topics}--></a></li>
+                    <li class="menu_t"><a href="system.php" class="drawer-menu-item"><!--{$html.name.system}--></a></li>
+                    <li class="menu_t"><a href="staff.php" class="drawer-menu-item"><!--{$html.name.staff}--></a></li>
+                    <li class="menu_t"><a href="schedule.php" class="drawer-menu-item"><!--{$html.name.schedule}--></a></li>
+                    <li class="menu_t"><a href="access.php" class="drawer-menu-item"><!--{$html.name.access}--></a></li>
+                    <li class="menu_t"><a href="recruit.php" class="drawer-menu-item"><!--{$html.name.recruit}--></a></li>
+                    <li class="menu_t"><a href="hotel.php" class="drawer-menu-item"><!--{$html.name.hotel}--></a></li>
+                    <li class="menu_t"><a href="link.php" class="drawer-menu-item"><!--{$html.name.link}--></a></li>
+                    <li class="menu_t"><a href="newface.php" class="drawer-menu-item"><!--{$html.name.newface}--></a></li>
+                    <li class="menu_t"><a href="credit.php" class="drawer-menu-item"><!--{$html.name.credit}--></a></li>
+                    <li class="menu_t"><a href="qa.php" class="drawer-menu-item"><!--{$html.name.qa}--></a></li>
+                    <li class="menu_t"><a href="concept.php" class="drawer-menu-item"><!--{$html.name.concept}--></a></li>
+                    <li class="menu_t"><a href="info.php" class="drawer-menu-item"><!--{$html.name.info}--></a></li>
+                    <li class="menu_t"><a href="play.php" class="drawer-menu-item"><!--{$html.name.play}--></a></li>
+                    <li class="menu_t"><a href="manga.php" class="drawer-menu-item"><!--{$html.name.manga}--></a></li>
+                    <li class="menu_t"><a href="ranking.php" class="drawer-menu-item"><!--{$html.name.ranking}--></a></li>
+                    <li class="menu_t"><a href="contact.php" class="drawer-menu-item"><!--{$html.name.contact}--></a></li>
+                    <li class="menu_t"><a href="enquete.php" class="drawer-menu-item"><!--{$html.name.enquete}--></a></li>
+                    <li class="menu_t"><a href="event.php" class="drawer-menu-item"><!--{$html.name.event}--></a></li>
+                    <li class="menu_t"><a href="impressions.php" class="drawer-menu-item"><!--{$html.name.impressions}--></a></li>
+                    <li class="menu_t mb_20"><a href="reserve.php" class="drawer-menu-item"><!--{$html.name.reserve}--></a></li>
+                    <li class="menu_t mb_20"><a href="magazine.php" class="drawer-menu-item"><!--{$html.name.magazine}--></a></li>
+                    <!-- アイコンメニュー -->
+                    <li class="menu_i">
+                        <a href="contact.php" class="drawer-menu-item"><i class="fa fa-mobile fa-lg fa-fw" aria-hidden="true"></i></a>
+                        <p>お問い合せ</p>
+                    </li>
+                    <li class="menu_i">
+                        <a href="reserve.php" class="drawer-menu-item"><i class="fa fa-laptop fa-lg fa-fw" aria-hidden="true"></i></a>
+                        <p>WEB予約</p>
+                    </li>
+                    <li class="menu_i">
+                        <a href="enquete.php" class="drawer-menu-item"><i class="fa fa-pencil fa-lg fa-fw" aria-hidden="true"></i></a>
+                        <p>アンケート</p>
+                    </li>
+                    <li class="menu_i">
+                        <a href="entry.php" class="drawer-menu-item mr_0"><i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i></a>
+                        <p>求人応募</p>
+                    </li>
+                    <!-- 店名 -->
+                    <li class="menu_d menu_s">
+                        <i class="fa fa-caret-right fa-fw" aria-hidden="true"></i><!--{$smarty.const.SHOP_NAME}-->
+                    </li>
+                    <!-- エリア -->
+                    <li class="menu_d">
+                        <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i><!--{$smarty.const.SHOP_AREA}-->
+                    </li>
+                    <!-- 営業時間 -->
+                    <li class="menu_d">
+                        <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><!--{$smarty.const.SHOP_OPEN}-->（受付&nbsp;<!--{$smarty.const.SHOP_RECEPTION}-->）
+                    </li>
+                    <!-- 電話番号 -->
+                    <li class="menu_d">
+                        <a href="tel:<!--{$smarty.const.SHOP_TEL}-->" class="btn_sq">
+                            <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"></i><!--{$smarty.const.SHOP_TEL}-->
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+            <!-- //グローバルメニュー -->
+            <div class="header_right">
+                <a href="system.php">
+                    <i class="fa fa-clipboard fa-lg" aria-hidden="true"></i><br>
+                    <p>料金の確認</p>
+                </a>
+                <a href="staff.php">
+                    <i class="fa fa-heart fa-lg" aria-hidden="true"></i><br>
+                    <p>女の子を見る</p>
+                </a>
+                <a href="tel:<!--{$smarty.const.SHOP_TEL}-->">
+                    <i class="fa fa-phone fa-lg" aria-hidden="true"></i><br>
+                    <p>電話をかける</p>
+                </a>
+            </div>
+        </div>
+        <!-- ヘッドライン -->
+        <div class="headline">
+            <!--{foreach $headline as $v}-->
+                <!--{if $form.line.hex[$v.color_flg] != ''}-->
+                <span style="color:<!--{$form.line.hex[$v.color_flg]}-->;"><!--{$v.name}--></span>
+                <!--{else}-->
+                <span><!--{$v.name}--></span>
+                <!--{/if}-->
+            <!--{/foreach}-->
+        </div>
+        <!-- //ヘッドライン -->
+        <!-- 電話番号 / 営業時間 -->
+        <ul class="info_box mb_10">
+            <li><a href="tel:<!--{$smarty.const.SHOP_TEL}-->">TEL：<!--{$smarty.const.SHOP_TEL}--></a></li>
+            <li>OPEN：<!--{$smarty.const.SHOP_OPEN}--></li>
+            <li>受付:<!--{$smarty.const.SHOP_RECEPTION}--></li>
+            <li>エリア：<!--{$smarty.const.SHOP_AREA}--></li>
+        </ul>
+        <!-- //電話番号 / 営業時間 -->
+    </header>
+    <!-- //ヘッダー -->

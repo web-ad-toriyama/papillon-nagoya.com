@@ -1,0 +1,6 @@
+
+<!--{if $v.photo != ''}-->
+<img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$v.id}-->/<!--{$v.photo}-->" width="<!--{$width}-->" height="<!--{$height}-->" alt="<!--{$v.name}-->" class="img_cast">
+<!--{else}-->
+<img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg" width="<!--{$width}-->" height="<!--{$height}-->" alt="ノーイメージ" class="img_cast">
+<!--{/if}-->

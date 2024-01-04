@@ -1,0 +1,121 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+<!-- アンケート -->
+
+<section class="section_box">
+	<h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_enquete.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+	<div class="wrap">
+		<p class="txt_box_01">
+      当店は『あなたを癒す心からの施述』がコンセプトの、完全予約制プライベートサロンです。<br>
+      JR五反田駅西口より徒歩4分のオフィスストリートにて、厳選されたセラピストによる心からのおもてなしと至福のひとときをご提供いたします。<br>
+			<span class="atten_01">※</span>は必須項目です。
+		</p>
+		<section>
+			<h3 class="subtitle">アンケートフォーム</h3>
+			<form method="post" action="?mode=confirm" class="form_box mb_10">
+				<table class="table_01">
+					<tr>
+						<th>お名前&nbsp;<span class="atten_01">※</span></th>
+						<td><input type="text" name="name"></td>
+					</tr>
+					<tr>
+						<th>メールアドレス&nbsp;<span class="atten_01">※</span></th>
+						<td><input type="email" name="mail"></td>
+					</tr>
+					<tr>
+						<th>電話番号&nbsp;<span class="atten_01">※</span></th>
+						<td><input type="text" name="tel"></td>
+					</tr>
+					<tr>
+						<th>当店のご利用回数&nbsp;<span class="atten_01">※</span></th>
+						<td><!--{html_options name='count' options=$form.enquete.count}--></td>
+					</tr>
+					<tr>
+						<th>ご利用日&nbsp;<span class="atten_01">※</span></th>
+						<td><!--{html_options name='month' options=$form.enquete.month}-->
+							<!--{html_options name='day' options=$form.enquete.day}--></td>
+					</tr>
+					<tr>
+						<th>当店を初めにお知りになられたキッカケは？</th>
+						<td><label>
+								<input type="radio" name="chance"value="ネット検索" />
+								ネット検索</label>
+							<br>
+							※検索エンジン名
+							<input type="text" name="chance_site" size="35" />
+							<br>
+							<label>
+								<input type="radio"  name="chance"value="雑誌の広告" />
+								雑誌の広告</label>
+							<br>
+							※雑誌名
+							<input type="text"  name="chance_zassi" size="35" />
+							<br>
+							<label>
+								<input type="radio"  name="chance" value="ネット" />
+								ネット</label>
+							<label>
+								<input type="radio" name="chance" value="知人の紹介" />
+								知人の紹介</label>
+							<label>
+								<input type="radio"  name="chance" value="その他" />
+								その他</label></td>
+					</tr>
+					<tr>
+						<th>受付スタッフの電話応対はいかがでしたか？</th>
+						<td><!--{html_radios name='front' options=$form.enquete.value}--></td>
+					</tr>
+					<tr>
+						<th>担当させて頂きましたスタッフの名前は？&nbsp;<span class="atten_01">※</span></th>
+						<td><input type="text" name="staff"></td>
+					</tr>
+					<tr>
+						<th>マッサージの技術に関しましてのご感想は？</th>
+						<td><!--{html_radios name='massage' options=$form.enquete.value}--></td>
+					</tr>
+					<tr>
+						<th>回春(性感)の技術に関しまして今回のご感想は？</th>
+						<td><!--{html_radios name='seikan' options=$form.enquete.value}--></td>
+					</tr>
+					<tr>
+						<th><!--{$smarty.const.STAFF_CALL}-->の接客マナー等を含めて今回のご感想は？</th>
+						<td><!--{html_radios name='manner' options=$form.enquete.value}--></td>
+					</tr>
+					<tr>
+						<th>次回また指名したいと思いますか？</th>
+						<td><!--{html_radios name='next' options=$form.enquete.next}--></td>
+					</tr>
+					<tr>
+						<th><!--{$smarty.const.STAFF_CALL}-->や施術内容に関してご意見、ご要望、お気づきの点など御座いましたら、些細な点でも構いませんのでお願いいたします。</th>
+						<td><textarea name="detail1"></textarea></td>
+					</tr>
+					<tr>
+						<th><!--{$smarty.const.STAFF_CALL}-->に点数をつけると、１００点満点で何点ですか？ (100点満点中80点を合格ラインとして)</th>
+						<td><input type="text" name="staff_point">
+							点</td>
+					</tr>
+					<tr>
+						<th>当店のご満足度は１００点満点で何点ですか？ (100点満点中80点を合格ラインとして)</th>
+						<td><input type="text" name="shop_point">
+							点</td>
+					</tr>
+					<tr>
+						<th>当店に特に求めるものはなんですか？ 複数回答可</th>
+						<td><!--{html_checkboxes name='wish' options=$form.enquete.wish}-->
+							<textarea name="detail2"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th><!--{$smarty.const.STAFF_CALL}-->へのメッセージ等ございましたらご記入お願い致します。</th>
+						<td><textarea name="detail3"></textarea></td>
+					</tr>
+				</table>
+				<input type="submit" name="confirm" value="確認" class="btn_one_02">
+				<input type="reset" name="reset" value="リセット" class="btn_one_02">
+			</form>
+		</section>
+	</div>
+</section>
+<!-- //アンケート -->
+
+<!--{/block}-->

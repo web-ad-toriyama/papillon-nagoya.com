@@ -1,0 +1,61 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+<!-- 出勤情報一覧 -->
+<section class="section_box">
+	<h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_schedule.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+	<div class="wrap">
+		<ul class="list_box_01">
+			<!--{foreach $week as $k => $v}-->
+			<li> <a href="<!--{$smarty.const.SP_URL}-->/schedule.php?day=<!--{$k+1}-->">
+				<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->) </a> </li>
+			<!--{/foreach}-->
+		</ul>
+		<!-- 出勤情報 ver01 -->
+		<section>
+			<h3 class="subtitle"><!--{$week.$day|substr:4:2}-->月<!--{$week.$day|substr:6:2}-->日(<!--{$week.$day|day_of_week}-->)の出勤</h3>
+			<ul class="cast_box">
+				<!--{foreach $schedule as $v}-->
+				<li>
+					<h3><!--{$v.name}-->(<!--{$v.age}-->)&nbsp;&nbsp;<!--{include file="./common/staff/icon_new.html"}--></h3>
+					<a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->" class="wrap">
+					<!--{include file="./common/staff/thumbnail.html" width=80 height=120}-->
+					<div>
+						<p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+						<p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+						<p class="size"><!--{include file="./common/staff/size.html"}--></p>
+						<p class="time"><!--{$v.schedule.time}--></p>
+						<p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+					</div>
+					</a> </li>
+				<!--{/foreach}-->
+			</ul>
+		</section>
+		<!-- //出勤情報 ver01 -->
+		<!-- 出勤情報 ver02 -->
+		<section class="cast_box_2column">
+			<h3 class="subtitle"><!--{$week.$day|substr:4:2}-->月<!--{$week.$day|substr:6:2}-->日(<!--{$week.$day|day_of_week}-->)の出勤</h3>
+			<ul class="wrap">
+				<!--{foreach $schedule as $v}-->
+				<a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->">
+				<li>
+					<p class="img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+					<div class="txt_box">
+						<p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+						<p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+						<p class="name"><!--{$v.name}-->(<!--{$v.age}-->)<span class="icon_new"><!--{include file="./common/staff/icon_new.html"}--></span></p>
+						<p class="size"><!--{include file="./common/staff/size.html"}--></p>
+						<p class="time"><!--{$v.schedule.time}--></p>
+						<p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+					</div>
+				</li>
+				</a>
+				<!--{/foreach}-->
+			</ul>
+		</section>
+		<!-- //出勤情報 ver02 -->
+	</div>
+</section>
+<!-- //出勤情報一覧 -->
+
+<!--{/block}-->

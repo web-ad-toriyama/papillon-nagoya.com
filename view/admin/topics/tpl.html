@@ -1,0 +1,70 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->新着情報テンプレート登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?p=<!--{$params.p}-->" method="post" onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">番号 <span class="btn-danger btn-xs txt-sm">必須</span></label>
+
+            <div class="col-sm-10">
+                <!--{html_options id='id' name='id' class='form-control' options=$a_template selected=$data.id|default:$template_id}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">タイトル <span class="btn-danger btn-xs txt-sm">必須</span>
+                <br/><span class="txt-sm">（30文字）</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" id="title" name="title" type="text" value="<!--{$data.title|default:''}-->">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">内容 <span class="btn-danger btn-xs txt-sm">必須</span></label>
+
+            <div class="col-sm-10">
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckeditor/ckeditor.js"></script>
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckfinder/ckfinder.js"></script>
+                <textarea id="editor1" name="detail">
+                    <!--{$data.detail|default:''}-->
+                </textarea>
+                <script type="text/javascript">
+                    if (typeof CKEDITOR == 'undefined') {
+                    } else {
+                        var editor = CKEDITOR.replace('editor1');
+                        CKFinder.setupCKEditor(editor, '<!--{$smarty.const.AD_URL}-->/js/ckfinder/');
+                    }
+                </script>
+            </div>
+        </div>
+        <!--{if $data != ''}-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+
+            <div class="col-sm-10">
+                <label>
+                    <input type="checkbox" name="del" value="1"> <span class="label label-danger">データを削除する</span>
+                </label>
+            </div>
+        </div>
+        <!--{/if}-->
+        <p class="mt text-center">
+            <input type="submit" name="tpl" class="btn btn-primary btn-smart" value="登録">
+            <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/topics_tpl.js"></script>
+<script>
+    $(function(){
+        $("#id").change(function() {
+            var url = "?p=1&id="+$(this).val();
+            $(location).attr('href',url);
+        });
+    });
+</script>
+<!-- /content-panel -->
+<!--{/block}-->

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/head.html"}-->
+</head>
+<body class="drawer drawer--left">
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/header.html"}-->
+
+    <!-- メインカラム -->
+    <div id="contents" class="wrap">
+        <!-- 入場 / 退場 -->
+        <ul class="btn_two_01">
+            <li>
+                <a href="top.php">
+                    <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_enter.png" alt="18歳以上で入場" width="34"><br>18歳以上で入場
+                </a>
+            </li>
+            <li>
+                <a href="http://yahoo.co.jp" target="_blank">
+                    <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_exit.png" alt="18歳未満で退場" width="34"><br>18歳未満で退場
+                </a>
+            </li>
+        </ul>
+        <!-- //入場 / 退場 -->
+
+        <!-- 当サイトについて -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_topics.png" alt="" width="34">当サイトについて</h2>
+            <div class="wrap">
+                <div class="txt_box_01">
+                    <p>
+                        当サイトにはアダルトコンテンツが含まれている為、18歳未満の方のご入場を固くお断り致します。
+                    </p>
+                </div>
+                <h3 class="subtitle">テンプレートサイトとは</h3>
+                <div class="txt_box_01">
+                    <p class="fs_10">
+                        全ての紳士たちが求める「密着」を追求するために、若くての容姿端麗かつ笑顔の素敵な接客が出来るセラピストを厳選し風俗サービスを提供いたします。<br>
+                        そのサービスといたしまして、まずは混浴の洗体からスタート、繊細かつ大胆なもみほぐしで疲れた体を癒し密着マッサージで紳士のハートに火をつけます。<br>
+                        リップ性感や夢のパイズリなども無料オプションとして追加でき、満たされた後のフィニッシュまでしっかりとサービスを行います。<br>
+                        出張型の風俗サービス店なので新宿エリアを中心に、東京23区内のレンタルルームやラブホテル、ビジネスホテル、そしてご自宅からお気軽にお電話ください。
+                    </p>
+                </div>
+                <h3 class="subtitle">エステとは</h3>
+                <div class="txt_box_01">
+                    <p class="fs_10">
+                        当サイトは、渋谷エリアを中心に、回春性感マッサージや風俗密着エステサービスご案内する出張型店舗のオフィシャルサイトです。<br>
+                        初めての方にもご利用しやすいよう、コンテンツの充実を図っております！こういったお店に慣れない方はお店に電話することに抵抗がありますよね。サービス内容や料金設定、ご利用方法、派遣エリアを表示しておりますのでまずは当サイトを隅々までご覧になって想像してみてください。<br>
+                        混浴洗体、もみほぐし、密着マッサージ、リップ性感、オイルマッサージ、男性のための回春マッサージ、ハンドサービスを基本としお好みで各種無料オプション（キス、パイズリ、顔面騎乗、騎乗位素股、フェラ）や有料オプションを文章、写真を使用しご紹介しております。
+                    </p>
+                </div>
+                <h3 class="subtitle">当店のサービス内容</h3>
+                <div class="txt_box_01">
+                    <p class="fs_10">
+                        【中央区】京橋、日本橋、銀座、八重洲、八丁堀、東銀座、月島、人形町、馬喰町、茅場町、勝どき、築地、新富町、小伝馬町<br>
+                        【墨田区】 立川、錦糸町、千歳、墨田、文化、立花、両国、菊川、曳舟、押上<br>
+                        【神奈川県一部】川崎市、横浜市<br>
+                        【その他】上記地域に加え東京都２３区内、JR山手線、神奈川県一部<br>
+                        沿線の各駅周辺のレンタルルーム、ホテルに出張、派遣いたします。（＊交通費に関しましてはご予約のお電話の際にお問い合わせください。）
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- //当サイトについて -->
+
+        <!-- 相互リンク -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_link.png" alt="<!--{$html.name.link}-->" width="34"><!--{$html.name.link}--></h2>
+            <div class="wrap">
+                <!--{if $free != ''}-->
+                <p class="txt_box_01 mb_10"><!--{$free.detail_sp}--></p>
+                <!--{/if}-->
+
+                <ul class="list_box_01">
+                    <!--{foreach $banner as $v}-->
+                    <li>
+                        <a href="<!--{$v.url}-->" target="_blank">
+                            <p><!--{$v.title}--></p>
+                        </a>
+                    </li>
+                    <!--{/foreach}-->
+                </ul>
+            </div>
+        </section>
+        <!-- //相互リンク -->
+
+    </div>
+    <!-- //メインカラム -->
+
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/footer.html"}-->
+
+<!-- テスト表示中なので消さないでね　栗原 -->    
+<script>
+var _chaq = _chaq || [];
+_chaq['_accountID']=1023;
+(function(D,s){
+    var ca = D.createElement(s)
+    ,ss = D.getElementsByTagName(s)[0];
+    ca.type = 'text/javascript';
+    ca.async = !0;
+    ca.setAttribute('charset','utf-8');
+    var sr = 'https://s002.sshitsuji.net/butler.js';
+    ca.src = sr + '?' + parseInt((new Date)/60000);
+    ss.parentNode.insertBefore(ca, ss);
+})(document,'script');
+</script>
+<!-- テスト表示中なので消さないでね　栗原 -->    
+
+</body>
+</html>

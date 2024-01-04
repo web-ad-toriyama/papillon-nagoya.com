@@ -1,0 +1,43 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->イベント選択<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $data|@count > 0}-->
+    <form method="post" action="finish.php">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf">
+                <thead class="cf">
+                    <tr>
+                        <th>選択</th>
+                        <th>イベント画像</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--{foreach $data as $v}-->
+                    <tr>
+                        <td data-title="選択">
+                            <input type="checkbox" name="event_sel[]" value="<!--{$v.id}-->" <!--{if $v.selected == $smarty.const.SET_ON}-->checked<!--{/if}-->>
+                        </td>
+                        <td data-title="イベント画像">
+                            <img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$v.file_name}-->"
+                            width="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_W/3}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_H/3}-->">
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+        </section>
+        <p class="mt text-right">
+            <input type="submit" name="sel" class="btn btn-primary" value="画像選択" onclick="return confirm('登録を実行しますか？')">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

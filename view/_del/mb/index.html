@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{include file="<!--{$smarty.const.VIEW_DIR}-->/mb/common/head.html"}-->
+</head>
+<body bgcolor="#000000" text="#ffffff" link="#fff8d8" vlink="#fff8d8" marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" style="font-size:x-small;">
+<style type="text/css">
+body { margin:0 auto;padding:0;width:240px;}
+img { border:none; }
+</style>
+<!--{include file="<!--{$smarty.const.VIEW_DIR}-->/mb/common/header.html"}-->
+	<br />
+	<div align="center" style="background-color:#333333; padding:5px; margin-bottom: 10px;">
+	<font color="#"><a href="<!--{$smarty.const.MB_URL}-->/top.php">ENTER</a></font>
+	</div>
+
+	<div align="center" style="background-color:#222222; padding:5px; margin-bottom: 10px;">
+	<font><a href="http://yahoo.co.jp/" target="_blank">EXIT</a></font>
+	</div>
+	<p>当ｻｲﾄにはｱﾀﾞﾙﾄｺﾝﾃﾝﾂが含まれている為､18歳未満の方のご入場を固くお断り致します｡</p>
+
+
+	<hr size="1" color="#fafafa" />
+
+	<!--{if $free != ''}-->
+	<p><!--{$free.detail_mb}--></p>
+	<!--{/if}-->
+	<!--{foreach $banner as $v}-->
+	■<a href="<!--{$v.url}-->" target="_blank"><!--{$v.title}--></a><br />
+	<!--{/foreach}-->
+
+<!--{include file="<!--{$smarty.const.VIEW_DIR}-->/mb/common/footer.html"}-->
+
+</body>
+</html>

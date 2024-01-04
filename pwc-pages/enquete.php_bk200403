@@ -1,0 +1,84 @@
+<?php
+
+/*
+    アンケートページ
+ */
+
+$mode = getParamMode();
+
+// 不正なパラメーターが引き渡されたらトップページにリダイレクト
+if ($mode === false) {
+	redirect(ROOT_URL);
+}
+
+// CSRF対策用トークン
+Token::getInstance();
+Token::init();
+
+$template_file = '/'.$dir.'/enquete/'.$mode.'.html';
+$mail_template_file = '/pc/enquete/mail.html';
+
+$posts = h($_POST);
+$smarty->assign('posts',$posts);
+
+// 内容確認
+if ($posts['confirm']) {
+	// バリデーション実行
+	$rules = array(
+		'name' => array(
+			array('rule' => 'required')
+		),
+		'mail' => array(
+			array('rule' => 'required'),
+			array('rule' => 'email'),
+		),
+		'tel' => array(
+			array('rule' => 'required'),
+			array('rule' => 'tel'),
+		),
+		'count' => array(
+			array('rule' => 'required'),
+		),
+		'month' => array(
+			array('rule' => 'required'),
+		),
+		'day' => array(
+			array('rule' => 'required'),
+		),
+		'staff' => array(
+			array('rule' => 'required')
+		),
+		'staff_point' => array(
+			array('rule' => 'numeric'),
+		),
+		'shop_point' => array(
+			array('rule' => 'numeric'),
+		),
+    );
+    $validator = new Validator();
+	$validator->setRules($rules);
+	$validator->validate($posts);
+	$error = $validator->getError();
+	$smarty->assign('error',$error);
+	// チェックボックス展開
+	if (count($posts['wish']) > 0) {
+		foreach ($posts['wish'] as $v) {
+			$wish .= $v.' ';
+		}
+	}
+}
+
+// 内容送信
+if ($posts['send']) {
+	$csrf = $result = false;
+	if (Token::check()) {
+	    $csrf = true;
+	    $body = $smarty->fetch(VIEW_DIR.$mail_template_file);
+	    $result = sendEmail('アンケートフォーム', $body, null, array(SHOP_MAIL_ENQUETE => 'アンケートフォーム'));
+	}
+	$smarty->assign('csrf', $csrf);
+	$smarty->assign('result', $result);
+}
+
+$smarty->assign('token', Token::fetch());
+$smarty->assign('wish',$wish);

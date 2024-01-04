@@ -1,0 +1,94 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->スケジュール登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+<!--{if $data|@count > 0}-->
+    <!--{if $params.id != ''}-->
+    <ul class="nav nav-tabs mb15">
+        <li><a href="edit.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">基本情報</a></li>
+        <li><a href="photo.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">画像・動画</a></li>
+        <li class="active"><a href="#">スケジュール</a></li>
+    </ul>
+    <!--{/if}-->
+    <form class="form-horizontal style-form" action="" method="post" onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <ul class="pager">
+            <!--{if $params.w <= 1}-->
+            <li class="previous disabled"><a href="#">&larr; 前の週へ</a></li>
+            <!--{else}-->
+            <li class="previous"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w-1}-->">&larr; 前の週へ</a></li>
+            <!--{/if}-->
+            <li class="next"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w+1}-->">次の週へ &rarr;</a></li>
+        </ul>
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf">
+            <thead class="cf">
+            <tr>
+            <th class="text-center"><!--{$smarty.const.STAFF_CALL}--></th>
+            <!--{foreach $week as $v}-->
+                <th class="text-center <!--{if $v|day_of_week == '土'}-->info<!--{elseif $v|day_of_week == '日'}-->danger<!--{/if}-->">
+                <!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+                </th>
+            <!--{/foreach}-->
+            </tr>
+            </thead>
+            <tbody>
+            <!--{foreach $data as $value}-->
+                <tr>
+                <td data-title="<!--{$smarty.const.STAFF_CALL}-->">
+                    <p><!--{$value.name}--></p>
+                    <!--{if $value.photo != ''}-->
+                    <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$value.id}-->/<!--{$value.photo}-->"
+                            width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                    <!--{else}-->
+                    <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg"
+                            width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                    <!--{/if}-->
+                </td>
+                <!--{foreach $week as $k => $v}-->
+                    <td data-title="<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)" class="reserves">
+                    <p>出勤<br />
+                    <!--{html_options name="going_hour[<!--{$v}-->][<!--{$value.id}-->]" options=$form.hour selected=$value.sch.$k.going_hour}-->:
+                    <!--{html_options name="going_min[<!--{$v}-->][<!--{$value.id}-->]" options=$form.min selected=$value.sch.$k.going_min}-->
+                    </p>
+                    <p>退勤<br />
+                    <!--{html_options name="leave_hour[<!--{$v}-->][<!--{$value.id}-->]" options=$form.hour selected=$value.sch.$k.leave_hour}-->:
+                    <!--{html_options name="leave_min[<!--{$v}-->][<!--{$value.id}-->]" options=$form.min selected=$value.sch.$k.leave_min}-->
+                    </p>
+                    <p>
+                    <!--{html_checkboxes class="allow_mode" name="allow_mode[<!--{$v}-->][<!--{$value.id}-->]" options=$form.allow_mode selected=$value.sch.$k.allow_mode}-->
+                    </p>
+                    <p>
+                    <input type="text" name="free_text[<!--{$v}-->][<!--{$value.id}-->]" class="free_text form-control" value="<!--{$value.sch.$k.free_text}-->" maxlength="15">
+                    <span class="help-block">15文字</span>
+                    </p>
+                    </td>
+                <!--{/foreach}-->
+                </tr>
+            <!--{/foreach}-->
+            </tbody>
+            </table>
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        </section>
+        <p class="mt text-right">
+            <input type="submit" name="sch_edit" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+<!--{else}-->
+<div class="alert alert-warning">データが登録されていません。</div>
+<p class="mt text-right">
+    <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+</p>
+<!--{/if}-->
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/schedule.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

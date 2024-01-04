@@ -1,0 +1,63 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+<div class="shutter"><div class="spinner"></div><p class="text">Papillon</p></div>
+<section id="contents_contact">
+	<!-- サブビジュアル -->
+  <div class="subvisual">
+      <p class="center">
+        <img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+      </p>
+      <p class="left">
+        <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+      </p>
+      <p class="right">
+        <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+      </p>
+    <h2 class="contents_title">
+      <p class="main"><!--{$page.name}--></p>
+      <p class="sub"><!--{$html.name_kana.contact}--></p>
+    </h2>
+  </div>
+  <!-- //サブビジュアル -->
+
+  <div id="contents" class="inner">
+  	<form method="post" action="?mode=confirm">
+    <table class="table03">
+        <tr>
+            <th>お名前&nbsp;<span class="atten_01">※</span></th>
+            <td>
+            	<input type="text" name="name" size="30">
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス&nbsp;<span class="atten_01">※</span></th>
+            <td>
+            	<input type="email" name="mail1" size="30" placeholder="メールアドレスをご入力ください">
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス(確認)&nbsp;<span class="atten_01">※</span></th>
+            <td>
+            	<input type="email" name="mail2" size="30" placeholder="もう一度メールアドレスをご入力ください">
+            </td>
+        </tr>
+        <tr>
+            <th>お問合せの種類&nbsp;<span class="atten_01">※</span></th>
+            <td>
+            	<!--{html_options name='item' options=$form.contact.item selected=''}-->
+            </td>
+        </tr>
+        <tr>
+            <th>お問合せ内容(500文字以内)</th>
+            <td>
+            	<textarea name="detail" cols="80" rows="10" style="width:100%" width="100%" ></textarea>
+            </td>
+        </tr>
+    </table>
+  	<input type="submit" name="confirm" value="確認" class="btn_form">
+  	<input type="reset" name="reset" value="リセット" class="btn_reset">
+  	</form>
+  </div>
+</section>
+
+<!--{/block}-->

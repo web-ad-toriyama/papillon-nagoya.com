@@ -1,0 +1,11 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+</div>
+<!--{if $event_img != ''}-->
+<!--{foreach $event_img as $v}-->
+<p><img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$v.file_name}-->" alt="event" width="<!--{$smarty.const.IMAGE_SIZE_EVENT_MB_W}-->" height="<!--{$smarty.const.IMAGE_SIZE_EVENT_MB_H}-->"></p>
+<!--{/foreach}-->
+<!--{/if}-->
+<!--{/block}-->

@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: err.php
+Disallow: /
+sitemap: https://papillon-nagoya.com/sitemap.xml

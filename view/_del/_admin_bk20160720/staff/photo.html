@@ -1,0 +1,139 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->画像・動画登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <!--{if $params.id != ''}-->
+    <ul class="nav nav-tabs mb15">
+        <li><a href="edit.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">基本情報</a></li>
+        <li class="active"><a href="#">画像・動画</a></li>
+        <li><a href="sch.php?id=<!--{$params.id}-->&w=1&p=<!--{$params.p}-->">スケジュール</a></li>
+    </ul>
+    <p class="vis_bar">名前：<!--{$staff_name}--></p>
+    <!--{/if}-->
+    <form name="frm" class="form-horizontal style-form" action="finish.php?p=<!--{$params.p}-->" method="post" onsubmit="return alertConfirm('edit')">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="id" value="<!--{$params.id|default:''}-->">
+        <input type="hidden" id="seq" name="seq" value="">
+        <h4>画像</h4>
+        <div id="sort_photo" class="row" style="margin: 0 2px;">
+            <!--{section name=thumb start=1 loop=$smarty.const.IMAGE_COUNT+1 step=1}-->
+            <!--{assign index $smarty.section.thumb.index}-->
+            <div id="<!--{$index}-->" class="thumbnail pull-left text-center mr20">
+                <p id="photo_<!--{$index}-->_div">
+                <!--{if $data[$index-1].file_name != ''}-->
+                    <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$params.id}-->/<!--{$data[$index-1].file_name}-->">
+                <!--{else}-->
+                    <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg">
+                <!--{/if}-->
+                </p>
+                <p>
+                    <input type="button" class="btn btn-primary" onclick="return uploadFile(this.name,<!--{$params.id}-->);" name="photo_<!--{$index}-->" value="アップロード">
+                    <input type="hidden" value="" id="photo_<!--{$index}-->_f_name" name="photo<!--{$index}-->">
+                    <input type="hidden" value="<!--{$data[$index-1].file_name}-->" name="photo<!--{$index}-->_old">
+                </p>
+                <p>
+                    <label><input type="checkbox" name="photo_del<!--{$index}-->"><span class="label label-danger">ファイル削除</span></label>
+                </p>
+            </div>
+            <!--{/section}-->
+        </div>
+
+        <div class="row" style="margin: 0 2px;">
+        <h4>動画</h4>
+        <section id="no-more-tables">
+            <p id="att_txt_ad"></p>
+            <table class="table table-bordered table-condensed cf">
+                <thead class="cf">
+                    <tr>
+                    <th>サムネイル</th>
+                    <th>動画ファイル</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="mov_thumb_box" align="center">
+                        <p id="movie_photo_div">
+                        <!--{if $data.movie.file_name != ''}-->
+                            <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$params.id}-->/<!--{$data.movie.file_name}-->">
+                        <!--{else}-->
+                            <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_movie_image.jpg">
+                        <!--{/if}-->
+                        </p>
+                        <p>
+                        <input type="button" class="btn btn-primary" onclick="return uploadFile(this.name,<!--{$params.id}-->);" name="movie_photo" value="アップロード">
+                        <input type="hidden" value="" id="movie_photo_f_name" name="movie_photo">
+                        <input type="hidden" value="<!--{$data.movie.file_name}-->" name="movie_photo_old">
+                        </p>
+                        <p>
+                            <label><input type="checkbox" name="movie_photo_del"><span class="label label-danger">ファイル削除</span></label>
+                        </p>
+                    </td>
+                    <td class="mov_thumb_box" align="center">
+                        <p id="movie_div">
+                        <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_movie.jpg">
+                        </p>
+                        <p>
+                        <input type="button" class="btn btn-primary" onclick="return uploadFile(this.name,<!--{$params.id}-->);" name="movie" value="アップロード">
+                        <input type="hidden" value="" id="movie_f_name" name="movie">
+                        <input type="hidden" value="<!--{$data.movie.movie_file_name}-->" id="movie_old" name="movie_old">
+                        </p>
+                        <p>
+                            <label><input type="checkbox" name="movie_del" onfocus="movie_write('');"><span class="label label-danger">ファイル削除</span></label>
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        </div>
+        <p class="mt text-right">
+            <input type="submit" name="img_edit" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/jwplayer.js"></script>
+
+<script>
+
+    <!--{if $data.movie.movie_file_name != ''}-->
+    movie_write("<!--{$data.movie.movie_file_name}-->");
+    <!--{/if}-->
+
+    function movie_write(file_name){
+        var fname = document.getElementById('movie_f_name').value;
+        var fname_old = document.getElementById('movie_old').value;
+        if (file_name != '') {
+            var movie_file = "<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$params.id}-->/"+file_name;
+        } else {
+            if (fname != '') {
+                var movie_file = "<!--{$smarty.const.IMG_TEMP_URL}-->/"+fname;
+            } else {
+                if (fname_old != '') {
+                    var movie_file = "<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$params.id}-->/"+fname_old;
+                }
+            }
+        }
+        if (movie_file != '') {
+            document.getElementById('movie_div').innerHTML = '<video preload="none" width="250" height="140" onclick=”this.play();” autoplay="" muted="" controls><source src="' + movie_file + '"></video>';
+            // jwplayer("movie_div").setup({
+            //     flashplayer: "<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/player.swf",
+            //     file: movie_file,
+            //     width: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_W}-->",
+            //     height: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_H}-->",
+            //     controls: true,
+            //     mute: true,
+            //     autostart: true
+            // });
+        }
+    }
+    var ua = navigator.userAgent.toLowerCase(), isAndroid = (ua.indexOf('android') > -1) && (ua.indexOf('mobile') > -1), isAndroidTablet = (ua.indexOf('android') > -1) && (ua.indexOf('mobile') == -1);
+     
+    if(isAndroid || isAndroidTablet) {
+        document.getElementById('att_txt_ad').innerHTML = 'Androidでは正常に動画再生されない場合がございますのでパソコンからご確認下さい。';
+    }
+</script>
+<!-- /content-panel -->
+<!--{/block}-->

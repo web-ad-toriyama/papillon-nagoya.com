@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>WEB管理システム - ログイン</title>
+    <!-- Bootstrap core CSS -->
+    <link href="<!--{$smarty.const.AD_URL}-->/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="<!--{$smarty.const.AD_URL}-->/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="<!--{$smarty.const.AD_URL}-->/css/style.css" rel="stylesheet">
+    <link href="<!--{$smarty.const.AD_URL}-->/css/style-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="login-page">
+    <div class="container">
+        <form class="form-login" action="login.php" method="post" onsubmit="return formCheck(this);">
+            <h2 class="form-login-heading">ログインフォーム</h2>
+            <div class="login-wrap">
+                <!--{if $result === false}-->
+                <p class="alert alert-danger">ログインに失敗しました。</p>
+                <!--{/if}-->
+                <input type="text" name="login_id" class="form-control" placeholder="ログインID"
+                       value="<!--{$data.login_id|default:''}-->">
+                <br>
+                <input type="password" name="login_pass" class="form-control" placeholder="パスワード">
+                <label class="checkbox">
+                        <span class="pull-right">
+		                    <input type="checkbox" name="remember" value="1"> ログイン情報を保持する
+		                </span>
+                </label>
+                <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> ログイン</button>
+                <hr>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="<!--{$smarty.const.AD_URL}-->/js/jquery.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/bootstrap.min.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/method.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/login.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/my.js"></script>
+</body>
+</html>

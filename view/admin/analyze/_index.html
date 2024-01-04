@@ -1,0 +1,277 @@
+<!--{extends file="../common/finish.html"}-->
+<!--{block name="page_title"}--><!--{$form.analyze[$params.device]}-->版 アクセス解析<!--{/block}-->
+<!--{block name="main"}-->
+
+<div class="row">
+	<div class="col-lg-12 mb">
+		<div class="content-panel mb">
+            <h4><i class="fa fa-angle-right"></i> 検索条件</h4>
+            <form role="form" class="form-inline" method="get">
+                <input type="hidden" name="device" value="<!--{$params.device|default:'pc'}-->">
+                <div class="form-group">
+                    ページ名：<!--{html_options name='file_name' options=$file_list selected=$params.file_name}-->
+                </div>
+                <div class="form-group">
+                    日付選択：
+                    <div class="input-group date">
+                    <input type="text" id="datepicker" class="form-control" size="10" name="date" value="<!--{$params.date|default:$smarty.now|date_format:'%Y-%m-%d'}-->">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">検索</button>
+            </form>
+        </div>
+
+        <div class="content-panel">
+			<h4><i class="fa fa-angle-right"></i> 訪問数</h4>
+			<div class="panel-body">
+                <!--{if $access.time != ''}-->
+                <div id="Time"></div>
+                <!--{else}-->
+                <div class="alert alert-warning">解析データが登録されていません。</div>
+                <!--{/if}-->
+			</div>
+		</div>
+    </div>
+
+    <div class="col-lg-12 mb">
+        <div class="content-panel mb">
+            <h4><i class="fa fa-angle-right"></i> 検索キーワード</h4>
+            <div class="panel-body">
+                <!--{if $access.search_words != ''}-->
+                    <table class="table table-condensed cf">
+                    <!--{foreach $access.search_words as $v}-->
+                    <tr>
+                        <td width="30%"><!--{$v.search_words}--></td>
+                        <td width="70%">
+                        <div style="width:<!--{$v.width}-->%; background: #4bb2c5";><p class="red box_shadow"><!--{$v.cnt}--></p></div>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                    </table>
+                <!--{else}-->
+                <div class="alert alert-warning">解析データが登録されていません。</div>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 mb">
+        <div class="content-panel mb">
+            <h4><i class="fa fa-angle-right"></i> リンク元</h4>
+            <div class="panel-body">
+                <!--{if $access.referer != ''}-->
+                    <table class="table table-condensed cf">
+                    <!--{foreach $access.referer as $v}-->
+                    <tr>
+                        <td width="30%"><a href="<!--{$v.referer}-->" target="_blank"><!--{$v.referer}--></a></td>
+                        <td width="70%">
+                        <div style="width:<!--{$v.width}-->%; background: #4bb2c5";><p class="red box_shadow"><!--{$v.cnt}--></p></div>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                    </table>
+                <!--{else}-->
+                <div class="alert alert-warning">解析データが登録されていません。</div>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb">
+        <div class="content-panel mb">
+            <h4><i class="fa fa-angle-right"></i> オペレーティングシステム</h4>
+            <div class="panel-body">
+                <!--{if $access.os != ''}-->
+                <div id="Os"></div>
+                <!--{else}-->
+                <div class="alert alert-warning">解析データが登録されていません。</div>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb">
+        <div class="content-panel mb">
+            <h4><i class="fa fa-angle-right"></i> ブラウザ</h4>
+            <div class="panel-body">
+                <!--{if $access.browser != ''}-->
+                <div id="Browser"></div>
+                <!--{else}-->
+                <div class="alert alert-warning">解析データが登録されていません。</div>
+                <!--{/if}-->
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jquery.jqplot.min.js"></script>
+<!--[if lt IE 9]>
+    <script language="javascript" type="text/javascript" src="<!--{$smarty.const.AD_URL}-->/js/jqplot/excanvas.min.js"></script>
+<![endif]-->
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jqplot.barRenderer.min.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jqplot.pieRenderer.min.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jqplot.enhancedLegendRenderer.min.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/jqplot/jqplot.pointLabels.min.js"></script>
+<link href="<!--{$smarty.const.AD_URL}-->/css/jquery.jqplot.min.css" rel="stylesheet">
+
+<script src="<!--{$smarty.const.AD_URL}-->/js/datepicker/datepicker.js"></script>
+<script src="<!--{$smarty.const.AD_URL}-->/js/datepicker/datepicker.ja.js"></script>
+<link href="<!--{$smarty.const.AD_URL}-->/css/datepicker3.css" rel="stylesheet">
+
+<script>
+$('#datepicker').datepicker({
+    format: "yyyy-mm-dd",
+    clearBtn: true,
+    autoclose: true,
+    language: "ja",
+    todayHighlight: true
+});
+
+jQuery( function() {
+    <!--{if $access.time != ''}-->
+    normal = [
+    <!--{foreach $access.time as $k => $v name="xxx"}-->
+    <!--{if $smarty.foreach.xxx.last}-->
+        [ '<!--{$k}-->時',<!--{$v.normal}--> ]
+    <!--{else}-->
+        [ '<!--{$k}-->時',<!--{$v.normal}--> ],
+    <!--{/if}-->
+    <!--{/foreach}-->
+    ];
+    unique = [
+    <!--{foreach $access.time as $k => $v name="xxx"}-->
+    <!--{if $smarty.foreach.xxx.last}-->
+        [ '<!--{$k}-->時',<!--{$v.unique}--> ]
+    <!--{else}-->
+        [ '<!--{$k}-->時',<!--{$v.unique}--> ],
+    <!--{/if}-->
+    <!--{/foreach}-->
+    ];
+    all = [
+    <!--{foreach $access.time as $k => $v name="xxx"}-->
+    <!--{if $smarty.foreach.xxx.last}-->
+        [ '<!--{$k}-->時',<!--{$v.all}--> ]
+    <!--{else}-->
+        [ '<!--{$k}-->時',<!--{$v.all}--> ],
+    <!--{/if}-->
+    <!--{/foreach}-->
+    ];
+
+    jQuery . jqplot(
+        'Time',
+        [
+            normal, unique, all
+        ],
+        {
+            animate: true,
+            seriesDefaults: {
+                renderer: jQuery . jqplot . BarRenderer,
+                pointLabels: {
+                    show: true,
+                    location: 's',
+                    ypadding: -13,
+                    escapeHTML: false,
+                    hideZeros: true,
+                    formatString: '<span style="color: #ff0000;">%d</span>'
+                }
+            },
+            series: [
+                { label: 'ページビュー' },
+                { label: 'ユニークアクセス' },
+                { label: '総数' },
+            ],
+            legend: {
+                show: true,
+                // placement: 'insideGrid',
+                placement: 'outside',
+                location: 'n',
+                renderer: jQuery . jqplot . EnhancedLegendRenderer,
+                rendererOptions: {
+                    numberColumns: 3,
+                    seriesToggle: true
+                }
+            },
+            axes: {
+                xaxis: {
+                    renderer: jQuery . jqplot . CategoryAxisRenderer,
+                }
+            },
+        }
+    );
+    <!--{/if}-->
+
+
+    <!--{if $access.os != ''}-->
+    // オペレーティングシステム
+    jQuery . jqplot(
+        'Os',
+        [
+            [
+            <!--{foreach $access.os as $k => $v name="xxx"}-->
+                <!--{if $smarty.foreach.xxx.last}-->
+                [ '<!--{$k}-->',<!--{$v}--> ]
+                <!--{else}-->
+                [ '<!--{$k}-->',<!--{$v}--> ],
+                <!--{/if}-->
+            <!--{/foreach}-->
+            ]
+        ],
+        {
+            seriesDefaults: {
+                renderer: jQuery . jqplot . PieRenderer,
+                rendererOptions: {
+                    padding: 5,
+                    showDataLabels: true
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                rendererOptions: {
+                    numberColumns: 2
+                },
+            }
+        }
+    );
+    <!--{/if}-->
+
+
+    <!--{if $access.browser != ''}-->
+    // ブラウザ
+    jQuery . jqplot(
+        'Browser',
+        [
+            [
+            <!--{foreach $access.browser as $k => $v name="xxx"}-->
+                <!--{if $smarty.foreach.xxx.last}-->
+                [ '<!--{$k}-->',<!--{$v}--> ]
+                <!--{else}-->
+                [ '<!--{$k}-->',<!--{$v}--> ],
+                <!--{/if}-->
+            <!--{/foreach}-->
+            ]
+        ],
+        {
+            seriesDefaults: {
+                renderer: jQuery . jqplot . PieRenderer,
+                rendererOptions: {
+                    padding: 5,
+                    showDataLabels: true
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                rendererOptions: {
+                    numberColumns: 2
+                },
+            }
+        }
+    );
+    <!--{/if}-->
+
+} );
+</script>
+<!--{/block}-->

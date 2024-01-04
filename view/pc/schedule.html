@@ -1,0 +1,67 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<div class="shutter"><div class="spinner"></div><p class="text">Papillon</p></div>
+<section id="contents_schedule">
+
+	<!-- サブビジュアル -->
+	<div class="subvisual">
+			<p class="center">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+			</p>
+			<p class="left">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+			</p>
+			<p class="right">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+			</p>
+		<h2 class="contents_title">
+			<p class="main"><!--{$page.name}--></p>
+			<p class="sub"><!--{$html.name_kana.schedule}--></p>
+		</h2>
+	</div>
+	<!-- //サブビジュアル -->
+
+	<div class="inner">
+		<h3 class="title_h3">日付をお選びください</h3>
+		<ul class="schedule_nav">
+		<!--{foreach $week as $k => $v}-->
+			<li<!--{if $day == $k}--> class="active"<!--{/if}-->>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/schedule.php?day=<!--{$k+1}-->#contents_schedule">
+					<!--{if $v|day_of_week == '土'}-->
+						<span class="atten_03"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</span>
+					<!--{elseif $v|day_of_week == '日'}-->
+						<span class="atten_04"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</span>
+					<!--{else}-->
+						<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+					<!--{/if}-->
+				</a>
+			</li>
+		<!--{/foreach}-->
+		</ul>
+		<ul class="cast_box">
+			<!--{foreach $schedule as $v}-->
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$v.id}-->">
+					<div class="img_box">
+						<!--{include file="./common/staff/thumbnail.html"}-->
+						<!--{include file="./common/staff/icon_new.html"}-->
+						<!--{include file="./common/staff/icon_twitter.html"}-->	
+						<div class="staff_txt">
+							<h3><!--{$v.name}--></h3>
+							<p>詳細プロフィールはこちら</p>
+						</div>
+					</div>
+					<div class="txt_box">
+						<p class="name">
+							<span>name</span>&nbsp;<!--{$v.name}--><br>
+							<!--{include file="./common/staff/icon_class.html"}-->
+						</p>
+						<p class="time"><!--{$v.schedule.time}-->&nbsp;<!--{include file="./common/staff/work_info.html"}--></p>
+					</div>
+				</a>
+			</li>
+			<!--{/foreach}-->
+		</ul>
+	</div>
+</section>
+<!--{/block}-->

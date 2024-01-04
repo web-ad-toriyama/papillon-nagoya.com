@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!--{include file="<!--{$smarty.const.VIEW_DIR}-->/pc/common/head.html"}-->
+</head>
+<body>
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/pc/common/header.html"}-->
+
+    <!--{if $smarty.server.SCRIPT_NAME == $top_script_name}-->
+    <section>
+        <!-- 花びらひらひら -->
+        <div class="hana"></div>
+        <!-- //花びらひらひら -->
+
+        <div id="mainvisual">
+            <div class="bg_img">
+                <!-- 波紋 -->
+                <!--{* 
+                <div class="container">
+                    <div class="box">
+                        <div class="circle layer-0"></div>
+                        <div class="circle layer-1"></div>
+                        <div class="circle layer-2"></div>
+                        <div class="circle layer-3"></div>
+                    </div>
+                </div>
+                 *}-->
+                <!-- //波紋 -->
+
+                <!--{* <picture  class="top">
+                    <source srcset="images/mainvisual_top_sp.png" media="(max-width: 768px)" type="image/png">
+                    <img src="images/mainvisual_top.png"alt="薔薇">
+                </picture> *}-->
+
+                <!--{* 冬デザイン *}-->
+                <!--{* <picture  class="santa">
+                    <source srcset="images/mainvisual_christmas_santa_sp.png" media="(max-width: 768px)" type="image/png">
+                    <img src="images/mainvisual_christmas_santa.png"alt="サンタクロース">
+                </picture>
+                <picture  class="town">
+                    <source srcset="images/mainvisual_christmas_town_sp.png" media="(max-width: 768px)" type="image/png">
+                    <img src="images/mainvisual_christmas_town.png"alt="街">
+                </picture> *}-->
+                <!--{* //冬デザイン *}-->
+            </div>
+            <p class="logo_img">
+                <!-- <img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_logo.png" alt="<!--{$page.h1}-->"> -->
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_newyear_logo.png" alt="<!--{$page.h1}-->">
+            </p>
+
+            <!-- 電話番号・営業時間・受付時間 -->
+            <div class="top_info">
+                <ul class="info_box">
+                    <li>
+                        <a href="tel:<!--{$smarty.const.SHOP_TEL}-->" class="link_act_01"><span>電話番号</span><!--{$smarty.const.SHOP_TEL}--></a>
+                    </li>
+                    <li><span>営業時間</span><!--{$smarty.const.SHOP_OPEN}--><br><span class="info_font">(木•金•土•祝前日は24時間営業)</span></li>
+                    <li><span>受付時間</span><!--{$smarty.const.SHOP_RECEPTION}--><br><span class="info_font">(木•金•土•祝前日は24時間営業)</span></li>
+                </ul>
+            </div>
+            <!-- //電話番号・営業時間・受付時間 -->
+
+        </div><!-- //mainvisual終わり -->
+    </section>
+    <!--{/if}-->
+
+    <main>
+    <!--{block name="main"}--><!--{/block}-->
+    </main>
+
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/pc/common/footer.html"}-->
+
+    <!--{if $smarty.server.SCRIPT_NAME == "/index.php"}-->
+    <!-- Twitter遅延読み込み -->
+    <script>
+        (function (window, document) {
+            function main1() {
+                // TwitterのJS読み込み
+                var ad = document.createElement('script');
+                ad.type = 'text/javascript';
+                ad.async = true;
+                ad.src = 'https://platform.twitter.com/widgets.js';
+                var sc = document.getElementsByTagName('script')[0];
+                sc.parentNode.insertBefore(ad, sc);
+            }
+
+            // 遅延読み込み
+            var lazyLoad = false;
+            // 新人セラピストのコンテンツをトリガーにする
+            var TwitterTrigger = document.getElementById('section_new');
+
+            function onLazyLoad() {
+                if (lazyLoad === false && isElementInViewport(TwitterTrigger)) {
+                // 複数呼び出し回避
+                lazyLoad = true;
+                window.removeEventListener('scroll', onLazyLoad);
+                window.removeEventListener('mousemove', onLazyLoad);
+                window.removeEventListener('mousedown', onLazyLoad);
+                window.removeEventListener('touchstart', onLazyLoad);
+                window.removeEventListener('keydown', onLazyLoad);
+                main1(); // TwitterのJS読み込み
+                }
+            }
+
+            function isElementInViewport(el) {
+                var rect = el.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom >= 0;
+            }
+
+            window.addEventListener('scroll', onLazyLoad);
+            window.addEventListener('mousemove', onLazyLoad);
+            window.addEventListener('mousedown', onLazyLoad);
+            window.addEventListener('touchstart', onLazyLoad);
+            window.addEventListener('keydown', onLazyLoad);
+
+            window.addEventListener('load', function () {
+                // ドキュメント途中（更新時 or ページ内リンク）
+                if (isElementInViewport(TwitterTrigger)) {
+                onLazyLoad();
+                }
+            });
+
+        })(window, document);
+    </script>
+    <!--{/if}-->
+
+</body>
+</html>

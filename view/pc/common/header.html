@@ -1,0 +1,147 @@
+<header>
+	<div class="inner">
+		<!-- logo -->
+		<h1>
+			<a href="<!--{$smarty.const.ROOT_URL}-->" class="link_act_01">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/logo.png" alt="<!--{$page.h1}-->">
+			</a>
+		</h1>
+		<!-- //logo -->
+
+		<!-- pc menu-->
+		<ul class="nav pc">
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->" class="link_act_01">
+					<!--{$html.name.index}-->
+					<span><!--{$html.name_kana.index}--></span>
+				</a>
+			</li>
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/staff.php" class="link_act_01">
+					<!--{$html.name.staff}-->
+					<span><!--{$html.name_kana.staff}--></span>
+				</a>
+			</li>
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/schedule.php" class="link_act_01">
+					<!--{$html.name.schedule}-->
+					<span><!--{$html.name_kana.schedule}--></span>
+				</a>
+			</li>
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/system.php" class="link_act_01">
+					<!--{$html.name.system}-->
+					<span><!--{$html.name_kana.system}--></span>
+				</a>
+			</li>
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/access.php" class="link_act_01">
+					<!--{$html.name.access}-->
+					<span><!--{$html.name_kana.access}--></span>
+				</a>
+			</li>
+			<li>
+				<a href="<!--{$smarty.const.ROOT_URL}-->/recruit.php" class="link_act_01">
+					<!--{$html.name.recruit}-->
+					<span><!--{$html.name_kana.recruit}--></span>
+				</a>
+			</li>
+		</ul>
+		<!-- //pc menu-->
+
+		<!-- グローバルメニューsp用 -->
+		<!--SP用ドロワーメニュー-->
+		<!-- ハンバーガーボタン -->
+		<div class="btn_menu">
+			<div id="btn18" class="btn-trigger">
+				<span></span>
+				<span></span>
+				<span></span>
+				<p class="text_menu">MENU</p>
+			</div>
+		</div>
+		<!-- //ハンバーガーボタン -->
+
+		<!-- ドロワー内 -->
+		<div id="nav-d-bg" class="drawer"></div>
+		<nav id="nav_drawer">
+			<ul>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->">
+						<span class="en"><!--{$html.name.index}--></span>
+						<span class="jp"><!--{$html.name_kana.index}--></span>
+					</a>
+				</li>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->/staff.php">
+						<span class="en"><!--{$html.name.staff}--></span>
+						<span class="jp"><!--{$html.name_kana.staff}--></span>
+					</a>
+				</li>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->/schedule.php">
+						<span class="en"><!--{$html.name.schedule}--></span>
+						<span class="jp"><!--{$html.name_kana.schedule}--></span>
+					</a>
+				</li>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->/system.php">
+						<span class="en"><!--{$html.name.system}--></span>
+						<span class="jp"><!--{$html.name_kana.system}--></span>
+					</a>
+				</li>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->/access.php">
+						<span class="en"><!--{$html.name.access}--></span>
+						<span class="jp"><!--{$html.name_kana.access}--></span>
+					</a>
+				</li>
+				<li>
+					<a href="<!--{$smarty.const.ROOT_URL}-->/contact.php">
+						<span class="en"><!--{$html.name.contact}--></span>
+						<span class="jp"><!--{$html.name_kana.contact}--></span>
+					</a>
+				</li>
+				<li class="btn_entry">
+					<a href="<!--{$smarty.const.ROOT_URL}-->/enquete.php">
+						<i class="fas fa-clipboard" aria-hidden="true"></i>&nbsp;
+						<span class="en"><!--{$html.name.enquete}--></span>
+						<span class="jp"><!--{$html.name_kana.enquete}--></span>
+					</a>
+				</li>					
+				<li class="btn_entry">
+					<a href="<!--{$smarty.const.ROOT_URL}-->/recruit.php">
+						<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;
+						<span class="en"><!--{$html.name.recruit}--></span>
+						<span class="jp"><!--{$html.name_kana.recruit}--></span>
+					</a>
+				</li>
+				<li class="btn_nav_tel">
+					<a href="tel:<!--{$smarty.const.SHOP_TEL_RECRUIT}-->"><span>TEL:<!--{$smarty.const.SHOP_TEL_RECRUIT}--></span></a>
+				</li>
+				<li class="info_open">
+					<p><span>営業時間</span>&nbsp;<!--{$smarty.const.SHOP_OPEN}--></p>
+					<p><span>受付時間</span>&nbsp;<!--{$smarty.const.SHOP_RECEPTION}--></p>
+					
+				</li>
+			</ul>
+		</nav>
+		<!-- //ドロワー内 -->
+		<!-- //グローバルメニューsp用 -->
+
+	</div><!-- //inner終わり -->
+</header>
+
+<!-- SP用下部追尾ボタン -->
+<div id="bottom_nav">
+	<a href="tel:<!--{$smarty.const.SHOP_TEL}-->">
+		<i class="fas fa-mobile-alt"></i>&nbsp;TEL
+	</a>
+	<a href="<!--{$smarty.const.SHOP_LINEURL}-->" target="_blank">
+		<i class="fab fa-line"></i>&nbsp;LINE
+	</a>
+	<a href="<!--{$smarty.const.ROOT_URL}-->/recruit.php">
+		<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;RECRUIT
+	</a>
+</div>
+<!-- SP用下部追尾ボタン -->

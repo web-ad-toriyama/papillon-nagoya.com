@@ -1,0 +1,154 @@
+<?php
+
+require __DIR__ . '/../common/start.php';
+
+// テンプレート設定
+$templateFile = '/admin/staff/sch.html';
+
+// 1週間の取得
+if (is_null($params['w'])) {
+    $params['w']=1;
+}
+$week = getSchWeek($params['w']);
+
+// 基本情報取得
+$model = new Model(TBL_STAFF);
+$sel = $model->select();
+
+// IDがある場合はスタッフ単一
+if ($params['id'] > 0) {
+    $data = h($sel->fields('id, name')
+                  ->where('id', $params['id'])
+                  ->order('seq')
+                  ->fetchAll());
+} else {
+    // IDがない場合は複数人取得
+    $model = new Model(TBL_STAFF);
+    $cnt = $sel->where('show_flg', SHOW_ON)
+                ->where('rest_flg', SET_OFF)
+               ->fetchCount();
+    // ページネーション生成
+    // 改ページすると登録処理が走らない為1時的にコメントアウト 2015/04/16
+    $offset = pagination($cnt, PAGER_ADMIN_LIST);
+    // IDがない場合は複数人取得
+    $data = h($sel->fields('id, name')
+                  ->where('show_flg', SHOW_ON)
+                  ->where('rest_flg', SET_OFF)
+                  ->order('seq')
+                  // 改ページすると登録処理が走らない為1時的にコメントアウト 2015/04/16
+                  ->limit(PAGER_ADMIN_LIST)
+                  ->offset($offset)
+                  ->fetchAll());
+}
+
+// サムネイル画像(1枚目) / スケジュール情報の取得
+if (count($data)>0) {
+    foreach ($data as $k => $v) {
+        $data[$k]['photo'] = getStaffPhoto($v['id'], 1);
+        $data[$k]['sch']   = getStaffSchedule($v['id'], $week, true);
+    }
+}
+
+$smarty->assign('week', $week);
+
+if ($posts['sch_edit']) {
+    // 1週間の取得
+    if (is_null($params['w'])) {
+        $params['w']=1;
+    }
+    $week = getSchWeek($params['w']);
+    $model = new Model(TBL_STAFF_SCH);
+    $model->begin();
+    // 1週間分ループ
+    foreach ($week as $date) {
+        $yy = substr($date, 0, 4);
+        $mm = substr($date, 4, 2);
+        $dd = substr($date, 6, 2);
+        foreach ($posts['going_hour'][$date] as $id => $val) {
+            // 該当データ確認
+            $sel = $model->select();
+            $cnt = $sel->fields('staff_id')
+                       ->where('staff_id', $id)
+                       ->where('date', $date)
+                       ->fetchCount();
+            // 旧データ削除
+            if ($cnt != 0) {
+                $del = $model->delete();
+                $del->where('staff_id', $id)
+                    ->where('date', $date);
+                if ($del->execute() === false) {
+                    $model->rollback();
+                    Logger::error(sprintf('スケジュール情報の削除に失敗しました。 (日付=%s / ID=%s)', $date, $id));
+                    $result = false;
+                }
+            }
+            // LAST or TEL確認 or お休みの判定
+            $allowMode = 0;
+            if (is_array($posts['allow_mode'][$date][$id])) {
+                $allowMode = max($posts['allow_mode'][$date][$id]);
+            }
+            // 自由項目追加(出勤扱い) 2014/04/16
+            if ($posts['free_text'][$date][$id] != '') {
+                $allowMode = 0;
+                $goingTime = 0;
+                $leaveTime = 0;
+            // お休み
+            } elseif ($allowMode == SCH_TYPE_REST) {
+                $goingTime = 0;
+                $leaveTime = 0;
+            } elseif ($allowMode == SCH_TYPE_TEL) {
+                // TEL確認
+                $goingTime = 0;
+                $leaveTime = 0;
+            } elseif ($posts['going_hour'][$date][$id] != '--' && $posts['leave_hour'][$date][$id] == '--') {
+                // LAST
+                $goingTime = mktime($posts['going_hour'][$date][$id], $posts['going_min'][$date][$id], 0, $mm, $dd, $yy);
+                $leaveTime = 0;
+                $allowMode = SCH_TYPE_LAST;               
+            } elseif ($allowMode == SCH_TYPE_LAST) {
+                // LAST
+                $goingTime = mktime($posts['going_hour'][$date][$id], $posts['going_min'][$date][$id], 0, $mm, $dd, $yy);
+                $leaveTime = mktime(24+SHOP_TODAY, max($form['min']), 0, $mm, $dd, $yy);
+            } elseif ($posts['going_hour'][$date][$id] == '--') {
+                $goingTime = 0;
+                $leaveTime = 0;
+            } else {
+                // 出勤状態
+                $goingTime = mktime($posts['going_hour'][$date][$id], $posts['going_min'][$date][$id], 0, $mm, $dd, $yy);
+                $leaveTime = mktime($posts['leave_hour'][$date][$id], $posts['leave_min'][$date][$id], 0, $mm, $dd, $yy);
+            }
+            if($posts['reserve_icon'][$date][$id] == NULL){
+               $posts['reserve_icon'][$date][$id] = DEFAULT_RESERVE_ICON; 
+            }            
+            $values = array(
+                'staff_id'   => $id,
+                'date'       => $date,
+                'going_time' => $goingTime,
+                'leave_time' => $leaveTime,
+                'allow_mode' => $allowMode,
+                'free_text'  => $posts['free_text'][$date][$id],
+                'reserve_icon'  => $posts['reserve_icon'][$date][$id],
+                'created'   => date(DATE_FORMAT_STR),
+                'updated'   => date(DATE_FORMAT_STR)
+             );
+            // 登録
+            $ins = $model->insert();
+            $ins->values($values);
+            if ($ins->execute() === false) {
+                $model->rollback();
+                Logger::error(sprintf('スケジュール情報の登録に失敗しました。 (日付=%s / ID=%s)', $date, $id));
+                $result = false;
+            }
+        }
+    }
+    $model->commit();
+    $result = true;
+
+    if ($result == true) {
+      redirect(AD_URL . '/staff/sch.php?id='.$params['id'].'&p='.$params['p'].'&w='.$params['w']);
+    }
+
+    redirect(AD_URL . '/staff/finish.php');
+}
+
+require __DIR__ . '/../common/display.php';

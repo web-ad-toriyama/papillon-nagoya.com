@@ -1,0 +1,42 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->イベント登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php" method="post"
+    onsubmit="return formCheck(this)">
+    <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+    <input type="hidden" name="id" value="<!--{$params.id|default:''}-->">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">イベント画像</label>
+
+        <div class="col-sm-10">
+
+            <p id="event_div">
+                <span class="red"><i class="fa fa-caret-down fa-fw" aria-hidden="true"></i>イベント画像は、<span class="txt-b"><!--{$smarty.const.IMAGE_SIZE_EVENT_PC_W}-->×<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_H}-->(px)サイズ</span>で作成されます。</span><br>
+                <!--{if $data.file_name != ''}-->
+                <img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$data.file_name}-->"
+                width="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_W/4}-->"
+                height="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_H/4}-->">
+                <!--{else}-->
+                <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_event.jpg"
+                width="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_W/4}-->"
+                height="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_H/4}-->">
+                <!--{/if}-->
+            </p>
+            <p>
+                <input type="button" class="btn btn-primary" onclick="return uploadFile(this.name,'');" name="event" value="アップロード">
+                <input type="hidden" value="<!--{$data.file_name}-->" id="event_f_name" name="event">
+                <input type="hidden" value="<!--{$data.file_name}-->" name="event_old">
+            </p>
+        </div>
+    </div>
+
+    <p class="mt text-right">
+        <input type="submit" name="edit" class="btn btn-primary" value="登録">
+        <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+    </p>
+</form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/event.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

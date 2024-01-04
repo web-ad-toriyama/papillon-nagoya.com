@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/head.html"}-->
+</head>
+<body class="drawer drawer--left">
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/header.html"}-->
+    <!-- 旧メニュー移動ボタン
+    <div>
+        <p class="wrap mb_10"><a href="#gnav" class="btn_one_01">MENU</a></p>
+    </div> -->
+
+    <!-- メインカラム -->
+    <div id="contents" class="wrap">
+        <main role="main">
+            <!--{block name="main"}--><!--{/block}-->
+        </main>
+    </div>
+    <!-- //メインカラム -->
+
+    <!-- {* 旧グローバルメニュー（header.htmlに移行）
+    <nav id="gnav">
+        <p>MENU</p>
+        <ul class="wrap">
+            <li><a href="<!--{$smarty.const.SP_URL}-->/top.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_top.png" alt="<!--{$html.name.top}-->" width="34"><br><!--{$html.name.top}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/topics.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_topics.png" alt="<!--{$html.name.topics}-->" width="34"><br><!--{$html.name.topics}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/newface.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_newface.png" alt="<!--{$html.name.newface}-->" width="34"><br><!--{$html.name.newface}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/system.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_system.png" alt="<!--{$html.name.system}-->" width="34"><br><!--{$html.name.system}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/staff.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_staff.png" alt="<!--{$html.name.staff}-->" width="34"><br><!--{$html.name.staff}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/schedule.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_schedule.png" alt="<!--{$html.name.schedule}-->" width="34"><br><!--{$html.name.schedule}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/recruit.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_recruit.png" alt="<!--{$html.name.recruit}-->" width="34"><br><!--{$html.name.recruit}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/credit.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_credit.png" alt="" width="34"><br><!--{$html.name.credit}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/qa.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_qa.png" alt="<!--{$html.name.credit}-->" width="34"><br><!--{$html.name.qa}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/access.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_access.png" alt="<!--{$html.name.access}-->" width="34"><br><!--{$html.name.access}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/concept.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_concept.png" alt="<!--{$html.name.concept}-->" width="34"><br><!--{$html.name.concept}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/info.php"><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_info.png" alt="<!--{$html.name.info}-->" width="34"><br><!--{$html.name.info}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/play.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_play.png" alt="<!--{$html.name.play}-->" width="34"><br><!--{$html.name.play}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/manga.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_manga.png" alt="<!--{$html.name.manga}-->" width="34"><br><!--{$html.name.manga}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/ranking.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_ranking.png" alt="<!--{$html.name.ranking}-->" width="34"><br><!--{$html.name.ranking}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/contact.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_contact.png" alt="<!--{$html.name.contact}-->" width="34"><br><!--{$html.name.contact}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/enquete.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_enquete.png" alt="<!--{$html.name.enquete}-->" width="34"><br><!--{$html.name.enquete}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/reserve.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_reserve.png" alt="<!--{$html.name.reserve}-->" width="34"><br><!--{$html.name.reserve}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/hotel.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_hotel.png" alt="<!--{$html.name.hotel}-->" width="34"><br><!--{$html.name.hotel}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/link.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_link.png" alt="<!--{$html.name.link}-->" width="34"><br><!--{$html.name.link}-->
+            </a></li>
+            <li><a href="<!--{$smarty.const.SP_URL}-->/magazine.php">
+                <img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_magazine.png" alt="<!--{$html.name.magazine}-->" width="34"><br><!--{$html.name.magazine}-->
+            </a></li>
+        </ul>
+    </nav>
+    //旧グローバルメニュー *} -->
+    <p class="wrap mb_10"><a href="#header" class="btn_one_01">PAGE&nbsp;TOP</a></p>
+    <!--{include file="<!--{$smarty.const.VIEW_DIR}-->/sp/common/footer.html"}-->
+
+</body>
+</html>

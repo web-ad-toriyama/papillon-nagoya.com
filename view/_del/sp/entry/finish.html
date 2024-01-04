@@ -1,0 +1,27 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- お問合せ -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_contact.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <div class="wrap">
+                <section>
+                    <h3 class="subtitle">応募フォーム</h3>
+		                <p class="txt_box_01">
+		                    <!--{if $csrf == true}-->
+							<!--{if $result == true}-->
+								応募が完了しました
+							<!--{else}-->
+								メールの送信に失敗しました。
+							<!--{/if}-->
+							<!--{else}-->
+								不正な送信が行われました為送信を中止しました。
+						<!--{/if}-->
+		                </p>
+		                <input type="button" onclick="location.href='<!--{$smarty.const.SP_URL}-->/entry.php'"value="応募フォームトップ" class="btn_one_02">
+                </section>
+            </div>
+        </section>
+        <!-- //お問合せ -->
+
+<!--{/block}-->

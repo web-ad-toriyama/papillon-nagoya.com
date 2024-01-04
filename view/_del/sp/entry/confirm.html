@@ -1,0 +1,92 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- お問合せ -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_contact.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <div class="wrap">
+                <section>
+                    <h3 class="subtitle">応募フォーム</h3>
+
+										<form method="post" action="?mode=finish" class="form_box mb_10">
+											<table class="table_01">
+												<tr>
+													<th>お名前&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.name != ''}--><span class="atten_01"><!--{$error.name}--></span><!--{else}--><!--{$posts.name}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>メールアドレス&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.mail != ''}--><span class="atten_01"><!--{$error.mail}--></span><!--{else}--><!--{$posts.mail}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>電話番号</th>
+													<td>
+														<!--{if $error.tel != ''}--><span class="atten_01"><!--{$error.tel}--></span><!--{else}--><!--{$posts.tel}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>年齢</th>
+													<td>
+														<!--{if $error.age != ''}--><span class="atten_01"><!--{$error.age}--></span><!--{else}--><!--{$posts.age}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>エステ関連の仕事経験</th>
+													<td>
+														<!--{if $error.exp != ''}--><span class="atten_01"><!--{$error.exp}--></span><!--{else}--><!--{$posts.exp}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>経験者の方は業種・経歴・資格等をご記入ください。(500文字以内)</th>
+													<td>
+														<!--{if $error.career != ''}--><span class="atten_01"><!--{$error.career}--></span><!--{else}--><!--{$posts.career}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>どの求人サイトをご覧になりましたか？</th>
+													<td>
+							              <!--{if $error.site != ''}-->
+							                  <span class="atten_01"><!--{$error.site}--></span>
+							              <!--{else}-->
+							                  <!--{foreach $posts.site as $value}-->
+							                  ・<!--{$value}-->&nbsp;
+							                  <!--{/foreach}-->
+							              <!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>お問合せ内容(500文字以内)</th>
+													<td>
+						                <!--{$posts.want}--><br>
+						              	<!--{$posts.detail|nl2br}-->
+													</td>
+												</tr>
+											</table>
+
+      <input type="hidden" name="name" value="<!--{$posts.name}-->">
+      <input type="hidden" name="mail" value="<!--{$posts.mail}-->">
+      <input type="hidden" name="tel" value="<!--{$posts.tel}-->">
+      <input type="hidden" name="age" value="<!--{$posts.age}-->">
+      <input type="hidden" name="exp" value="<!--{$posts.exp}-->">
+      <input type="hidden" name="career" value="<!--{$posts.career}-->">
+      <input type="hidden" name="site" value="<!--{$posts.site_value}-->">
+      <input type="hidden" name="want" value="<!--{$posts.want}-->">
+			<input type="hidden" name="detail" value="<!--{$posts.detail}-->">
+			<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+											<!--{if $error == ''}-->
+											<input type="submit" name="send" value="送信" class="btn_one_02">
+											<!--{/if}-->
+											<input type="button" value="戻る" onclick="history.back();" class="btn_one_02">
+
+										</form>
+                </section>
+            </div>
+        </section>
+        <!-- //お問合せ -->
+
+<!--{/block}-->

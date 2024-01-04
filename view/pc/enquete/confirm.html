@@ -1,0 +1,128 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+<section id="contents_enquete">
+	<!-- サブビジュアル -->
+	<div class="subvisual">
+		<p class="center">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+		</p>
+		<p class="left">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+		</p>
+		<p class="right">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+		</p>
+		<h2 class="contents_title">
+			<p class="main"><!--{$page.name}--></p>
+			<p class="sub"><!--{$html.name_kana.enquete}--></p>
+		</h2>
+	</div>
+	<!-- //サブビジュアル -->
+
+	<div id="contents" class="inner">
+		<form method="post" action="?mode=finish">
+			<table class="table03">
+				<tr>
+					<th width="20%">ご利用日&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{$posts.use_year}-->年<!--{$posts.use_month}-->月<!--{$posts.use_day}-->日
+					</td>
+				</tr>
+				<tr>
+					<th width="30%">お名前&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.name != ''}--><span class="atten_01"><!--{$error.name}--></span><!--{else}--><!--{$posts.name}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">電話番号&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.phone != ''}--><span class="atten_01"><!--{$error.phone}--></span><!--{else}--><!--{$posts.phone}--><!--{/if}-->
+					</td>
+				</tr>
+
+				<tr>
+					<th width="20%">担当<!--{$smarty.const.STAFF_CALL}-->&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.staff_id != ''}--><span class="atten_01"><!--{$error.staff_id}--></span><!--{else}--><!--{$staff_name}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">ルックス&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.looks != ''}--><span class="atten_01"><!--{$error.looks}--></span><!--{else}--><!--{$posts.looks}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">接客態度&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.service != ''}--><span class="atten_01"><!--{$error.service}--></span><!--{else}--><!--{$posts.service}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">マッサージ&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.massage != ''}--><span class="atten_01"><!--{$error.massage}--></span><!--{else}--><!--{$posts.massage}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">総合評価&nbsp;<span class="atten_01">※</span></th>
+					<td>
+						<!--{if $error.total != ''}--><span class="atten_01"><!--{$error.total}--></span><!--{else}--><!--{$posts.total}--><!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">スタッフの電話対応&nbsp;<span class="atten_01">※</span></th>
+						<td>
+							<!--{if $error.staff_phone != ''}--><span class="atten_01"><!--{$error.staff_phone}--></span><!--{else}--><!--{$posts.staff_phone}--><!--{/if}-->
+						</td>
+					</tr>
+					<tr>
+						<th width="20%">ルームの清潔度&nbsp;<span class="atten_01">※</span></th>
+							<td>
+								<!--{if $error.room != ''}--><span class="atten_01"><!--{$error.room}--></span><!--{else}--><!--{$posts.room}--><!--{/if}-->
+							</td>
+						</tr>
+
+						<tr>
+							<th width="20%">今までで一番良かった<!--{$smarty.const.STAFF_CALL}--></th>
+							<td>
+								<!--{if $best_staff_name != ''}--><!--{$best_staff_name}--><!--{/if}-->
+								<!--{$posts.staff_comment|nl2br}-->
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">お店、セラピストへのご意見ご要望、メッセージなど&nbsp;<span class="atten_01">※</span></th>
+							<td>
+								<!--{if $error.comment|nl2br != ''}--><span class="atten_01"><!--{$error.comment|nl2br}--></span><!--{else}--><!--{$posts.comment|nl2br}--><!--{/if}-->
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" name="use_year" value="<!--{$posts.use_year}-->">
+					<input type="hidden" name="use_month" value="<!--{$posts.use_month}-->">
+					<input type="hidden" name="use_day" value="<!--{$posts.use_day}-->">
+					<input type="hidden" name="name" value="<!--{$posts.name}-->">
+					<input type="hidden" name="phone" value="<!--{$posts.phone}-->">
+					<input type="hidden" name="staff_id" value="<!--{$posts.staff_id}-->">
+					<input type="hidden" name="staff_name" value="<!--{$staff_name}-->">
+					<input type="hidden" name="looks" value="<!--{$posts.looks}-->">
+					<input type="hidden" name="service" value="<!--{$posts.service}-->">
+					<input type="hidden" name="massage" value="<!--{$posts.massage}-->">
+					<input type="hidden" name="total" value="<!--{$posts.total}-->">
+					<input type="hidden" name="staff_phone" value="<!--{$posts.staff_phone}-->">
+					<input type="hidden" name="room" value="<!--{$posts.room}-->">
+					<input type="hidden" name="best_staff_id" value="<!--{$posts.best_staff_id}-->">
+					<input type="hidden" name="staff_comment" value="<!--{$posts.staff_comment}-->">
+					<input type="hidden" name="comment" value="<!--{$posts.comment}-->">
+					<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+					<!--{if $error == ''}-->
+					<input type="submit" name="send" value="送信" class="reset_btn btn_form" >
+					<!--{/if}-->
+					<input type="button" value="戻る" onclick="history.back();" class="reset_btn btn_form" >
+				</form>
+			</div>
+		</section>
+
+		<!--{/block}-->

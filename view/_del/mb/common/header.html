@@ -1,0 +1,23 @@
+<div align="center">
+	<p><!--{$page.h1}--></p>
+	<a id="top" name="top"></a>
+	<div style="margin:0px;"><img src="<!--{$smarty.const.IMAGES_MB_URL}-->/img_header.jpg" alt="<!--{$page.h2}-->"></div>
+	<!-- ヘッドライン -->
+	<div align="center" style="background-color:#dddddd; padding:2px; margin:0;">
+	<marquee loop="-1" behavior="scroll">
+		<!--{foreach $headline as $v}-->
+			<!--{if $form.line.hex[$v.color_flg] != ''}-->
+			    <font color="<!--{$form.line.hex[$v.color_flg]}-->"><!--{$v.name}--></font>
+			<!--{else}-->
+			    <!--{$v.name}-->
+			<!--{/if}-->
+			&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		<!--{/foreach}-->
+	</marquee>
+	</div>
+<div align="center">
+	<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_tel.gif" alt="電話番号" ><a href="tel:<!--{$smarty.const.SHOP_TEL}-->">&nbsp;<!--{$smarty.const.SHOP_TEL}--></a><br>
+	<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_time.gif" alt="営業時間" ><!--{$smarty.const.SHOP_OPEN}-->&nbsp;受付:<!--{$smarty.const.SHOP_RECEPTION}--><br>
+</div>
+	<!-- //ヘッドライン -->
+</div>

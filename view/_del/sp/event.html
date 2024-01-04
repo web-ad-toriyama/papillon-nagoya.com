@@ -1,0 +1,15 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<section class="section_box">
+	<h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_credit.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+	<div class="wrap">
+		<!--{if $event_img != ''}-->
+		<ul>
+			<!--{foreach $event_img as $v}-->
+			<li class="mb_10"><img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$v.file_name}-->" alt="event" width="100%" height="auto"></li>
+			<!--{/foreach}-->
+		</ul>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,60 @@
+<footer>
+	<div>
+		<!-- パンくず -->
+		<div class="breadcrumbs">
+			<ul>
+			<!--{foreach $bread as $value}-->
+				<li>
+				<!--{if $value.url != ''}-->
+					<a href="<!--{$value.url}-->"><!--{$value.title}--></a>
+				<!--{else}-->
+					<!--{$value.title}-->
+				<!--{/if}-->
+				</li>
+			<!--{/foreach}-->
+			</ul>
+		</div>
+		<!-- //パンくず -->
+		<ul class="nav pc">
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->" class="link_act_01"><!--{$html.name.index}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/staff.php" class="link_act_01"><!--{$html.name.staff}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/schedule.php" class="link_act_01"><!--{$html.name.schedule}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/system.php" class="link_act_01"><!--{$html.name.system}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/access.php" class="link_act_01"><!--{$html.name.access}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/recruit.php" class="link_act_01"><!--{$html.name.recruit}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/enquete.php" class="link_act_01"><!--{$html.name.enquete}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/contact.php" class="link_act_01"><!--{$html.name.contact}--></a></li>
+			<li><a href="<!--{$smarty.const.ROOT_URL}-->/link.php" class="link_act_01"><!--{$html.name.link}--></a></li>
+		</ul>
+		<!-- ロゴ -->
+		<p class="logo">
+			<a href="<!--{$smarty.const.ROOT_URL}-->" class="link_act_01">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/logo.png" alt="<!--{$page.h1}-->">
+			</a>
+		</p>
+		<!-- ロゴ -->
+
+		<!-- フッターバナー -->
+		<div class="bnr_box">
+			<p>
+				<a href="https://nagoya.aroma-tsushin.com/" target="_blank" class="pc"><img src="https://nagoya.aroma-tsushin.com/banner/banner-468x060.gif" width="468" height="60" border="0" alt="リンク│名古屋でメンズエステを探すならアロマパンダ通信"><br>優良メンズエステと出張マッサージ探しはここ</a>
+			</p>
+			<p>
+				<a href="https://nagoya.aroma-tsushin.com/" target="_blank" class="sp"><img src="https://nagoya.aroma-tsushin.com/banner/banner-300x060.gif" width="300" height="60" border="0" alt="リンク│名古屋でメンズエステを探すならアロマパンダ通信"><br>優良メンズエステ・出張マッサージはここ</a>
+			</p>
+			<!-- <p>
+				<a href="https://nagoya.refle.info/"><img width="200" height="40" border="0" src="https://nagoya.refle.info/images/area/bunner200_2.gif" alt="名古屋でメンズエステ・マッサージ探すならリフナビ"></a>
+			</p> -->
+		</div>
+		<!-- //フッターバナー -->
+
+		<p>
+			&copy;&nbsp;
+			<script type="text/javascript">
+				$y=2020;$ny=new Date().getFullYear();
+				document.write($ny>$y?$y+'-'+$ny: $y);
+			</script>
+			&nbsp;<!--{$smarty.const.SHOP_NAME}-->&nbsp;All&nbsp;Rights&nbsp;Reserved.
+		</p>
+	</div>
+</footer>

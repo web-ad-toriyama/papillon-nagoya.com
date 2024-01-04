@@ -1,0 +1,55 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- 求人情報 -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_recruit.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <div class="wrap">
+                <p class="txt_box_01">
+                    当店は『あなたを癒す心からの施述』がコンセプトの、完全予約制プライベートサロンです。<br>
+                    JR五反田駅西口より徒歩4分のオフィスストリートにて、厳選されたセラピストによる心からのおもてなしと至福のひとときをご提供いたします。
+                </p>
+                <section>
+                    <h3 class="subtitle">募集要項</h3>
+                    <table class="table_01">
+                        <tr>
+                            <th>職種</th>
+                            <td>アロマセラピスト</td>
+                        </tr>
+                        <tr>
+                            <th>資格</th>
+                            <td>笑顔が素敵な方、人を癒すことがお好きな方</td>
+                        </tr>
+                        <tr>
+                            <th>勤務時間</th>
+                            <td><!--{$smarty.const.SHOP_OPEN}--></td>
+                        </tr>
+                        <tr>
+                            <th>勤務地</th>
+                            <td><!--{$smarty.const.SHOP_AREA}--></td>
+                        </tr>
+                        <tr>
+                            <th>給与</th>
+                            <td>完全日払い制、バック率最大70％！</td>
+                        </tr>
+                        <tr>
+                            <th>勤務内容</th>
+                            <td>アロマオイルを使用したマッサージ</td>
+                        </tr>
+                        <tr>
+                            <th>応募方法</th>
+                            <td>
+                                電話にてお気軽にお問い合わせ下さい。<br>
+                                TEL：<a href="tel:<!--{$smarty.const.SHOP_TEL_RECRUIT}-->"><!--{$smarty.const.SHOP_TEL_RECRUIT}--></a><br>
+                                MAIL：<a href="mailto:<!--{$smarty.const.SHOP_MAIL_RECRUIT|escape:'hexentity'}-->"><!--{$smarty.const.SHOP_MAIL_RECRUIT|escape:"hexentity"}--></a><br>
+                                LINEID：<!--{$smarty.const.SHOP_LINEID}--><br>
+                                このサイトからお問い合わせ&nbsp;<a href="entry.php" class="atten_01">&rarr;応募フォーム</a>
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </section>
+        <!-- //求人情報 -->
+
+<!--{/block}-->

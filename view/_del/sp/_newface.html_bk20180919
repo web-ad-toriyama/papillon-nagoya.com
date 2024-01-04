@@ -1,0 +1,45 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- 新人一覧 -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_newface.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <ul class="wrap cast_box">
+                <!--{foreach $newface as $v}-->
+                <li>
+                    <h3><!--{$v.name}-->(<!--{$v.age}-->) <!--{include file="./common/staff/icon_new.html"}--></h3>
+                    <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->" class="wrap">
+                        <!--{include file="./common/staff/thumbnail.html" width=80 height=120}-->
+                        <div>
+                            <p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+                            <p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+                            <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                            <p class="time"><!--{$v.published|date_format:'%Y-%m-%d'}-->&nbsp;入店</p>
+                            <p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+                        </div>
+                    </a>
+                </li>
+            <!--{/foreach}-->
+            </ul>
+        </section>
+        <!-- //新人一覧 -->
+        <!-- 新人一覧 ver02-->
+        <section class="section_box cast_box_2column">
+            <h2><img src="images/icon_newface.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <ul class="wrap">
+                <!--{foreach $newface as $v}-->
+                <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->">
+                    <li>
+                        <p class="img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+                        <div class="txt_box">
+                            <p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+                            <p class="name"><!--{$v.name}-->(<!--{$v.age}-->歳)<!--{include file="./common/staff/icon_class.html"}--><span class="icon_new"><!--{include file="./common/staff/icon_new.html"}--></span></p>
+                            <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                        </div>
+                    </li>
+                </a>
+            <!--{/foreach}-->
+            </ul>
+        </section>
+        <!-- //新人一覧 -->
+<!--{/block}-->

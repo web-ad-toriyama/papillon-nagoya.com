@@ -1,0 +1,122 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->一覧<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+    <div class="col-lg-12">
+        <form action="" method="get" class="form-inline">
+            <p class="col-lg-9">
+                <button class="btn btn-info" type="button" onclick="location.href='new.php?p=1'">新規登録</button>
+                <button class="btn btn-info" type="button" onclick="location.href='sort.php?p=1'">並べ替え</button>
+            </p>
+            <p class="col-lg-3 text-right">
+                <input type="text" name="search_name" value="<!--{$params.search_name}-->" placeholder="<!--{$smarty.const.STAFF_CALL}-->検索" class="form-control form-search">
+                <input type="submit" name="staff_search" class="btn btn-info" value="検索" />
+                <input type="hidden" name="p" value="1" />
+            </p>
+        </form>
+    </div>
+    <!--{if $data|@count > 0}-->
+    <div class="text-center"><!--{$pager->outputTag()}--></div>
+    <section id="no-more-tables">
+        <table class="table table-bordered table-condensed cf">
+            <tbody>
+            <!--{foreach $data as $v}-->
+            <tr id="anc_<!--{$v.id}-->" 
+            <!--{if $v.show_flg == $smarty.const.SHOW_OFF}-->class="danger"<!--{/if}-->>
+            <td>
+                <!--{if $v.new_flg == $smarty.const.SET_ON}-->
+                <label class="label label-success">新人</label>
+                <!--{/if}-->
+                <!--{if $v.cover_flg == $smarty.const.SET_ON}-->
+                <label class="label label-success">カバーガール</label>
+                <!--{/if}-->
+                <!--{if $v.rest_flg == $smarty.const.SET_ON}-->
+                <label class="label label-success">常時お休み</label>
+                <!--{/if}-->
+                <br>
+                <!--{foreach $v.class as $class}-->
+                    <!--{if $class.value != '未設定'}-->
+                    <label class="label label-warning"><!--{$class.value}--></label>
+                    <!--{/if}-->
+                <!--{/foreach}-->
+                <!--{foreach $v.check as $check}-->
+                    <label class="label label-warning"><!--{$check.name}--></label>
+                <!--{/foreach}-->
+            </td>
+            <td>
+                <p>名前：<span class="txt-lg"><!--{$v.name}--></span></p>
+                <!--{if $v.age !== ''}-->
+                <p>年齢：<!--{$v.age}--></p>
+                <!--{/if}-->
+                <p>
+                    <!-- 身長 --><!--{if $v.t !== ''}-->T.<!--{$v.t}-->&nbsp;<!--{/if}-->
+                    <!-- バスト --><!--{if $v.b !== ''}-->B.<!--{$v.b}--><!--{/if}-->
+                    <!-- カップ --><!--{if $v.c !== ''}-->(<!--{$v.c}-->)<!--{/if}-->&nbsp;
+                    <!-- ウエスト --><!--{if $v.w !== ''}-->W.<!--{$v.w}-->&nbsp;<!--{/if}-->
+                    <!-- ヒップ --><!--{if $v.h !== ''}-->H.<!--{$v.h}--><!--{/if}-->
+                </p>
+            </td>
+            <td>
+                <a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$v.id}-->">
+                    <p class="text-center">
+                    <!--{if $v.photo != ''}-->
+                    <img class="mt" src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$v.id}-->/<!--{$v.photo}-->"
+                            width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                    <!--{else}-->
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg"
+                            width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                    <!--{/if}-->
+                    </p>
+                </a>
+            </td>
+            <td>
+                <button class="btn btn-primary btn-sm" onclick="location.href='edit.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->'">
+                    <i class="fa fa-pencil fa-lg"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="location.href='photo.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->'">
+                    <i class="fa fa-camera fa-lg"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="location.href='sch.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->'">
+                    <i class="fa fa-calendar fa-lg"></i>
+                </button>
+                <button class="btn btn-danger btn-sm"
+                        onclick="delCheck('del.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->')">
+                    <i class="fa fa-trash-o fa-lg"></i>
+                </button>
+            </td>
+            </tr>
+            <!--{/foreach}-->
+            </tbody>
+        </table>
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <div class="sch-btn-box">
+            <!--{if $params.id == ''}-->
+            <!-- スタッフ選択ボタン -->
+            <div class="sch-modal">
+                <input id="sch-modal-trigger" type="checkbox" name="checkbox1">
+                <label for="sch-modal-trigger"><i class="fa fa-user fa-fw" aria-hidden="true"></i><!--{$smarty.const.STAFF_CALL}-->選択</label>
+                <div class="sch-modal-overlay">
+                    <div class="sch-modal-wrap">
+                        <label for="sch-modal-trigger">&#x00D7;&nbsp;閉じる</label>
+                        <p class="ch-modal-title"><!--{$smarty.const.STAFF_CALL}-->選択</p>
+                        <ul>
+                            <!--{foreach $data as $value}-->
+                            <li><a href="#anc_<!--{$value.id}-->"><!--{$value.name}--></a></li>
+                            <!--{/foreach}-->
+                        </ul>
+                        <label for="sch-modal-trigger">&#x00D7;&nbsp;閉じる</label>
+                    </div>
+                </div>
+            </div>
+            <!-- / スタッフ選択ボタン -->
+            <!--{/if}-->
+        </div>
+    </section>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

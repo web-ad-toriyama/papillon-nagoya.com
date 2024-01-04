@@ -1,0 +1,158 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<!--{assign w $smarty.const.IMAGE_SIZE_MB_W}-->
+<!--{assign h $smarty.const.IMAGE_SIZE_MB_H}-->
+
+<!-- プロフィール -->
+<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+</div>
+<!-- //プロフィール -->
+
+<a name="pic" id="pic"></a>
+<!-- サムネイル -->
+<p align="center">
+	<!--{if $staff.photo.$no != ''}-->
+	<img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/<!--{$staff.photo.$no}-->" width="<!--{$w}-->" height="<!--{$h}-->" alt="<!--{$staff.name}-->">
+	<!--{else}-->
+	<img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg" width="<!--{$w}-->" height="<!--{$h}-->" alt="ノーイメージ">
+	<!--{/if}-->
+</p>
+<p align="center">
+	<!--{section name=photo start=IMAGE_DETAIL_COUNT-1 loop=IMAGE_COUNT step=1}-->
+	<!--{assign index $smarty.section.photo.index}-->
+	<!--{if $staff.photo.$index != ''}-->
+	<a href="<!--{$smarty.const.MB_URL}-->/profile.php?sid=<!--{$staff.id}-->&no=<!--{$index+1}-->#pic"><!--{$index+1}--></a>
+	<!--{/if}-->
+	<!--{/section}-->
+</p>
+<!-- //サムネイル -->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">ﾌﾟﾛﾌｨｰﾙ</font>
+</div>
+<!-- 名前 -->
+<p align="center">
+	<!--{$staff.short_comment}--><br />
+	<!--{$staff.name}-->(<!--{$staff.age}-->)&nbsp;<!--{if $staff.new_flg == $smarty.const.SET_ON}--><img src="<!--{$smarty.const.IMAGES_URL}-->/icon_new.png" alt="new"><!--{/if}--><br />
+	<font color="#ff007e">T</font><!--{$staff.t}-->&nbsp;<font color="#ff007e">B</font><!--{$staff.b}-->(<!--{$staff.c}-->)&nbsp;<font color="#ff007e">W</font><!--{$staff.w}-->&nbsp;<font color="#ff007e">H</font><!--{$staff.h}--><br />
+
+	<!--{foreach $staff.class as $class}-->
+	<!--{if $class.image != ''}-->
+	<img src="<!--{$smarty.const.IMAGES_URL}-->/<!--{$class.image}-->" alt="<!--{$class.value}-->">
+	<!--{/if}-->
+	<!--{/foreach}-->
+	<!--{foreach $staff.check as $check}-->
+	<img src="<!--{$smarty.const.IMAGES_URL}-->/<!--{$check.image}-->" alt="<!--{$check.name}-->">
+	<!--{/foreach}-->
+</p>
+<!-- //名前 -->
+
+<!-- 項目1 -->
+<!--{if $form.item.name.1 != ''}-->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444"><!--{$form.item.name.1}--></font>
+</div>
+<!--{foreach $staff.item.1 as $k => $v}-->
+<p><!--{$v.name}-->&nbsp;:&nbsp;<font color="#ff007e"><!--{$v.value|default:$smarty.const.DEFAULT_PROFILE}--></font></p>
+<!--{/foreach}-->
+<!--{/if}-->
+<!-- //項目1 -->
+
+<!-- 項目2 -->
+<!--{if $form.item.name.2 != ''}-->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444"><!--{$form.item.name.2}--></font>
+</div>
+<!--{foreach $staff.item.2 as $k => $v}-->
+<p><!--{$v.name}-->&nbsp;:&nbsp;<font color="#ff007e"><!--{$form.item.value.2[$v.value]|default:$smarty.const.DEFAULT_PROFILE}--></font></p>
+<!--{/foreach}-->
+<!--{/if}-->
+<!-- //項目2 -->
+
+<!-- ｺﾒﾝﾄ1 -->
+<!--{if $staff.long_comment1 != ''}-->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">ｺﾒﾝﾄ1</font>
+</div>
+<!--{$staff.long_comment1|nl2br}-->
+<!--{/if}-->
+<!-- //ｺﾒﾝﾄ1 -->
+
+<!-- ｺﾒﾝﾄ2 -->
+<!--{if $staff.long_comment2 != ''}-->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">ｺﾒﾝﾄ1</font>
+</div>
+<!--{$staff.long_comment2|nl2br}-->
+<!--{/if}-->
+<!-- //ｺﾒﾝﾄ2 -->
+
+<!-- ﾌﾞﾛｸﾞ -->
+<!--{if $staff.url != ''}-->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">ﾌﾞﾛｸﾞ</font>
+</div>
+→<a href="<!--{$staff.url}-->" target="_blank">ブログ</a>
+<br /><br />
+<!--{/if}-->
+<!-- //ﾌﾞﾛｸﾞ -->
+
+<!-- ｽｹｼﾞｭｰﾙ -->
+<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">ｽｹｼﾞｭｰﾙ</font>
+</div>
+<!--{foreach $week as $k => $v}-->
+<!--{if $v|day_of_week == '土'}-->
+■<font color="#ff007e"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</font>
+<!--{elseif $v|day_of_week == '日'}-->
+■<font color="#ff007e"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</font>
+<!--{else}-->
+■<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+<!--{/if}-->
+<!--{$staff.schedule.$k.time}--><br />
+<!--{/foreach}-->
+<!-- //ｽｹｼﾞｭｰﾙ -->
+
+<!-- 感想 -->
+<a href="impressions.php?sid=<!--{$staff.id}-->">→感想投稿</a>
+<!--{if $imp}-->
+<p align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444">感想一覧</font>
+</p>
+<div style="margin-bottom: 10px; padding:5px;"><a name="impressions_inner"></a>
+	<!--{foreach $imp as $v}-->
+	■お名前：<!--{$v.name}--><br />
+	<hr size="1" />
+	■年代：<!--{$v.age}--><br />
+	<hr size="1" />
+	■ご利用回数：<!--{$v.use_count}--><br />
+	<hr size="1" />
+	■ご利用日：<!--{$v.use_year}-->年<!--{$v.use_month}-->月<!--{$v.use_month}-->日<br />
+	<hr size="1" />
+	■マッサージ：<font color="#F83295"><!--{if $v.massage == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.massage == '良い'}-->★★★★<!--{/if}--><!--{if $v.massage == '普通'}-->★★★<!--{/if}--><!--{if $v.massage == '良くない'}-->★★<!--{/if}--><!--{if $v.massage == '悪い'}-->★<!--{/if}--></font><br />
+	<hr size="1" />
+	■回春：<font color="#F83295"><!--{if $v.kaishun == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.kaishun == '良い'}-->★★★★<!--{/if}--><!--{if $v.kaishun == '普通'}-->★★★<!--{/if}--><!--{if $v.kaishun == '良くない'}-->★★<!--{/if}--><!--{if $v.kaishun == '悪い'}-->★<!--{/if}--></font><br />
+	<hr size="1" />
+	■接客：<font color="#F83295"><!--{if $v.service == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.service == '良い'}-->★★★★<!--{/if}--><!--{if $v.service == '普通'}-->★★★<!--{/if}--><!--{if $v.service == '良くない'}-->★★<!--{/if}--><!--{if $v.service == '悪い'}-->★<!--{/if}--></font><br />
+	<hr size="1" />
+	■総合満足度：<font color="#F83295"><!--{if $v.total == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.total == '良い'}-->★★★★<!--{/if}--><!--{if $v.total == '普通'}-->★★★<!--{/if}--><!--{if $v.total == '良くない'}-->★★<!--{/if}--><!--{if $v.total == '悪い'}-->★<!--{/if}--></font><br />
+	<hr size="1" />
+	■<!--{$smarty.const.STAFF_CALL}-->へのメッセージ：<br /><!--{$v.comment|nl2br}--><br />
+	<hr style="padding: 0; border: none; border-top: medium double #333; color: #333;" />
+	<!--{/foreach}-->
+</div>
+<div style="text-align:center;">
+	<!--{if $page_info.prev.url != ''}--><a href="<!--{$page_info.prev.url}-->#impressions_inner">←&nbsp;戻る</a><!--{/if}-->
+	<!--{if $page_info.next.url != ''}--><a href="<!--{$page_info.next.url}-->#impressions_inner">進む&nbsp;⇢</a><!--{/if}-->
+</div>
+<!--{/if}-->
+<!-- //感想 -->
+
+<p align="left">
+	<a href="<!--{$smarty.const.MB_URL}-->/staff.php" >→<!--{$smarty.const.STAFF_CALL}-->一覧へ</a>
+</p>
+
+<p align="left">
+	<a href="<!--{$smarty.const.MB_URL}-->/schedule.php" >→出勤スケジュール一覧へ</a>
+</p>
+<!--{/block}-->

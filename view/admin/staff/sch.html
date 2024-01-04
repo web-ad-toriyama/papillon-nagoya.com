@@ -1,0 +1,125 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->スケジュール登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel mb">
+<!--{if $data|@count > 0}-->
+    <!--{if $params.id != ''}-->
+    <ul class="nav nav-tabs mb15">
+        <li><a href="edit.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">基本情報</a></li>
+        <li><a href="photo.php?id=<!--{$params.id}-->&p=<!--{$params.p}-->">画像</a></li>
+        <li class="active"><a href="#">スケジュール</a></li>
+    </ul>
+    <!--{/if}-->
+    <form class="form-horizontal style-form" action="" method="post" onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <ul class="pager">
+            <!--{if $params.w <= 1}-->
+            <li class="previous disabled"><a href="#">&larr; 前の週へ</a></li>
+            <!--{else}-->
+            <li class="previous"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w-1}-->">&larr; 前の週へ</a></li>
+            <!--{/if}-->
+            <li class="next"><a href="?id=<!--{$params.id}-->&p=<!--{$params.p}-->&w=<!--{$params.w+1}-->">次の週へ &rarr;</a></li>
+        </ul>
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf table-box">
+            <thead class="cf">
+            <!--{foreach $data as $value}-->
+            <tr id="anc_<!--{$value.id}-->">
+                <th class="text-center"><!--{$smarty.const.STAFF_CALL}--></th>
+                <!--{foreach $week as $v}-->
+                    <th class="text-center <!--{if $v|day_of_week == '土'}-->info<!--{elseif $v|day_of_week == '日'}-->danger<!--{/if}-->">
+                    <!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)
+                    </th>
+                <!--{/foreach}-->
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-title="<!--{$smarty.const.STAFF_CALL}-->">
+                        <a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$value.id}-->">
+                            <p><!--{$value.name}--></p>
+                            <!--{if $value.photo != ''}-->
+                            <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$value.id}-->/<!--{$value.photo}-->"
+                                    width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                                    height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                            <!--{else}-->
+                            <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg"
+                                    width="<!--{$smarty.const.IMAGE_SIZE_MB_W}-->"
+                                    height="<!--{$smarty.const.IMAGE_SIZE_MB_H}-->">
+                            <!--{/if}-->
+                        </a>
+                    </td>
+                    <!--{foreach $week as $k => $v}-->
+                    <td data-title="<!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)" class="reserves">
+                        <p><span class="txt-sm">出勤</span><br />
+                        <!--{html_options name="going_hour[<!--{$v}-->][<!--{$value.id}-->]" options=$form.hour selected=$value.sch.$k.going_hour}-->:
+                        <!--{html_options name="going_min[<!--{$v}-->][<!--{$value.id}-->]" options=$form.min selected=$value.sch.$k.going_min}-->
+                        </p>
+                        <p><span class="txt-sm">退勤</span><br />
+                        <!--{html_options name="leave_hour[<!--{$v}-->][<!--{$value.id}-->]" options=$form.hour selected=$value.sch.$k.leave_hour}-->:
+                        <!--{html_options name="leave_min[<!--{$v}-->][<!--{$value.id}-->]" options=$form.min selected=$value.sch.$k.leave_min}-->
+                        </p>
+                        <p class="sch-check">
+                        <!--{html_checkboxes class="allow_mode" name="allow_mode[<!--{$v}-->][<!--{$value.id}-->]" options=$form.allow_mode selected=$value.sch.$k.allow_mode}-->
+                        </p>
+                        <!--{*
+                        <p class="sch-check">
+                        予約状況
+                        <!--{html_radios class="allow_mode" name="reserve_icon[<!--{$v}-->][<!--{$value.id}-->]" options=$form.reserve_icon selected=$value.sch.$k.reserve_icon}-->
+                        </p>                          
+                        *}-->
+                        <p>
+                        <input type="text" name="free_text[<!--{$v}-->][<!--{$value.id}-->]" class="free_text form-control" value="<!--{$value.sch.$k.free_text}-->" maxlength="15"><br>
+                        <span class="help-block txt-sm">（15文字）</span>
+                        </p>
+                    </td>
+                    <!--{/foreach}-->
+                </tr>
+            <!--{/foreach}-->
+            </tbody>
+            </table>
+
+        <!--{if $params.id == ''}-->
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+        <!--{/if}-->
+        </section>
+        <div class="sch-btn-box">
+            <!--{if $params.id == ''}-->
+            <!-- スタッフ選択ボタン -->
+            <div class="sch-modal">
+                <input id="sch-modal-trigger" type="checkbox" name="checkbox1">
+                <label for="sch-modal-trigger"><i class="fa fa-user fa-fw" aria-hidden="true"></i><!--{$smarty.const.STAFF_CALL}-->選択</label>
+                <div class="sch-modal-overlay">
+                    <div class="sch-modal-wrap">
+                        <label for="sch-modal-trigger">&#x00D7;&nbsp;閉じる</label>
+                        <p class="ch-modal-title"><!--{$smarty.const.STAFF_CALL}-->選択</p>
+                        <ul>
+                            <!--{foreach $data as $value}-->
+                            <li><a href="#anc_<!--{$value.id}-->"><!--{$value.name}--></a></li>
+                            <!--{/foreach}-->
+                        </ul>
+                        <label for="sch-modal-trigger">&#x00D7;&nbsp;閉じる</label>
+                    </div>
+                </div>
+            </div>
+            <!-- / スタッフ選択ボタン -->
+            <!--{/if}-->
+            <div class="staff-select mt text-center">
+                <input type="submit" name="sch_edit" class="btn btn-primary btn-smart" value="登録">
+                <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+            </div>
+        </div>
+    </form>
+<!--{else}-->
+<div class="alert alert-warning">データが登録されていません。</div>
+<p class="mt text-center">
+    <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+</p>
+<!--{/if}-->
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/schedule.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

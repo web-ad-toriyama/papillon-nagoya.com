@@ -1,0 +1,62 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<p>当店への面接・体験入店希望やご質問等のお問合せは、下記フォームをご利用下さいませ。<br>
+	（＊は必須項目となります）<br>
+	<br>
+	<font color="#ff007e">お急ぎの方は<a href="tel:<!--{$smarty.const.SHOP_TEL}-->">&#9742;&nbsp;<!--{$smarty.const.SHOP_TEL}--></a>にお電話下さい。<br>
+	（求人電話受付：<!--{$smarty.const.SHOP_RECEPTION}-->）</font></p>
+		<hr size="1" color="#fafafa" />
+	<form method="post" action="?mode=confirm">
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#ff007e">※</font><br />
+		<input type="text" name="name"><br>
+		*ﾊﾝﾄﾞﾙﾈｰﾑでも大丈夫です。
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ&nbsp;<font color="#ff007e">※</font><br />
+		<input type="email" name="mail">
+		<p>携帯への返信を希望される方は、<font color="#ff007e">[<!--{$smarty.const.SHOP_MAIL_RECRUIT}-->]</font>を指定受信するようにして頂くか、「PCからのメールを受信にする」に設定の変更をお願い致します。</p>
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">電話番号<br />(ﾊｲﾌﾝあり)<br />
+		<input type="text" name="tel">
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">年齢&nbsp;<font color="#ff007e">※</font><br />
+		<input type="text" name="age">
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">エステ関連の仕事経験&nbsp;<font color="#ff007e">※</font><br />
+		<input type="radio" name="exp" value="あり" checked>あり&nbsp;
+		<input type="radio" name="exp" value="なし">なし
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">経験者の方は業種・経歴・資格等をご記入ください。(500文字以内)<br />
+		<textarea name="career"></textarea>
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">どの求人サイトをご覧になりましたか？&nbsp;<font color="#ff007e">※</font><br />
+		<input type="checkbox" name="site[]" value="パンダエステジョブ">パンダエステジョブ<br>
+		<input type="checkbox" name="site[]" value="メンズエステコネクション">メンズエステコネクション<br>
+		<input type="checkbox" name="site[]" value="エスティー">エスティー<br>
+		<input type="checkbox" name="site[]" value="メンズエステジョブ">メンズエステジョブ<br>
+		<input type="checkbox" name="site[]" value="モモコ">モモコ<br>
+		<input type="checkbox" name="site[]" value="その他">その他<br>
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お問合せ内容<br />
+		&#x25BE;&nbsp;ご希望<br>
+		<!--{html_options name='want' options=$form.entry.want}--><br>
+		<br>
+		&#x25BE;&nbsp;ご質問など(500文字以内)<br>
+		<textarea name="detail"></textarea>
+
+		<br /><br />
+		<p>各項目の入力がお済みになりましたら、下記ボタンより確認画面へお進み下さい。</p>
+		<input type="submit" name="confirm" value="確認">
+		<input type="reset" name="reset" value="リセット">
+	</form>
+	<br />
+<!--{/block}-->

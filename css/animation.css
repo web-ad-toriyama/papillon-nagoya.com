@@ -1,0 +1,70 @@
+/*波紋のスタイル設定*/
+
+#mainvisual div.circle.layer-0 {
+  animation: wave-0 5s infinite;
+}
+#mainvisual div.circle.layer-1 {
+  animation: wave-1 5s infinite;
+}
+#mainvisual div.circle.layer-2 {
+  animation: wave-2 5s infinite;
+}
+#mainvisual div.circle.layer-3 {
+  animation: wave-3 5s infinite;
+}
+
+@keyframes wave-0 {
+  0% {
+    width:  0%;
+    height: 0%;
+    /*background-color: #ffebee;*/
+    background: #fff8f8;
+  }
+  100% {
+    width:  100%;
+    height: 100%;
+    opacity:   0;
+  }
+}
+
+@keyframes wave-1 {
+  0% {
+    width:  0%;
+    height: 0%;
+    /*background-color: #ffebee;*/
+    background: #fff8f8;
+  }
+  100% {
+    width:   90%;
+    height:  90%;
+    opacity:   0;
+  }
+}
+
+@keyframes wave-2 {
+  0% {
+    width:  0%;
+    height: 0%;
+    /*background-color: #ffebee;*/
+    background: #fff8f8;
+  }
+  100% {
+    width:   75%;
+    height:  75%;
+    opacity:   0;
+  }
+}
+
+@keyframes wave-3 {
+  0% {
+    width:  0%;
+    height: 0%;
+    /*background-color: #ffebee;*/
+    background: #fff8f8;
+  }
+  100% {
+    width:   50%;
+    height:  50%;
+    opacity:   0;
+  }
+}

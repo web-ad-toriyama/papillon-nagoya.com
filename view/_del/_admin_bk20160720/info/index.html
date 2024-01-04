@@ -1,0 +1,104 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->サイト情報<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+<section id="no-more-tables">
+    <table class="table table-bordered table-condensed cf">
+        <thead class="cf">
+        <tr>
+            <th>項目</th>
+            <th>設定値</th>
+            <th>備考</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+	        <td data-title="項目">店舗名</td>
+	        <td data-title="設定値"><!--{$smarty.const.SHOP_NAME}--></td>
+	        <td data-title="備考">システムで使用する店舗名</td>
+        </tr>
+        <!--{if $smarty.const.SHOP_TEL !=''}-->
+        <tr>
+            <td data-title="項目">電話番号</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_TEL}--></td>
+            <td data-title="備考">お問合せで使用する電話番号</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_TEL_RECRUIT !=''}-->
+        <tr>
+            <td data-title="項目">求人用電話番号</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_TEL_RECRUIT}--></td>
+            <td data-title="備考">求人用のお問合せで使用する電話番号</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_OPEN !=''}-->
+        <tr>
+            <td data-title="項目">営業時間</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_OPEN}--></td>
+            <td data-title="備考">店舗の営業時間</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_RECEPTION !=''}-->
+        <tr>
+            <td data-title="項目">受付時間</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_RECEPTION}--></td>
+            <td data-title="備考">店舗の受付時間</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_AREA !=''}-->
+        <tr>
+            <td data-title="項目">住所(エリア)</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_AREA}--></td>
+            <td data-title="備考">店舗の住所(エリア)</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_INFO !=''}-->
+        <tr>
+            <td data-title="項目">メールアドレス</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_MAIL_INFO}--></td>
+            <td data-title="備考">お問い合わせで使用するメールアドレス</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_RECRUIT !=''}-->
+        <tr>
+            <td data-title="項目">求人用メールアドレス</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_MAIL_RECRUIT}--></td>
+            <td data-title="備考">求人のお問合せで使用するメールアドレス</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_ENQUETE !=''}-->
+        <tr>
+            <td data-title="項目">アンケート用メールアドレス</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_MAIL_ENQUETE}--></td>
+            <td data-title="備考">アンケートのお問い合わせで使用するメールアドレス</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_RESERVE !=''}-->
+        <tr>
+            <td data-title="項目">WEB予約用メールアドレス</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_MAIL_RESERVE}--></td>
+            <td data-title="備考">WEB予約のお問い合わせで使用するメールアドレス</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_LINEID !=''}-->
+        <tr>
+            <td data-title="項目">LINE&nbsp;ID</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_LINEID}--></td>
+            <td data-title="備考">店舗のLINEのID</td>
+        </tr>
+        <!--{/if}-->
+        <tr>
+            <td data-title="項目">スケジュール更新時間</td>
+            <td data-title="設定値"><!--{$smarty.const.SHOP_TODAY}-->時</td>
+            <td data-title="備考">スケジュール更新時間</td>
+        </tr>
+        <tr>
+            <td data-title="項目">画像サイズ</td>
+            <td data-title="設定値">横：<!--{$smarty.const.IMAGE_SIZE_PC_W}-->&nbsp;縦：<!--{$smarty.const.IMAGE_SIZE_PC_H}--></td>
+            <td data-title="備考"><!--{$smarty.const.STAFF_CALL}-->画像の最大サイズ</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</div>
+<!--{/block}-->

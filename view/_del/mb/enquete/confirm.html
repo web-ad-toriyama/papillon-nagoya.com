@@ -1,0 +1,95 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- ｱﾝｹｰﾄ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<form method="post" action="?mode=finish">
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.name != ''}--><font color="#ff007e"><!--{$error.name}--></font><!--{else}--><!--{$posts.name}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.mail != ''}--><font color="#ff007e"><!--{$error.mail}--></font><!--{else}--><!--{$posts.mail}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">電話番号&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.tel != ''}--><font color="#ff007e"><!--{$error.tel}--></font><!--{else}--><!--{$posts.tel}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店のご利用回数&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.count != ''}--><font color="#ff007e"><!--{$error.count}--></font><!--{else}--><!--{$posts.count}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ご利用日&nbsp;<font color="#ff007e">※</font><br />
+		ご利用月：<!--{if $error.month != ''}--><font color="#ff007e"><!--{$error.month}--></font><!--{else}--><!--{$posts.month}--><!--{/if}--><br />
+		ご利用日：<!--{if $error.day != ''}--><font color="#ff007e"><!--{$error.day}--></font><!--{else}--><!--{$posts.day}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店を初めにお知りになられたｷｯｶｹは?<br />
+		<!--{$posts.chance}--><br />
+		※検索エンジン名:&nbsp;<!--{$posts.chance_site}--><br>
+		※雑誌名:&nbsp;<!--{$posts.chance_zassi}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">受付ｽﾀｯﾌの電話応対はいかがでしたか?<br />
+		<!--{$posts.front}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">担当させて頂きました<!--{$smarty.const.STAFF_CALL}-->の名前は?&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.staff != ''}--><font color="#ff007e"><!--{$error.staff}--></font><!--{else}--><!--{$posts.staff}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾏｯｻｰｼﾞの技術に関しましてのご感想は?<br />
+		<!--{$posts.massage}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">回春(性感)の技術に関しまして今回のご感想は?<br />
+		<!--{$posts.seikan}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->の接客ﾏﾅｰ等を含めて今回のご感想は？<br />
+		<!--{$posts.manner}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">次回また指名したいと思いますか?<br />
+		<!--{$posts.next}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->や施術内容に関してご意見、ご要望、お気づきの点など御座いましたら、些細な点でも構いませんのでお願いいたします。<br />
+		<!--{$posts.detail1|nl2br}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->に点数をつけると&nbsp;100点満点で何点ですか？&nbsp;(100点満点中80点を合格ﾗｲﾝとして)<br />
+		<!--{if $error.staff_point != ''}--><font color="#ff007e"><!--{$error.staff_point}--></font><!--{else}--><!--{$posts.staff_point}-->点<!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店のご満足度は100点満点で何点ですか?&nbsp;(100点満点中80点を合格ﾗｲﾝとして)<br />
+		<!--{if $error.shop_point != ''}--><font color="#ff007e"><!--{$error.shop_point}--></font><!--{else}--><!--{$posts.shop_point}-->点<!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店に特に求めるものはなんですか?&nbsp;複数回答可<br />
+		<!--{$wish}-->
+		<br />
+		その他詳細:&nbsp;<!--{$posts.detail2|nl2br}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->へのﾒｯｾｰｼﾞ等ございましたらご記入お願い致します。<br />
+		<!--{$posts.detail3|nl2br}-->
+		<br /><br />
+		<input type="hidden" name="name" value="<!--{$posts.name}-->">
+		<input type="hidden" name="mail" value="<!--{$posts.mail}-->">
+		<input type="hidden" name="tel" value="<!--{$posts.tel}-->">
+		<input type="hidden" name="count" value="<!--{$posts.count}-->">
+		<input type="hidden" name="month" value="<!--{$posts.month}-->">
+		<input type="hidden" name="day" value="<!--{$posts.day}-->">
+		<input type="hidden" name="chance" value="<!--{$posts.chance}-->">
+		<input type="hidden" name="chance_site" value="<!--{$posts.chance_site}-->">
+		<input type="hidden" name="chance_zassi" value="<!--{$posts.chance_zassi}-->">
+		<input type="hidden" name="staff" value="<!--{$posts.staff}-->">
+		<input type="hidden" name="front" value="<!--{$posts.front}-->">
+		<input type="hidden" name="massage" value="<!--{$posts.massage}-->">
+		<input type="hidden" name="seikan" value="<!--{$posts.seikan}-->">
+		<input type="hidden" name="manner" value="<!--{$posts.manner}-->">
+		<input type="hidden" name="next" value="<!--{$posts.next}-->">
+		<input type="hidden" name="detail1" value="<!--{$posts.detail1}-->">
+		<input type="hidden" name="staff_point" value="<!--{$posts.staff_point}-->">
+		<input type="hidden" name="shop_point" value="<!--{$posts.shop_point}-->">
+		<input type="hidden" name="wish" value="<!--{$wish}-->">
+		<input type="hidden" name="detail2" value="<!--{$posts.detail2}-->">
+		<input type="hidden" name="detail3" value="<!--{$posts.detail3}-->">
+		<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+		<!--{if $error == ''}-->
+		<input type="submit" name="send" value="送信">
+		<!--{/if}-->
+		<input type="button" value="戻る" onclick="history.back();">
+	</form>
+	<br />
+	<!-- //ｱﾝｹｰﾄ -->
+<!--{/block}-->

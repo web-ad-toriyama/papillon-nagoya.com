@@ -1,0 +1,17 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- ﾘﾝｸ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<!--{if $free != ''}-->
+	<p><!--{$free.detail_mb}--></p>
+	<!--{/if}-->
+	<!-- //ﾘﾝｸ -->
+
+	<!--{foreach $banner as $v}-->
+	■<a href="<!--{$v.url}-->" target="_blank"><!--{$v.title}--></a>
+	<hr size="1" color="#fafafa" />
+	<!--{/foreach}-->
+<!--{/block}-->

@@ -1,0 +1,55 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- ｶﾊﾞｰｶﾞｰﾙ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111">ｶﾊﾞｰｶﾞｰﾙ</font>
+	</div>
+	<div align="center" style="margin:5px;">
+		<!--{if $covergirl != ''}-->
+			<!--{include file="./common/staff/thumbnail.html" v=$covergirl width="120" height="180"}-->
+			<div>
+				<!--{include file="./common/staff/icon_check.html" v=$covergirl}--><br />
+				<!--{$covergirl.name}-->(<!--{$covergirl.age}-->歳) <!--{include file="./common/staff/icon_new.html" v=$covergirl}--><!--{include file="./common/staff/icon_class.html" v=$covergirl}--><br />
+				<!--{include file="./common/staff/size.html" v=$covergirl}-->
+			</div>
+		<!--{else}-->
+			<p>カバーガールなし</p>
+		<!--{/if}-->
+	</div>
+	<!-- //ｶﾊﾞｰｶﾞｰﾙ -->
+
+	<!-- ｲﾍﾞﾝﾄ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111">ｲﾍﾞﾝﾄ</font>
+	</div>
+		<p>
+			<font color="#ff007e">☆★☆★イベント名★☆★☆</font><br />
+			説明文説明文説明文説明文説明文説明文<br />
+			60分&nbsp;通常料金:8,000円<br />
+			→&nbsp;<font color="#ffff00">割引料金:7,000円</font><br />
+			90分&nbsp;通常料金:10,000円<br />
+			→&nbsp;<font color="#ffff00">割引料金:9,000円</font>
+			<hr size="1" color="#fafafa" />
+			<font color="#ff007e">☆★☆★イベント名★☆★☆</font><br />
+			説明文説明文説明文説明文説明文説明文<br />
+			60分&nbsp;通常料金:8,000円<br />
+			→&nbsp;<font color="#ffff00">割引料金:7,000円</font><br />
+			90分&nbsp;通常料金:10,000円<br />
+			→&nbsp;<font color="#ffff00">割引料金:9,000円</font>
+		</p>
+	<!-- //ｲﾍﾞﾝﾄ -->
+
+	<!-- 新着情報 -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111">新着情報</font>
+	</div>
+	<!--{if $topics.0 != ''}-->
+	<p><font color="#ff007e"><!--{$topics.0.published|date_format:'%Y-%m-%d %H:%M'}--></font><br />
+		<a href="<!--{$smarty.const.MB_URL}-->/topics.php"><!--{$topics.0.title}--></a>
+	</p>
+	<!--{/if}-->
+	<!-- //新着情報 -->
+
+
+<!--{/block}-->

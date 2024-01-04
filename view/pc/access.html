@@ -1,0 +1,97 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<!-- ローディングアニメーション -->
+<div class="shutter">
+  <div class="spinner"></div>
+  <p class="text">Papillon</p>
+</div>
+<!-- //ローディングアニメーション -->
+<section id="contents_access">
+  <!-- サブビジュアル -->
+  <div class="subvisual">
+    <p class="center">
+      <img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+    </p>
+    <p class="left">
+      <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+    </p>
+    <p class="right">
+      <img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+    </p>
+    <h2 class="contents_title">
+      <p class="main">
+        <!--{$page.name}-->
+      </p>
+      <p class="sub">
+        <!--{$html.name_kana.access}-->
+      </p>
+    </h2>
+  </div>
+  <!-- //サブビジュアル -->
+
+  <div id="contents" class="inner">
+
+    <div class="top_box01">
+      <div class="img">
+        <img src="<!--{$smarty.const.IMAGES_URL}-->/access_01.jpg" alt="アクセスページ01">
+      </div>
+      <div class="txt">
+        <p>
+          完全個室の２人きりの特別な空間を醸し出す<br>
+          隠れ家サロン<br>
+          <span class="fs_18em">
+            <!--{$smarty.const.SHOP_NAME}-->
+          </span>
+      </div>
+    </div>
+
+    <h3>SHOP INFORMATION</h3>
+    <a href="tel:<!--{$smarty.const.SHOP_TEL_RECRUIT}-->" class="btn_tel sp"><span>TEL:
+        <!--{$smarty.const.SHOP_TEL_RECRUIT}-->
+      </span></a>
+    <table class="table01">
+      <tr>
+        <th class="pc">電話番号</th>
+        <th>営業時間</th>
+        <th>受付時間</th>
+      </tr>
+      <tr>
+        <td class="pc">
+          <!--{$smarty.const.SHOP_TEL}-->
+        </td>
+        <td>
+          <!--{$smarty.const.SHOP_OPEN}-->
+        </td>
+        <td>
+          <!--{$smarty.const.SHOP_RECEPTION}--><br>
+        </td>
+      </tr>
+    </table>
+
+    <div class="access_box">
+      <h3>ACCESS<br><span class="fs_05em">高岳ルーム本館</span></h3>
+      <p>マンション<span>：ヴィアーレ・バグース</span></p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.186542279143!2d136.91426431524508!3d35.17690288031487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600370d8c0d01a95%3A0x2a2761fecdfa8b06!2z44CSNDYxLTAwMDEg5oSb55-l55yM5ZCN5Y-k5bGL5biC5p2x5Yy65rOJ77yS5LiB55uu77yR77yX4oiS77yR77yX!5e0!3m2!1sja!2sjp!4v1640056169705!5m2!1sja!2sjp"
+        width="90%" height="500" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+
+    <div class="access_box">
+      <h3>ACCESS<br><span class="fs_05em">高岳ルーム別館</span></h3>
+      <p>マンション<span>：ヴィアーレ・ストーリア</span></p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.139536902085!2d136.91227925127038!3d35.17807456491139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600371279a370bc1%3A0x8d14d7764d0752d0!2z44CSNDYxLTAwMDEg5oSb55-l55yM5ZCN5Y-k5bGL5biC5p2x5Yy65rOJ77yS5LiB55uu77yR4oiS77yS77yYIOODtOOCo-OCouODvOODrCDjgrnjg4jjg7zjg6rjgqI!5e0!3m2!1sja!2sjp!4v1668483294545!5m2!1sja!2sjp"
+        width="90%" height="500" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+
+    <div class="access_box">
+      <h3>ACCESS<br><span class="fs_05em">栄ルーム</span></h3>
+      <p><span>栄4丁目</span></p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.5595563209586!2d136.9120731!3d35.1676037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600370d00529175b%3A0x6f58250586bc8b9e!2z44CSNDYwLTAwMDgg5oSb55-l55yM5ZCN5Y-k5bGL5biC5Lit5Yy65qCE77yU5LiB55uu!5e0!3m2!1sja!2sjp!4v1681810494082!5m2!1sja!2sjp"
+        width="90%" height="500" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+  </div>
+
+</section>
+<!--{/block}-->

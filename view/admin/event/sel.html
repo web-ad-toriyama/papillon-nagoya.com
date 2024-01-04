@@ -1,0 +1,37 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->イベント画像の表示を切り替え<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $data|@count > 0}-->
+    <form method="post" action="finish.php">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf table-list">
+                <tbody>
+                    <!--{foreach $data as $v}-->
+                    <tr>
+                        <td>
+                            <img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$v.file_name}-->"
+                            width="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_W/4}-->"
+                            height="<!--{$smarty.const.IMAGE_SIZE_EVENT_PC_H/4}-->">
+                        </td>
+                        <td>
+                            <label class="btn btn-default"><input type="checkbox" name="event_sel[]" value="<!--{$v.id}-->" <!--{if $v.selected == $smarty.const.SET_ON}-->checked<!--{/if}-->>&nbsp;&nbsp;画像を表示する</label>
+                        </td>
+                    </tr>
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+        </section>
+        <p class="mt text-center">
+            <input type="submit" name="sel" class="btn btn-primary btn-smart" value="画像切り替え" onclick="return confirm('登録を実行しますか？')">
+            <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

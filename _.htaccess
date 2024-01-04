@@ -1,0 +1,114 @@
+
+Options -Indexes
+order deny,allow
+
+<FilesMatch ".(htaccess|htpasswd|ini|log)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+#画像XSS防止(IE8以降に有効)
+Header set X-Content-Type-Options nosniff
+
+####各ファイルするを圧縮する処理
+<IfModule mod_deflate.c>
+    SetOutputFilter DEFLATE
+    #gifやjpgなど圧縮済みのコンテンツは再圧縮しない
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI _\.utxt$ no-gzip
+    #以下圧縮
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/x-httpd-php
+</IfModule>
+
+
+####キャッシュする処理
+<ifModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault             "access plus 1 seconds"
+#html
+ExpiresByType text/html    "access plus 1 seconds"
+#img
+ExpiresByType image/gif    "access plus 15 days"
+ExpiresByType image/jpeg   "access plus 15 days"
+ExpiresByType image/png    "access plus 15 days"
+ExpiresByType image/x-icon "access plus 15 days"
+#css
+ExpiresByType text/css     "access plus 5 days"
+#js
+ExpiresByType text/javascript            "access plus 15 days"
+ExpiresByType application/x-javascript   "access plus 15 days"
+ExpiresByType application/javascript     "access plus 1 week"
+#flash
+ExpiresByType application/x-shockwave-flash "access plus 1 years"
+#font
+ExpiresByType application/x-font-ttf        "access plus 1 year"
+ExpiresByType application/x-font-woff       "access plus 1 year"
+ExpiresByType application/x-font-opentype   "access plus 1 year"
+ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+#video&audio
+ExpiresByType audio/mpeg                "access plus 1 months"
+ExpiresByType video/mpeg                "access plus 1 months"
+ExpiresByType video/mp4                 "access plus 1 months"
+ExpiresByType video/quicktime           "access plus 1 months"
+</ifModule>
+
+php_flag magic_quotes_gpc Off
+
+################################################################################
+#   以下は不要なエラー表示を消す為なので消去しないように！                        #
+################################################################################
+#php_value "error_reporting" "E_NOTICE & ~E_DEPRECATED"
+
+################################################################################
+#   最大ファイル容量                                                            #
+################################################################################
+php_value upload_max_filesize 25M
+php_value post_max_size 25M
+
+RewriteEngine on
+
+################################################################################
+#   httpアクセスをhttpsに変更                                                   #
+################################################################################
+# httpからの通信を、httpsにリダイレクト（www有り無し）
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*$) https://fontaine-nagoya.com/$1 [R=301,L]
+
+################################################################################
+#   httpsからの通信でwww有りの場合、www無しにリダイレクト                              #
+################################################################################
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www.fontaine-nagoya.com$
+RewriteRule ^(.*)$ https://fontaine-nagoya.com/$1 [R=301,L]
+
+################################################################################
+#   wwwなしのアドレスに統一                                                     #
+################################################################################
+#RewriteCond %{HTTP_HOST} ^(www\.fontaine-nagoya\.com)(:80)? [NC]
+#RewriteRule ^(.*) https://fontaine-nagoya.com/$1 [R=301,L]
+
+################################################################################
+#   indexを省略                                                               #
+################################################################################
+RewriteCond %{THE_REQUEST} ^.*/index.html
+RewriteRule ^(.*)index.html$ https://fontaine-nagoya.com/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} ^.*/index.php
+RewriteRule ^(.*)index.php$ https://fontaine-nagoya.com/$1 [R=301,L]
+
+
+################################################################################
+#   エラー時の処理                                                              #
+################################################################################
+#スマートフォン、フィーチャーフォンは /s/ /m/ フォルダの直下にあるので、そちらのURLも”忘れずに”変更してください。
+### 2018/04/06 山内追記 - 相対パスで書くようにしてください。
+ErrorDocument 404 https://fontaine-nagoya.com/err.php
+ErrorDocument 403 https://fontaine-nagoya.com/err.php

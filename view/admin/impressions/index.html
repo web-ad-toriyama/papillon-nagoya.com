@@ -1,0 +1,58 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->感想一覧<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $data|@count > 0}-->
+    <section id="no-more-tables">
+        <table class="table table-bordered table-condensed cf table-list">
+            <!--
+            <thead class="cf">
+            <tr>
+                <th>登録ID</th>
+                <th>お名前</th>
+                <th>登録日時</th>
+                <th>更新日時</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            -->
+            <tbody>
+            <!--{foreach $data as $v}-->
+            <tr
+            <!--{if $v.show_flg == $smarty.const.SHOW_OFF}-->class="danger"<!--{/if}-->>
+            <!-- {*
+            <td data-title="登録ID">
+                <!--{$v.id}-->
+            </td>
+            *} -->
+            <td>
+                <span class="txt-sm">お名前：</span>&nbsp;<!--{$v.name}-->&nbsp;<span class="txt-sm">さん</span>
+            </td>
+            <td>
+                <!--{$v.created}-->&nbsp;&nbsp;<span class="txt-sm">に登録</span>
+            </td>
+            <!-- {*
+            <td data-title="更新日時">
+                <!--{$v.updated}-->
+            </td>
+            *} -->
+            <td>
+                <button class="btn btn-primary"
+                        onclick="location.href='edit.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->'">
+                    <i class="fa fa-pencil fa-lg"></i></button>
+                <button class="btn btn-danger"
+                        onclick="delCheck('del.php?id=<!--{$v.id}-->&p=<!--{$params.p}-->')">
+                    <i class="fa fa-trash-o fa-lg"></i></button>
+            </td>
+            </tr>
+            <!--{/foreach}-->
+            </tbody>
+        </table>
+        <div class="text-center"><!--{$pager->outputTag()}--></div>
+    </section>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

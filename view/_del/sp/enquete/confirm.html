@@ -1,0 +1,127 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- アンケート -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_enquete.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <div class="wrap">
+                <section>
+                    <h3 class="subtitle">アンケートフォーム</h3>
+
+						<form method="post" action="?mode=confirm" class="form_box mb_10">
+							<table class="table_01">
+								<tr>
+									<th>お名前&nbsp;<span class="atten_01">※</span></th>
+									<td><!--{if $error.name != ''}--><span class="atten_01"><!--{$error.name}--></span><!--{else}--><!--{$posts.name}--><!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>メールアドレス&nbsp;<span class="atten_01">※</span></th>
+									<td><!--{if $error.mail != ''}--><span class="atten_01"><!--{$error.mail}--></span><!--{else}--><!--{$posts.mail}--><!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>電話番号&nbsp;<span class="atten_01">※</span></th>
+									<td><!--{if $error.tel != ''}--><span class="atten_01"><!--{$error.tel}--></span><!--{else}--><!--{$posts.tel}--><!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>当店のご利用回数&nbsp;<span class="atten_01">※</span></th>
+									<td><!--{if $error.count != ''}--><span class="atten_01"><!--{$error.count}--></span><!--{else}--><!--{$posts.count}--><!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>ご利用日&nbsp;<span class="atten_01">※</span></th>
+									<td>
+									ご利用月：<!--{if $error.month != ''}--><span class="atten_01"><!--{$error.month}--></span><!--{else}--><!--{$posts.month}--><!--{/if}--><br />
+									ご利用日：<!--{if $error.day != ''}--><span class="atten_01"><!--{$error.day}--></span><!--{else}--><!--{$posts.day}--><!--{/if}-->
+									</td>
+								</tr>
+								<tr>
+									<th>当店を初めにお知りになられたキッカケは？</th>
+									<td>
+										<!--{$posts.chance}--><br />
+										※検索エンジン名：<!--{$posts.chance_site}--><br>
+										※雑誌名：<!--{$posts.chance_zassi}-->
+									</td>
+								</tr>
+								<tr>
+									<th>受付スタッフの電話応対はいかがでしたか？</th>
+									<td><!--{$posts.front}--></td>
+								</tr>
+								<tr>
+									<th>担当させて頂きました<!--{$smarty.const.STAFF_CALL}-->の名前は？&nbsp;<span class="atten_01">※</span></th>
+									<td><!--{if $error.staff != ''}--><span class="atten_01"><!--{$error.staff}--></span><!--{else}--><!--{$posts.staff}--><!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>マッサージの技術に関しましてのご感想は？</th>
+									<td><!--{$posts.massage}--></td>
+								</tr>
+								<tr>
+									<th>回春(性感)の技術に関しまして今回のご感想は？</th>
+									<td><!--{$posts.seikan}--></td>
+								</tr>
+								<tr>
+									<th><!--{$smarty.const.STAFF_CALL}-->の接客マナー等を含めて今回のご感想は？</th>
+									<td><!--{$posts.manner}--></td>
+								</tr>
+								<tr>
+									<th>次回また指名したいと思いますか？</th>
+									<td><!--{$posts.next}--></td>
+								</tr>
+								<tr>
+									<th><!--{$smarty.const.STAFF_CALL}-->や施術内容に関してご意見、ご要望、お気づきの点など御座いましたら、些細な点でも構いませんのでお願いいたします。</th>
+									<td><!--{$posts.detail1|nl2br}--></td>
+								</tr>
+								<tr>
+									<th><!--{$smarty.const.STAFF_CALL}-->に点数をつけると、１００点満点で何点ですか？ (100点満点中80点を合格ラインとして)</th>
+									<td><!--{if $error.staff_point != ''}--><span class="atten_01"><!--{$error.staff_point}--></span><!--{else}--><!--{$posts.staff_point}-->点<!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>当店のご満足度は１００点満点で何点ですか？ (100点満点中80点を合格ラインとして)</th>
+									<td><!--{if $error.shop_point != ''}--><span class="atten_01"><!--{$error.shop_point}--></span><!--{else}--><!--{$posts.shop_point}-->点<!--{/if}--></td>
+								</tr>
+								<tr>
+									<th>当店に特に求めるものはなんですか？ 複数回答可</th>
+									<td>
+									<!--{$wish}-->
+									<br />
+									その他詳細：<!--{$posts.detail2|nl2br}-->
+									</td>
+								</tr>
+								<tr>
+									<th><!--{$smarty.const.STAFF_CALL}-->へのメッセージ等ございましたらご記入お願い致します。</th>
+									<td><!--{$posts.detail3|nl2br}-->点</td>
+								</tr>
+							</table>
+
+							<input type="hidden" name="name" value="<!--{$posts.name}-->">
+							<input type="hidden" name="mail" value="<!--{$posts.mail}-->">
+							<input type="hidden" name="tel" value="<!--{$posts.tel}-->">
+							<input type="hidden" name="count" value="<!--{$posts.count}-->">
+							<input type="hidden" name="month" value="<!--{$posts.month}-->">
+							<input type="hidden" name="day" value="<!--{$posts.day}-->">
+							<input type="hidden" name="chance" value="<!--{$posts.chance}-->">
+							<input type="hidden" name="chance_site" value="<!--{$posts.chance_site}-->">
+							<input type="hidden" name="chance_zassi" value="<!--{$posts.chance_zassi}-->">
+							<input type="hidden" name="staff" value="<!--{$posts.staff}-->">
+							<input type="hidden" name="front" value="<!--{$posts.front}-->">
+							<input type="hidden" name="massage" value="<!--{$posts.massage}-->">
+							<input type="hidden" name="seikan" value="<!--{$posts.seikan}-->">
+							<input type="hidden" name="manner" value="<!--{$posts.manner}-->">
+							<input type="hidden" name="next" value="<!--{$posts.next}-->">
+							<input type="hidden" name="detail1" value="<!--{$posts.detail1}-->">
+							<input type="hidden" name="staff_point" value="<!--{$posts.staff_point}-->">
+							<input type="hidden" name="shop_point" value="<!--{$posts.shop_point}-->">
+							<input type="hidden" name="wish" value="<!--{$wish}-->">
+							<input type="hidden" name="detail2" value="<!--{$posts.detail2}-->">
+							<input type="hidden" name="detail3" value="<!--{$posts.detail3}-->">
+							<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+							<!--{if $error == ''}-->
+							<input type="submit" name="send" value="送信" class="btn_one_02">
+							<!--{/if}-->
+							<input type="button" value="戻る" onclick="history.back();" class="btn_one_02">
+						</form>
+                </section>
+            </div>
+        </section>
+        <!-- //アンケート -->
+
+<!--{/block}-->

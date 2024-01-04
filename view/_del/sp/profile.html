@@ -1,0 +1,213 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<!--{assign w $smarty.const.IMAGE_SIZE_SP_W}-->
+<!--{assign h $smarty.const.IMAGE_SIZE_SP_H}-->
+
+<!-- サムネイル -->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_staffdetail.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+    <div class="profile_thumb">
+      <div class="flexslider">
+          <ul class="slides">
+            <!--{section name=photo start=IMAGE_DETAIL_COUNT-1 loop=IMAGE_COUNT step=1}-->
+            <!--{assign index $smarty.section.photo.index}-->
+            <!--{if $staff.photo.$index != ''}-->
+            <li>
+                <span>
+                    <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/<!--{$staff.photo.$index}-->" alt="<!--{$staff.name}--><!--{$index+1}-->"  class="profile_photo img_cast">
+                </span>
+            </li>
+            <!--{else}-->
+            <li>
+                <span>
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg"  width="100%" alt="ノーイメージ" class="img_cast">
+                </span>
+            </li>
+            <!--{/if}-->
+            <!--{/section}-->
+        </ul>
+    </div>
+</div>
+</section>
+<!-- //サムネイル -->
+
+<!-- プロフィール -->
+<section class="section_box profile_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_profile.png" alt="<!--{$page.name}-->" width="34">プロフィール</h2>
+    <div class="wrap">
+        <div class="txt_box_01">
+            <p class="short_comment"><!--{$staff.short_comment}--></p>
+            <p class="name">
+                <!--{$staff.name}-->(<!--{$staff.age}-->)<!--{if $staff.new_flg == $smarty.const.SET_ON}--><img src="<!--{$smarty.const.IMAGES_URL}-->/icon_new.png" alt="new"><!--{/if}-->
+
+                <!--{foreach $staff.class as $class}-->
+                <!--{if $class.image != ''}-->
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/<!--{$class.image}-->" alt="<!--{$class.value}-->">
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </p>
+            <p class="size"><span class="atten_01">T</span><!--{$staff.t}-->&nbsp;<span class="atten_01">B</span><!--{$staff.b}-->(<!--{$staff.c}-->)&nbsp;<span class="atten_01">W</span><!--{$staff.w}-->&nbsp;<span class="atten_01">H</span><!--{$staff.h}--></p>
+            <p class="icon">
+                <!--{foreach $staff.check as $check}-->
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/<!--{$check.image}-->" alt="<!--{$check.name}-->">
+                <!--{/foreach}-->
+            </p>
+        </div>
+    </div>
+</section>
+<!-- //プロフィール -->
+
+<!-- 項目1 -->
+<!--{if $form.item.name.1 != ''}-->
+<section class="section_box profile_qa">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_param.png" alt="<!--{$page.name}-->" width="34"><!--{$form.item.name.1}--></h2>
+    <div class="wrap">
+        <dl class="txt_box_01 param_box">
+            <!--{foreach $staff.item.1 as $k => $v}-->
+            <dt><!--{$v.name}--></dt><dd class="atten_01"><!--{$v.value|default:$smarty.const.DEFAULT_PROFILE}--></dd>
+            <!--{/foreach}-->
+        </dl>
+    </div>
+</section>
+<!--{/if}-->
+<!-- //項目1 -->
+
+<!-- 項目2 -->
+<!--{if $form.item.name.2 != ''}-->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_param.png" alt="<!--{$page.name}-->" width="34"><!--{$form.item.name.2}--></h2>
+    <div class="wrap profile_option_box mb_10">
+        <div><span class="atten_01">■</span>プレイ可&nbsp;/&nbsp;<span class="">■</span>プレイ不可</div>
+        <!--{foreach $staff.item.2 as $k => $v}-->
+        <!--{if $v.value == "0"}-->
+        <p class="can"><!--{$v.name}--></p>
+        <!--{elseif $v.value == "1"}-->
+        <p class="normal"><!--{$v.name}--></p>
+        <!--{else}-->
+        <p class="cant"><!--{$v.name}--></p>
+        <!--{/if}-->
+        <!--{/foreach}-->
+    </div>
+</section>
+<!--{/if}-->
+<!-- //項目2 -->
+
+<!-- 動画 -->
+<!--{if $staff.movie != '' && $staff.movie.movie_file_name != ''}-->
+<section class="section_box mov_up">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_movie.png" alt="<!--{$page.name}-->" width="34">動画</h2>
+    <div class="wrap">
+        <div id="movie" class="mb_10"></div>
+    </div>
+</section>
+<!--{/if}-->
+<!-- //動画 -->
+
+<!-- youtube動画 -->
+<!--{if $staff.youtube != ''}-->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_movie.png" alt="<!--{$page.name}-->" width="34">youtube動画</h2>
+    <div class="wrap">
+        <div id="movie" class="mb_10">
+            <iframe width="<!--{$smarty.const.YOUTUBE_SP_SIZE_W}-->" height="<!--{$smarty.const.YOUTUBE_SP_SIZE_H}-->" src="https://www.youtube.com/embed/<!--{$staff.youtube}-->" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+<!--{/if}-->
+<!-- //youtube動画 -->
+
+<!-- コメント -->
+<!--{if $staff.long_comment1 != ''}-->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_comment.png" alt="<!--{$page.name}-->" width="34">コメント 1</h2>
+    <div class="wrap">
+        <p class="txt_box_01">
+            <!--{$staff.long_comment1|nl2br}-->
+        </p>
+    </div>
+</section>
+<!--{/if}-->
+<!-- //コメント -->
+
+<!-- コメント -->
+<!--{if $staff.long_comment2 != ''}-->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_comment.png" alt="<!--{$page.name}-->" width="34">コメント 2</h2>
+    <div class="wrap">
+        <p class="txt_box_01">
+            <!--{$staff.long_comment2|nl2br}-->
+        </p>
+    </div>
+</section>
+<!--{/if}-->
+<!-- //コメント -->
+
+<!-- スケジュール -->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_schedule.png" alt="<!--{$page.name}-->" width="34">出勤スケジュール</h2>
+    <div class="wrap">
+        <table class="table_01">
+            <!--{foreach $week as $k => $v}-->
+            <tr>
+                <!--{if $v|day_of_week == '土'}-->
+                <th>
+                    <span class="atten_01"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</span>
+                </th>
+                <!--{elseif $v|day_of_week == '日'}-->
+                <th><span class="atten_02"><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</span></th>
+                <!--{else}-->
+                <th><!--{$v|substr:4:2}-->月<!--{$v|substr:6:2}-->日(<!--{$v|day_of_week}-->)</th>
+                <!--{/if}-->
+                <td><!--{$staff.schedule.$k.time}--></td>
+            </tr>
+            <!--{/foreach}-->
+        </table>
+    </div>
+</section>
+<!-- //スケジュール -->
+
+<!--{if $imp}-->
+<section id="section_imp" class="section_box">
+  <h2>感想一覧</h2>
+  <div class="wrap impressions_box">
+    <!--{foreach $imp as $v}-->
+    <div class="impressions_inner">
+      <p>■お名前：<!--{$v.name}--></p>
+      <p>■年代：<!--{$v.age}--></p>
+      <p>■ご利用回数：<!--{$v.use_count}--></p>
+      <p>■ご利用日：<!--{$v.use_year}-->年<!--{$v.use_month}-->月<!--{$v.use_day}-->日</p>
+      <p>■マッサージ：<font color="#F83295"><!--{if $v.massage == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.massage == '良い'}-->★★★★<!--{/if}--><!--{if $v.massage == '普通'}-->★★★<!--{/if}--><!--{if $v.massage == '良くない'}-->★★<!--{/if}--><!--{if $v.massage == '悪い'}-->★<!--{/if}--></font></p>
+      <p>■回春：<font color="#F83295"><!--{if $v.kaishun == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.kaishun == '良い'}-->★★★★<!--{/if}--><!--{if $v.kaishun == '普通'}-->★★★<!--{/if}--><!--{if $v.kaishun == '良くない'}-->★★<!--{/if}--><!--{if $v.kaishun == '悪い'}-->★<!--{/if}--></font></p>
+      <p>■接客：<font color="#F83295"><!--{if $v.service == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.service == '良い'}-->★★★★<!--{/if}--><!--{if $v.service == '普通'}-->★★★<!--{/if}--><!--{if $v.service == '良くない'}-->★★<!--{/if}--><!--{if $v.service == '悪い'}-->★<!--{/if}--></font></p>
+      <p>■総合満足度：<font color="#F83295"><!--{if $v.total == '非常に良い'}-->★★★★★<!--{/if}--><!--{if $v.total == '良い'}-->★★★★<!--{/if}--><!--{if $v.total == '普通'}-->★★★<!--{/if}--><!--{if $v.total == '良くない'}-->★★<!--{/if}--><!--{if $v.total == '悪い'}-->★<!--{/if}--></font></p>
+      <p>■<!--{$smarty.const.STAFF_CALL}-->へのメッセージ：<br /><!--{$v.comment|nl2br}--></p>
+  </div>
+  <!--{/foreach}-->
+</div>
+<!--{if $page_info.prev.url != ''}--><a href="<!--{$page_info.prev.url}-->#section_imp" class="btn_one_02">戻る</a><!--{/if}-->
+<!--{if $page_info.next.url != ''}--><a href="<!--{$page_info.next.url}-->#section_imp" class="btn_one_02">進む</a><!--{/if}-->
+</section>
+<!--{/if}-->
+
+<p class="mb_10"><a href="<!--{$smarty.const.SP_URL}-->/staff.php" class="btn_one_01"><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_staff.png" alt="" width="34">&nbsp;&nbsp;<!--{$smarty.const.STAFF_CALL}-->一覧へ</a></p>
+
+<script src="<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/jwplayer.js"></script>
+<script>
+    <!--{if $staff.movie != '' && $staff.movie.movie_file_name != ''}-->
+    movie_write("<!--{$staff.movie.file_name}-->","<!--{$staff.movie.movie_file_name}-->");
+    <!--{/if}-->
+    function movie_write(thumb_name,movie_name){
+        jwplayer("movie").setup({
+            flashplayer: "<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/player.swf",
+            file: "<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/"+movie_name,
+            image: "<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/"+thumb_name,
+            width: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_W}-->",
+            height: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_H}-->",
+            controls: true,
+            mute: true,
+            autostart: false
+        });
+    }
+</script>
+
+<!--{/block}-->

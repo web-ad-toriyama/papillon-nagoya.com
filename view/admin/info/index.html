@@ -1,0 +1,84 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->運営部からのお知らせ<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel acdn">
+    <!--{foreach $information as $key => $value}-->
+    <div class="panel panel-default acdn_list">
+        <input type="checkbox" name="item" id="acdn_<!--{$key}-->" hidden />
+        <label for="acdn_<!--{$key}-->" class="panel-heading">
+            <h4 class="panel-title">
+                ■<!--{$value.date}--><span class="text-danger"> 【 <!--{$value.title}--> 】</span>
+            </h4>
+        </label>
+        <div class="panel-collapse collapse in acdn_content">
+            <div class="panel-body">
+                <!--{$value.detail}-->
+            </div>
+        </div>
+    </div>
+    <!--{/foreach}-->
+</div>
+
+<script>
+$(function () {
+    $('input[type="checkbox"]:first').prop('checked', true);
+});
+</script>
+
+<style>
+/* 
+/// お知らせ info
+*/
+/* アコーディオン*/
+.acdn {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.acdn .acdn_list {
+  display: block;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.acdn .acdn_list input + label {
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  padding: 15px 15px;
+  -webkit-transition: all 0.25s ease-in-out 0.5s, color 0.25s ease-in-out 0.5s;
+  transition: all 0.25s ease-in-out 0.5s, color 0.25s ease-in-out 0.5s;
+}
+.acdn .acdn_list input ~ div {
+  visibility: hidden;
+  max-height: 0;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out 0.2s, opacity 0.25s ease-in-out 0.25s, padding 0s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0.2s, opacity 0.25s ease-in-out 0.25s, padding 0s ease-in-out 0s;
+}
+.acdn .acdn_list input ~ div p {
+  padding: 15px;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+.acdn .acdn_list input:checked + label {
+  -webkit-transition: background-color 0s ease-in-out 0s;
+  transition: background-color 0s ease-in-out 0s;
+  background-color: #ffd777;
+}
+.acdn .acdn_list input:checked ~ div {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  max-height: 7777px;
+  -webkit-transition: all 0.5s ease-in-out 0.2s, opacity 0.25s ease-in-out 0.5s, padding 0s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0.2s, opacity 0.25s ease-in-out 0.5s, padding 0s ease-in-out 0s;
+}
+/* // お知らせ info */
+    
+</style>
+<!--{/block}-->
+
+
+

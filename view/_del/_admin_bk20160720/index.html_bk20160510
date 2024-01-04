@@ -1,0 +1,4 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="page_title"}-->ホーム<!--{/block}-->
+<!--{block name="main"}-->
+<!--{/block}-->

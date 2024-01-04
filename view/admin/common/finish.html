@@ -1,0 +1,19 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->処理完了画面
+<!--{/block}-->
+
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $csrf == true}-->
+    <!--{if $result}-->
+    <div class="alert alert-success">処理が正常に完了しました。</div>
+    <!--{else}-->
+    <div class="alert alert-danger">データ処理中にエラーが発生した為、処理を停止しました。</div>
+    <!--{/if}-->
+    <!--{else}-->
+    <div class="alert alert-danger">不正なアクセスがあった為、処理を停止しました。</div>
+    <!--{/if}-->
+    <!--{block name="button"}--><!--{/block}-->
+</div>
+</div>
+<!--{/block}-->

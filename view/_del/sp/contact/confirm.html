@@ -1,0 +1,63 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- お問合せ -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_contact.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+            <div class="wrap">
+                <section>
+                    <h3 class="subtitle">お問合せフォーム</h3>
+
+										<form method="post" action="?mode=finish" class="form_box mb_10">
+											<table class="table_01">
+												<tr>
+													<th>お名前&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.name != ''}--><span class="atten_01"><!--{$error.name}--></span><!--{else}--><!--{$posts.name}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>メールアドレス&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.mail1 != ''}--><span class="atten_01"><!--{$error.mail1}--></span><!--{else}--><!--{$posts.mail1}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>メールアドレス(確認)&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.mail2 != ''}--><span class="atten_01"><!--{$error.mail2}--></span><!--{else}--><!--{$posts.mail2}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>お問合せの種類&nbsp;<span class="atten_01">※</span></th>
+													<td>
+														<!--{if $error.item != ''}--><span class="atten_01"><!--{$error.item}--></span><!--{else}--><!--{$posts.item}--><!--{/if}-->
+													</td>
+												</tr>
+												<tr>
+													<th>お問合せ内容</th>
+													<td>
+														<!--{if $error.detail != ''}--><span class="atten_01"><!--{$error.detail}--></span><!--{else}--><!--{$posts.detail|nl2br}--><!--{/if}-->
+													</td>
+												</tr>
+											</table>
+
+											<input type="hidden" name="name" value="<!--{$posts.name}-->">
+											<input type="hidden" name="mail1" value="<!--{$posts.mail1}-->">
+											<input type="hidden" name="mail2" value="<!--{$posts.mail2}-->">
+											<input type="hidden" name="item" value="<!--{$posts.item}-->">
+											<input type="hidden" name="detail" value="<!--{$posts.detail}-->">
+											<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+											<!--{if $error == ''}-->
+											<input type="submit" name="send" value="送信" class="btn_one_02">
+											<!--{/if}-->
+											<input type="button" value="戻る" onclick="history.back();" class="btn_one_02">
+
+										</form>
+                </section>
+            </div>
+        </section>
+        <!-- //お問合せ -->
+
+<!--{/block}-->

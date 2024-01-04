@@ -1,0 +1,41 @@
+<!--{extends file="../common/finish.html"}-->
+<!--{block name="page_title"}--><!--{$form.ranking[$params.pid]}-->登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?pid=<!--{$params.pid}-->" method="post"
+          onsubmit="return formCheck(this,'<!--{$smarty.const.STAFF_CALL}-->',<!--{$smarty.const.DISPLAY_RANKING_NO}-->)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="pid" value="<!--{$params.pid}-->">
+        <section id="no-more-tables">
+            <table class="table table-bordered table-condensed cf">
+                <thead class="cf">
+                    <tr>
+                        <!--{section name=ranking loop=$smarty.const.DISPLAY_RANKING_NO step=1}-->
+                        <!--{assign index $smarty.section.ranking.index+1}-->
+                        <th class="text-center"><!--{$index}-->位</th>
+                        <!--{/section}-->
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <!--{section name=ranking loop=$smarty.const.DISPLAY_RANKING_NO step=1}-->
+                    <!--{assign index $smarty.section.ranking.index+1}-->
+                    <td data-title="<!--{$index}-->位">
+                        <!--{html_options style="width:100%" name="staff_id_$index" options=$form.staff_list selected=$data[$index-1].staff_id|default:0}-->
+                        <input type="text" name="free_text_<!--{$index}-->" class="form-control mt" value="<!--{$data[$index-1].free_text|default:''}-->">
+                        <span class="help-block">20文字</span>
+                    </td>
+                    <!--{/section}-->
+                </tr>
+            </tbody>
+            </table>
+        </section>
+        <p class="mt text-right">
+            <input type="submit" name="edit" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/ranking.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

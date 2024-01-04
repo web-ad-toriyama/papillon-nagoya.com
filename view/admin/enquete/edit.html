@@ -1,0 +1,116 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->アンケート編集<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?p=<!--{$params.p}-->" method="post" onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="id" value="<!--{$params.id|default:''}-->">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">表示設定</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='show_flg' options=$form.show selected=$data.show_flg|default:$smarty.const.SHOW_ON}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ご利用日</label>
+            <div class="col-sm-10">
+                <!--{$data.use_year}-->年
+                <!--{$data.use_month}-->月
+                <!--{$data.use_day}-->日
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">お名前 </label>
+            <div class="col-sm-10">
+                <!--{$data.name|default:''}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">電話番号 </label>
+            <div class="col-sm-10">
+                <!--{$data.phone|default:''}-->
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">担当セラピスト</label>
+            <div class="col-sm-10">
+                <!--{$staff_list[$data.staff_id]}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ルックス</label>
+            <div class="col-sm-10">
+                <!--{$data.looks|default:''}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">接客態度</label>
+            <div class="col-sm-10">
+                <!--{$data.service|default:''}-->
+            </div>
+        </div>        
+        <div class="form-group">
+            <label class="col-sm-2 control-label">マッサージ</label>
+            <div class="col-sm-10">
+                <!--{$data.massage|default:''}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">総合満足度</label>
+            <div class="col-sm-10">
+                <!--{$data.total|default:''}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">スタッフの電話対応</label>
+            <div class="col-sm-10">
+                <!--{$data.staff_phone|default:''}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ルームの清潔度</label>
+            <div class="col-sm-10">
+                <!--{$data.room|default:''}-->
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">今までで一番良かった<!--{$smarty.const.STAFF_CALL}--></span>
+            </label>
+
+            <div class="col-sm-10">
+                <!--{if $data.best_staff_id}--><!--{$staff_list[$data.staff_id]}--><br><!--{/if}-->
+                <!--{$data.staff_comment|nl2br}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">お店、セラピストへのご意見ご要望、メッセージなど</span>
+            </label>
+
+            <div class="col-sm-10">
+                <!--{$data.comment|nl2br}-->
+            </div>
+        </div>        
+        <!--{if $params.id != ''}-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+
+            <div class="col-sm-10">
+                <label><input type="checkbox" name="del" value="1"> <span
+                        class="label label-danger">データを削除する</span></label>
+            </div>
+        </div>
+        <!--{/if}-->
+        <p class="mt text-right">
+            <input type="submit" name="edit" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

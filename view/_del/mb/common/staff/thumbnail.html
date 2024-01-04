@@ -1,0 +1,7 @@
+<a href="<!--{$smarty.const.MB_URL}-->/profile.php?sid=<!--{$v.id}-->">
+<!--{if $v.photo != ''}-->
+<img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$v.id}-->/<!--{$v.photo}-->" width="<!--{$width}-->" height="<!--{$height}-->" alt="<!--{$v.name}-->">
+<!--{else}-->
+<img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg" width="<!--{$width}-->" height="<!--{$height}-->" alt="ノーイメージ">
+<!--{/if}-->
+</a>

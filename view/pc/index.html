@@ -1,0 +1,225 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+<!-- イベント -->
+<section id="section_event">
+	<!-- <div class="bg"></div> -->
+	<div class="event_box">
+		<h2 class="left_fadein">EVENT<br><span>イベント</span></h2>
+		<!-- <div class="flexslider"> -->
+		<ul class="flexslider slides">
+			<!--{foreach $events as $event}-->
+			<li>
+				<img src="<!--{$smarty.const.IMG_EVENT_URL}-->/<!--{$event.file_name}-->" alt="イベント画像" loading="lazy">
+			</li>
+			<!--{/foreach}-->
+		</ul>
+		<!-- </div> -->
+	</div>
+</section>
+<!-- //イベント -->
+
+<!-- 本日の出勤情報 -->
+<section id="section_today" class="slider">
+	<div class="bg"></div>
+	<div class="inner">
+		<h2 class="left_fadein">Today's Schedule<br><span>本日の<!--{$smarty.const.STAFF_CALL}--></span></h2>
+
+		<div class="swiper-container">
+			<ul class="cast_box swiper-wrapper">
+				<!--{foreach $schedule as $v}-->
+				<li class="swiper-slide matchHeight">
+					<a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$v.id}-->">
+						<div class="img_box">
+							<!--{include file="./common/staff/thumbnail.html"}-->
+							<!--{include file="./common/staff/icon_new.html"}-->
+							<!--{include file="./common/staff/icon_twitter.html"}-->
+							<div class="staff_txt">
+								<h3><!--{$v.name}--></h3>
+								<p>詳細プロフィールはこちら</p>
+							</div>
+						</div>
+						<div class="txt_box">
+							<p class="name">
+								<span>name</span>&nbsp;<!--{$v.name}--><br>
+								<!--{include file="./common/staff/icon_class.html"}-->
+							</p>
+							<p class="time"><!--{$v.schedule.time}-->&nbsp;<!--{include file="./common/staff/work_info.html"}--></p>
+						</div>
+					</a>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+		</div>
+		<div class="swiper-pagination pagination"></div>
+		<div class="swiper-button-next next"><i class="fa fa-angle-right"></i></div>
+		<div class="swiper-button-prev prev"><i class="fa fa-angle-left"></i></div>
+
+		<a href="<!--{$smarty.const.ROOT_URL}-->/schedule.php" class="btn_more">
+			<!--{$week.$day|substr:4:2}-->/<!--{$week.$day|substr:6:2}-->(<!--{$week.$day|day_of_week}-->)出勤の<!--{$smarty.const.STAFF_CALL}-->はこちら
+		</a>
+	</div><!-- inner終わり -->
+</section>
+<!-- //本日の出勤情報 -->
+
+
+<!-- 新人情報 -->
+<section id="section_new" class="slider">
+	<h2 class="left_fadein">New Therapist<br><span>新人<!--{$smarty.const.STAFF_CALL}--></span></h2>
+
+	<div class="inner">
+		<div class="swiper-container">
+			<ul class="cast_box swiper-wrapper">
+				<!--{foreach $newface as $v}-->
+				<li class="swiper-slide matchHeight">
+					<a href="<!--{$smarty.const.ROOT_URL}-->/profile.php?sid=<!--{$v.id}-->">
+						<div class="img_box">
+							<!--{include file="./common/staff/thumbnail.html"}-->
+							<!--{include file="./common/staff/icon_new.html"}-->
+							<!--{include file="./common/staff/icon_twitter.html"}-->
+							<div class="staff_txt">
+								<h3><!--{$v.name}--></h3>
+								<p>詳細プロフィールはこちら</p>
+							</div>
+						</div>
+						<div class="txt_box">
+							<p class="name">
+								<span>name</span>&nbsp;<!--{$v.name}--><br>
+								<!--{include file="./common/staff/icon_class.html"}-->
+							</p>
+							<p class="time"><!--{$v.published|date_format:'%Y-%m-%d'}-->&nbsp;入店</p>
+						</div>
+					</a>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+		</div>
+		<div class="swiper-pagination pagination"></div>
+		<div class="swiper-button-next next"><i class="fa fa-angle-right"></i></div>
+		<div class="swiper-button-prev prev"><i class="fa fa-angle-left"></i></div>
+	</div><!-- //inner終わり -->
+
+</section>
+<!-- //新人情報 -->
+
+
+
+
+
+<!-- イベント＋twitter -->
+<div id="contents_02">
+	<div class="bg_sp"></div>
+	<!-- 新着情報 -->
+	<section id="section_topics">
+		<div class="bg"></div>
+		<div class="topics_box">
+			<h2 class="left_fadein">What's&nbsp;New<br><span>新着情報</span></h2>
+			<div class="bg_article">
+				<div id="info_box">
+					<!--{foreach $topics as $v}-->
+					<article>
+						<time datetime="<!--{$v.published|date_format:'%Y-%m-%dT%H:%M'}-->"><!--{$v.published|date_format:'%Y/%m/%d %H:%M'}--></time>
+						<h3><!--{$v.title}--></h3>
+						<p>
+							<!--{$v.detail}-->
+						</p>
+					</article>
+					<!--{/foreach}-->
+					<!-- <p>
+						<!--{if $page_info.prev.url != ''}--><a href="<!--{$page_info.prev.url}-->#section_topics" class="btn_back">戻る</a><!--{/if}-->
+						<!--{if $page_info.next.url != ''}--><a href="<!--{$page_info.next.url}-->#section_topics" class="btn_next">次へ</a><!--{/if}-->
+					</p> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- //新着情報 -->
+	<!-- Twitter -->
+	<section id="section_twitter">
+		<div class="bg"></div>
+		<div class="twitter_box">
+			<h2 class="left_fadein">Twitter<br><span>ツイッター</span></h2>
+			<div class="article">
+				<a class="twitter-timeline" data-height="450" data-width="450" href="https://twitter.com/papillon_nagoya?ref_src=twsrc%5Etfw">Tweets by papillon_nagoya</a> <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+			</div>
+		</div>
+	</section>
+	<!-- //Twitter -->
+</div>
+<!-- //イベント＋twitter -->
+
+<!-- バナー三種 -->
+<section id="section_bnr">
+	<h2 class="pc"><span>contents</span></h2>
+	<div>
+		<figure class="bnr">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/bottom_line.jpg" width="400" height="148" alt="LINEの友だち追加" loading="lazy">
+			<figcaption>
+				<h3>LINE</h3>
+				<p>LINE ID：<!--{$smarty.const.SHOP_LINEID}--></p>
+			</figcaption>
+			<a href="<!--{$smarty.const.SHOP_LINEURL}-->" target="_blank"></a>
+		</figure>
+		<figure class="bnr">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/bottom_credit.jpg" width="400" height="148" alt="カード決済" loading="lazy">
+			<figcaption>
+				<h3>CREDIT</h3>
+				<p>カード決済はこちら</p>
+			</figcaption>
+			<a href="https://pay2.star-pay.jp/site/pc/shop.php?payc=A4070" target="_blank" class="pc"></a>
+			<a href="https://pay2.star-pay.jp/site/pc/shop.php?payc=A4070" target="_blank" class="sp"></a>
+		</figure>
+		<figure class="bnr">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/bottom_contact.jpg" width="400" height="148" alt="お問い合わせ" loading="lazy">
+			<figcaption>
+				<h3>CONTACT</h3>
+				<p>お問い合わせはこちら</p>
+			</figcaption>
+			<a href="<!--{$smarty.const.ROOT_URL}-->/contact.php"></a>
+		</figure>
+		<figure class="bnr">
+			<img src="<!--{$smarty.const.IMAGES_URL}-->/bottom_enquete.jpg" width="400" height="148" alt="アンケート" loading="lazy">
+			<figcaption>
+				<h3>ENQUETE</h3>
+				<p>アンケートはこちら</p>
+			</figcaption>
+			<a href="<!--{$smarty.const.ROOT_URL}-->/enquete.php"></a>
+		</figure>
+		<!-- 外部リンク -->
+		<p class="bnr_link">
+			<a href="https://madamepapillon-nagoya.com/" target="_blank">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/madam_papillon_link.gif" width="400" height="148" alt="Madam Papillon マダムパピヨンのリンク" loading="lazy">
+			</a>
+		</p>
+		<p class="bnr_link">
+			<a href="https://mrs.ap2hp.com/" target="_blank">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/misesunoizumi_link.gif" width="400" height="148" alt="ミセスの泉のリンク" loading="lazy">
+			</a>
+		</p>
+		<!-- 外部リンク -->
+
+	</div>
+</section>
+<!-- //バナー三種 -->
+
+<!-- 求人バナー -->
+<section id="section_recruit">
+	<div class="bg"></div>
+	<div class="bnr_box">
+		<h2 class="left_fadein">Recruit<br><span>セラピスト大募集!</span></h2>
+			<ul class="flexslider slides">
+				<li><img src="<!--{$smarty.const.IMAGES_URL}-->/recruit_08.jpg" alt="待機保証最低時給2,000円〜" loading="lazy"></li>
+				<li><img src="<!--{$smarty.const.IMAGES_URL}-->/recruit_01.jpg" alt="お給料フルバック!" loading="lazy"></li>
+				<li><img src="<!--{$smarty.const.IMAGES_URL}-->/recruit_02.jpg" alt="今のお給料に満足してますか？" loading="lazy"></li>
+				<li><img src="<!--{$smarty.const.IMAGES_URL}-->/recruit_09.jpg" alt="女性事務員募集" loading="lazy"></li>
+				<li><img src="<!--{$smarty.const.IMAGES_URL}-->/recruit_06.jpg" alt="スタッフ急募中！" loading="lazy"></li>
+			</ul>
+	</div>
+</section>
+<!-- //求人バナー -->
+<!-- 求人動画 -->
+    <div class="recruit_movie"><a href="<!--{$smarty.const.ROOT_URL}-->/recruit.php" class="btn_more"><span>詳しい求人情報を見る</span></a></div>
+<!-- //求人動画 -->
+
+
+<!--{/block}-->

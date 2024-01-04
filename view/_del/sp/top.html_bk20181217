@@ -1,0 +1,120 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<!-- 動画 -->
+<video controls muted poster="../movies/poster.jpg" preload="none" onclick="this.play();" width="100%">
+    <source src="../movies/sample.mp4" type="video/mp4">
+        <img src="../movies/poster.jpg" alt="Movie">
+    </video>
+    <!-- //動画 -->
+    <!-- カバーガール 一人のみ -->
+    <!-- {*
+    <section class="section_box covergirl_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_covergirl.png" alt="カバーガール" width="34">カバーガール</h2>
+
+        <!--{if $covergirl != ''}-->
+        <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$covergirl.id}-->" class="wrap">
+            <!--{include file="./common/staff/thumbnail.html" v=$covergirl }-->
+            <div>
+                <p class="icon"><!--{include file="./common/staff/icon_check.html" v=$covergirl}--></p>
+                <p class="name"><!--{$covergirl.name}--> (<!--{$covergirl.age}-->)&nbsp;<!--{include file="./common/staff/icon_new.html" v=$covergirl}--><!--{include file="./common/staff/icon_class.html" v=$covergirl}--></p>
+                <p class="size"><!--{include file="./common/staff/size.html" v=$covergirl}--></p>
+            </div>
+        </a>
+        <!--{else}-->
+        <p>カバーガールなし</p>
+        <!--{/if}-->
+    </section>
+    <!-- //カバーガール -->
+    *} -->
+
+    <section id="section_covergirl" class="section_box covergirl_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_covergirl.png" alt="カバーガール" width="34">カバーガール</h2>
+        <div class="inner">
+            <ul class="wrap">
+                <!--{foreach $covergirl as $v}-->
+                <li class="cast_inner">
+                    <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->">
+                        <p class="mb_20 img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+                        <p><!--{include file="./common/staff/icon_class.html"}--></p>
+                        <p class="name"><!--{$v.name}--> (<!--{$v.age}-->)</p>
+                        <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                    </a>
+                </li>
+                <!--{foreachelse}-->
+                <!--{/foreach}-->
+            </ul>
+        </div>
+    </section>
+
+    <!-- 出勤情報 ver02 -->
+    <section class="section_box cast_box_2column">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_schedule.png" alt="本日の出勤" width="34">本日の出勤</h2>
+        <ul class="wrap">
+            <!--{foreach $schedule as $v}-->
+            <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->">
+                <li>
+                    <p class="img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+                    <div class="txt_box">
+                        <p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+                        <p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+                        <p class="name"><!--{$v.name}-->(<!--{$v.age}-->)<span class="icon_new"><!--{include file="./common/staff/icon_new.html"}--></span></p>
+                        <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                        <p class="time"><!--{$v.schedule.time}--></p>
+                        <p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+                    </div>
+                </li>
+            </a>
+            <!--{/foreach}-->
+        </ul>
+    </section>
+    <!-- //出勤情報 ver02 -->
+
+    <!-- EVENT -->
+    <section class="section_box event_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_event.png" alt="イベント"  width="34">イベント</h2>
+        <ul class="wrap">
+            <li>
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/img_event_01.png" alt="" class="width_100">
+            </li>
+            <li>
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/img_event_02.png" alt="" class="width_100">
+            </li>
+            <li>
+                <img src="<!--{$smarty.const.IMAGES_URL}-->/img_event_03.png" alt="" class="width_100">
+            </li>
+        </ul>
+    </section>
+    <!-- //EVENT -->
+    <!-- 漫画 -->
+    <section class="section_box manga_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_manga.png" alt="" width="34"><!--{$html.name.manga}--></h2>
+        <div class="wrap">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/img_manga_01.jpg"></li>
+                    <li><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/img_manga_02.jpg"></li>
+                    <li><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/img_manga_03.jpg"></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //漫画 -->
+    <!-- 新着情報 -->
+    <section class="section_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_topics.png" alt="" width="34"><!--{$html.name.topics}--></h2>
+        <ul class="wrap list_box_01">
+            <!--{if $topics.0 != ''}-->
+                <!--{foreach $topics as $v}-->
+                <li>
+                    <a href="<!--{$smarty.const.SP_URL}-->/topics.php">
+                        <time datetime="<!--{$v.published|date_format:'%Y-%m-%dT%H:%M'}-->" class="atten_01 fs_10"><!--{$v.published|date_format:'%Y-%m-%d %H:%M'}--></time>
+                        <p><!--{$v.title}--></p>
+                    </a>
+                </li>
+                <!--{/foreach}-->
+            <!--{/if}-->
+        </ul>
+    </section>
+    <!-- //新着情報 -->
+
+    <!--{/block}-->

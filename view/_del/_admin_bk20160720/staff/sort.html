@@ -1,0 +1,35 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->並べ替え<!--{/block}-->
+
+<!--{block name="main"}-->
+<div class="content-panel">
+    <!--{if $data|@count > 0}-->
+    <form class="form-horizontal style-form" action="finish.php" method="post" onsubmit="return sortCheck();">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" id="seq" name="seq"/>
+            <div id="sort" class="row">
+                <!--{foreach $data as $v}-->
+                <div id="<!--{$v.id}-->" class="thumbnail pull-left text-center mr20">
+                    <p class="label label-success"><!--{$v.name}--></p>
+                    <!--{if $v.photo != ''}-->
+                        <img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$v.id}-->/<!--{$v.photo}-->" class="mt5">
+                    <!--{else}-->
+                        <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg" class="mt5">
+                    <!--{/if}-->
+                </div>
+                <!--{/foreach}-->
+            </div>
+            <p class="mt text-right">
+                <input type="submit" name="sort" class="btn btn-primary" value="並べ替え">
+                <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+            </p>
+    </form>
+    <!--{else}-->
+    <div class="alert alert-warning">データが登録されていません。</div>
+    <p class="mt text-right">
+        <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+    </p>
+    <!--{/if}-->
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

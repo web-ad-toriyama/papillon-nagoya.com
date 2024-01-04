@@ -1,0 +1,74 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- ｱﾝｹｰﾄ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<form method="post" action="?mode=confirm">
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#ff007e">※</font><br />
+		<input type="text" name="name">
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ&nbsp;<font color="#ff007e">※</font><br />
+		<input type="email" name="mail">
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">電話番号&nbsp;<font color="#ff007e">※</font><br />
+		<input type="text" name="tel">
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店のご利用回数&nbsp;<font color="#ff007e">※</font><br />
+		<!--{html_options name='count' options=$form.enquete.count}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ご利用日&nbsp;<font color="#ff007e">※</font><br />
+		<!--{html_options name='month' options=$form.enquete.month}-->
+		<!--{html_options name='day' options=$form.enquete.day}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店を初めにお知りになられたｷｯｶｹは?<br />
+		<label><input type="radio" name="chance"value="ネット検索" />ﾈｯﾄ検索</label><br />
+		※検索ｴﾝｼﾞﾝ名<br /><input type="text" name="chance_site" size="35" /><br>
+		<label><input type="radio"  name="chance"value="雑誌の広告" />雑誌の広告</label><br />
+		※雑誌名<br /><input type="text"  name="chance_zassi" size="35" /><br />
+		<label><input type="radio"  name="chance" value="ネット" />ﾈｯﾄ</label>
+		<label><input type="radio" name="chance" value="知人の紹介" />知人の紹介</label>
+		<label><input type="radio"  name="chance" value="その他" />その他</label>
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">受付ｽﾀｯﾌの電話応対はいかがでしたか?<br />
+		<!--{html_radios name='front' options=$form.enquete.value}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">担当させて頂きました<!--{$smarty.const.STAFF_CALL}-->の名前は?&nbsp;<font color="#ff007e">※</font><br />
+		<input type="text" name="staff">
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾏｯｻｰｼﾞの技術に関しましてのご感想は?<br />
+		<!--{html_radios name='massage' options=$form.enquete.value}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">回春(性感)の技術に関しまして今回のご感想は?<br />
+		<!--{html_radios name='seikan' options=$form.enquete.value}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->の接客ﾏﾅｰ等を含めて今回のご感想は？<br />
+		<!--{html_radios name='manner' options=$form.enquete.value}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">次回また指名したいと思いますか?<br />
+		<!--{html_radios name='next' options=$form.enquete.next}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->や施術内容に関してご意見、ご要望、お気づきの点など御座いましたら、些細な点でも構いませんのでお願いいたします。<br />
+		<textarea name="detail1"></textarea>
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->に点数をつけると&nbsp;100点満点で何点ですか？&nbsp;(100点満点中80点を合格ﾗｲﾝとして)<br />
+		<input type="text" name="staff_point">点
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店のご満足度は100点満点で何点ですか?&nbsp;(100点満点中80点を合格ﾗｲﾝとして)<br />
+		<input type="text" name="shop_point">点
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">当店に特に求めるものはなんですか?&nbsp;複数回答可<br />
+		<!--{html_checkboxes name='wish' options=$form.enquete.wish}--><br />
+		<textarea name="detail2"></textarea>
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->へのﾒｯｾｰｼﾞ等ございましたらご記入お願い致します。<br />
+		<textarea name="detail3"></textarea>
+		<br /><br />
+		<input type="submit" name="confirm" value="確認">
+		<input type="reset" name="reset" value="リセット">
+	</form>
+	<br />
+	<!-- //ｱﾝｹｰﾄ -->
+
+<!--{/block}-->

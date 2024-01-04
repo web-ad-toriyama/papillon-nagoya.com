@@ -1,0 +1,106 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$smarty.const.STAFF_CALL}-->感想編集<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?p=<!--{$params.p}-->" method="post" onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="id" value="<!--{$params.id|default:''}-->">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">表示設定</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='show_flg' options=$form.show selected=$data.show_flg|default:$smarty.const.SHOW_ON}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">お名前 <span class="btn-danger btn-xs txt-sm">必須</span></label>
+            <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" value="<!--{$data.name|default:''}-->">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">年代</label>
+            <div class="col-sm-10">
+                <!--{html_options name='age' options=$form.impressions.age selected=$data.age|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ご利用回数</label>
+            <div class="col-sm-10">
+                <!--{html_options name='use_count' options=$form.impressions.count selected=$data.use_count|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ご利用日</label>
+            <div class="col-sm-10">
+                <!--{html_options name='use_year' options=$form.impressions.year selected=$data.use_year|default:''}-->年
+                <!--{html_options name='use_month' options=$form.impressions.month selected=$data.use_month|default:''}-->月
+                <!--{html_options name='use_day' options=$form.impressions.day selected=$data.use_day|default:''}-->日
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">担当女性</label>
+            <div class="col-sm-10">
+                <!--{html_options name='staff_id' options=$staff_list selected=$data.staff_id}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">マッサージ</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='massage' options=$form.impressions.detail checked=$data.massage|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">回春</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='kaishun' options=$form.impressions.detail checked=$data.kaishun|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">接客</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='service' options=$form.impressions.detail checked=$data.service|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">総合満足度</label>
+            <div class="col-sm-10">
+                <!--{html_radios name='total' options=$form.impressions.detail checked=$data.total|default:''}-->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><!--{$smarty.const.STAFF_CALL}-->へのメッセージ</span>
+            <br/><span class="txt-sm">（500文字）</span></label>
+
+            <div class="col-sm-10">
+                <textarea name="comment" class="form-control" rows="10"><!--{$data.comment|default:''}--></textarea>
+            </div>
+        </div>
+        <!--{if $params.id != ''}-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+
+            <div class="col-sm-10">
+                <label><input type="checkbox" name="del" value="1"> <span
+                        class="label label-danger">データを削除する</span></label>
+            </div>
+        </div>
+        <!--{/if}-->
+        <p class="mt text-right">
+            <input type="submit" name="edit" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/impressions.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

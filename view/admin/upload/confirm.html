@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>WEB管理システム - ファイルアップローダー
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="<!--{$smarty.const.AD_URL}-->/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="<!--{$smarty.const.AD_URL}-->/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="<!--{$smarty.const.AD_URL}-->/css/style.css" rel="stylesheet">
+    <link href="<!--{$smarty.const.AD_URL}-->/css/style-responsive.css" rel="stylesheet">
+    <link href="<!--{$smarty.const.AD_URL}-->/css/table-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="col-xs-12">
+    <div class="form-panel">
+        <!--{if $result === true}-->
+        <form id="upload" name="upload" class="form-horizontal style-form" action="" method="post"
+              enctype="multipart/form-data" onsubmit="xxx();">
+            <div class="form-group">
+                <label class="col-xs-3 control-label">ファイル名</label>
+                <div class="col-xs-9">
+                    <input type="text" class="form-control mt" readonly="" value="<!--{$up_base_file_name}-->">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-3 control-label">
+                <!--{if $params.field != 'movie'}-->
+                   サムネイル
+                <!--{else}-->
+                    動画ファイル
+                <!--{/if}-->
+                </label>
+
+                <div class="col-xs-9">
+                    <!--{if $params.field != 'movie'}-->
+                        <!--{$image_tag}-->
+                    <!--{else}-->
+                        <div id="movie"></div>
+                    <!--{/if}-->
+                </div>
+            </div>
+            <p class="mt text-right">
+                <input type="submit" class="btn btn-primary" value="登録">
+                <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+                <input type="button" name="back" class="btn btn-default" value="閉じる" onclick="window.close();">
+            </p>
+            <input type="hidden" name="image_name" value="<!--{$base_file_name}-->"/>
+            <input type="hidden" name="save_flag" value="yes"/>
+        </form>
+        <!--{else}-->
+        <div class="alert alert-danger"><!--{$result}--></div>
+        <p class="mt text-right">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+            <input type="button" name="back" class="btn btn-default" value="閉じる" onclick="window.close();">
+        </p>
+        <!--{/if}-->
+    </div>
+</div>
+<script src="<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/jwplayer.js"></script>
+<script type="text/javascript">
+    //<!--
+    function xxx() {
+        var _mother;
+        var save_flag = document.forms["upload"].save_flag.value;
+        if (save_flag == "yes") {
+            _mother = opener ? opener : window.dialogArguments;
+            //本体画像
+            //DIV設定
+            <!--{if $params.field != 'movie'}-->
+            var f_div = _mother.document.getElementById('<!--{$params.field}-->_div');
+            f_div.innerHTML = '<!--{$image_tag}-->';
+            <!--{/if}-->
+            //ファイル名設定
+            var f_text = _mother.document.getElementById('<!--{$params.field}-->_f_name');
+            f_text.value = '<!--{$base_file_name}-->';
+            <!--{if $params.field == 'movie'}-->
+                _mother.document.frm.movie_del.focus();
+            <!--{/if}-->
+            window.close();
+        }
+    }
+
+    function set_flag() {
+        document.forms["upload"].save_flag.value = "yes";
+        onUnload();
+    }
+
+    document.getElementById('movie').innerHTML = '<video preload="none" onclick=”this.play();” width="<!--{$smarty.const.IMAGE_MOVIE_SIZE_W}-->" height="<!--{$smarty.const.IMAGE_MOVIE_SIZE_H}-->" autoplay="" loop="" muted=""><source src="<!--{$smarty.const.IMG_TEMP_URL}-->/<!--{$base_file_name}-->"></video>';
+
+    // jwplayer("movie").setup({
+    //     flashplayer: "<!--{$smarty.const.ROOT_URL}-->/js/jwplayer/player.swf",
+    //     file: "<!--{$smarty.const.IMG_TEMP_URL}-->/<!--{$base_file_name}-->",
+    //     width: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_W}-->",
+    //     height: "<!--{$smarty.const.IMAGE_MOVIE_SIZE_H}-->",
+    //     controls: true,
+    //     mute: true,
+    //     autostart: true
+    // });
+    //-->
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- リンク -->
+        <section class="section_box">
+            <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_link.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+                <div class="wrap">
+                    <!--{if $free != ''}-->
+                    <p class="txt_box_01"><!--{$free.detail_sp}--></p>
+                    <!--{/if}-->
+
+                    <ul class="list_box_01">
+                        <!--{foreach $banner as $v}-->
+                            <li>
+                                <a href="<!--{$v.url}-->" target="_blank">
+                                    <img src="<!--{$smarty.const.IMG_BANNER_URL}-->/<!--{$v.file_name}-->" alt="<!--{$v.title}-->" width="88" height="31">
+                                    <p><!--{$v.title}--></p>
+                                </a>
+                            </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+        </section>
+        <!-- //リンク -->
+
+<!--{/block}-->

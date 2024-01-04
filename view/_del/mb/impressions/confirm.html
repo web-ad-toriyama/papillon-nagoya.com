@@ -1,0 +1,81 @@
+<hr size="1" color="#fafafa" /><!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+<div align="center" style="background-color:#2ca467; color:#fff; padding:5px; margin-bottom: 10px;"><!--{$page.name}--></div>
+
+<form method="post" action="?mode=finish" style="margin-bottom: 10px;">
+	<table>
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.name != ''}--><font color="#E0003E"><!--{$error.name}--></font><!--{else}--><!--{$posts.name}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">年代&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.age != ''}--><font color="#E0003E"><!--{$error.age}--></font><!--{else}--><!--{$posts.age}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ご利用回数&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.use_count != ''}--><font color="#E0003E"><!--{$error.use_count}--></font><!--{else}--><!--{$posts.use_count}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ご利用日&nbsp;<font color="#E0003E">※</font><br />
+			<!--{$posts.use_year}-->年<!--{$posts.use_month}-->月<!--{$posts.use_day}-->日
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">担当<!--{$smarty.const.STAFF_CALL}-->&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.staff_id != ''}--><font color="#E0003E"><!--{$error.staff_id}--></font><!--{else}--><!--{$staff_name}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">マッサージ&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.massage != ''}--><font color="#E0003E"><!--{$error.massage}--></font><!--{else}--><!--{$posts.massage}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">回春&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.kaishun != ''}--><font color="#E0003E"><!--{$error.kaishun}--></font><!--{else}--><!--{$posts.kaishun}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">接客&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.service != ''}--><font color="#E0003E"><!--{$error.service}--></font><!--{else}--><!--{$posts.service}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">総合満足度&nbsp;<font color="#E0003E">※</font><br />
+			<!--{if $error.total != ''}--><font color="#E0003E"><!--{$error.total}--></font><!--{else}--><!--{$posts.total}--><!--{/if}-->
+		</p>
+		<hr size="1" color="#fafafa" />
+		<p>
+			<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ"><!--{$smarty.const.STAFF_CALL}-->へのメッセージ<br />
+			<!--{$posts.comment|nl2br}-->
+		</p>
+	</table>
+
+	<input type="hidden" name="name" value="<!--{$posts.name}-->">
+	<input type="hidden" name="age" value="<!--{$posts.age}-->">
+	<input type="hidden" name="use_count" value="<!--{$posts.use_count}-->">
+	<input type="hidden" name="use_year" value="<!--{$posts.use_year}-->">
+	<input type="hidden" name="use_month" value="<!--{$posts.use_month}-->">
+	<input type="hidden" name="use_day" value="<!--{$posts.use_day}-->">
+	<input type="hidden" name="staff_id" value="<!--{$posts.staff_id}-->">
+	<input type="hidden" name="staff_name" value="<!--{$staff_name}-->">
+	<input type="hidden" name="massage" value="<!--{$posts.massage}-->">
+	<input type="hidden" name="kaishun" value="<!--{$posts.kaishun}-->">
+	<input type="hidden" name="service" value="<!--{$posts.service}-->">
+	<input type="hidden" name="total" value="<!--{$posts.total}-->">
+	<input type="hidden" name="comment" value="<!--{$posts.comment}-->">
+	<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+	<!--{if $error == ''}-->
+	<input type="submit" name="send" value="送信">
+	<!--{/if}-->
+	<input type="button" value="戻る" onclick="history.back();">
+</form>
+</div>
+
+<!--{/block}-->

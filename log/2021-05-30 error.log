@@ -1,0 +1,1 @@
+[2021-05-30 06:35:23] [ERROR] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '20210530' for key 'point_date'

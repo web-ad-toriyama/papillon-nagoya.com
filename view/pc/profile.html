@@ -1,0 +1,247 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<!--{assign w $smarty.const.IMAGE_SIZE_PC_W}-->
+<!--{assign h $smarty.const.IMAGE_SIZE_PC_H}-->
+<style>
+ul.timeline-head,ul.timeline{display:table;table-layout:fixed;width:100%;color: #ffffff;font-size: 0.5em;}
+ul.timeline-head li,ul.timeline li{display:table-cell;text-align:center}
+ul.timeline-head li:first-child{border-left:none}
+ul.timeline li{text-indent:-600px;overflow:hidden;border-top:1px solid #CCC}
+ul.timeline li:first-child{border-left:none}
+ul.timeline li.ui-selected{background:#0092ef}
+</style>
+
+
+<div class="shutter"><div class="spinner"></div><p class="text">Papillon</p></div>
+<section id="contents_profile">
+	<!-- サブビジュアル -->
+	<div class="subvisual">
+			<p class="center">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+			</p>
+			<p class="left">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+			</p>
+			<p class="right">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+			</p>
+		<h2 class="contents_title">
+			<p class="main"><!--{$page.name}--></p>
+			<p class="sub"><!--{$page.h2}--></p>
+		</h2>
+	</div>
+	<!-- //サブビジュアル -->
+
+	<div id="contents" class="inner">
+
+		<!-- 左 -->
+		<div class="profile_box_left">
+			<!--{assign index IMAGE_DETAIL_COUNT-1}-->
+			<div class="img_box">
+				<!--{if $staff.photo.$index != ''}-->
+				<img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/<!--{$staff.photo.$index}-->" alt="<!--{$staff.name}-->"  name="photo" class="img_staff">
+				<!--{else}-->
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg" alt="ノーイメージ"  name="photo" class="img_staff">
+				<!--{/if}-->
+				<!-- newアイコン -->
+				<!--{if $staff.new_flg == $smarty.const.SET_ON}-->
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/icon_new.png" alt="new" class="icon_new">
+				<!--{/if}-->
+				<!-- //newアイコン -->
+				<!-- twitterアイコン -->
+				<!--{if $staff.url != ''}-->
+				<a href="<!--{$staff.url}-->" target="_blank">
+					<img src="<!--{$smarty.const.IMAGES_URL}-->/icon_twitter.png" alt="twitter" class="icon_twitter">
+				</a>
+				<!--{/if}-->
+				<!-- //twitteアイコン -->
+			</div>
+			<!--{section name=photo start=IMAGE_DETAIL_COUNT-1 loop=IMAGE_COUNT step=1}-->
+			<!--{assign index $smarty.section.photo.index}-->
+			<!--{if $staff.photo.$index != ''}-->
+			<a href="javascript:" onmouseover="look('<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/<!--{$staff.photo.$index}-->');">
+				<img src="<!--{$smarty.const.IMG_STAFF_URL}-->/<!--{$staff.id}-->/<!--{$staff.photo.$index}-->" width="60" height="90" alt="<!--{$staff.name}--><!--{$index+1}-->" class="cast_thumb">
+			</a>
+			<!--{else}-->
+			<a href="javascript:" onmouseover="look('<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg');">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/no_image.jpg" width="60" height="90" alt="ノーイメージ" class="cast_thumb">
+			</a>
+			<!--{/if}-->
+			<!--{/section}-->
+
+			<script language="JavaScript" type="text/javascript">
+				function look(image){
+					document.photo.src=image;
+				}
+			</script>
+			<div class="bnr_enquete">
+				<a href="<!--{$smarty.const.ROOT_URL}-->/enquete.php?sid=<!--{$staff.id}-->">
+					<img src="<!--{$smarty.const.IMAGES_URL}-->/bnr_link_enquete.jpg" alt="アンケートページへ">
+				</a>
+			</div>
+		</div><!-- //profile_box_left終わり -->
+		<!-- //左 -->
+
+		<!-- 右 -->
+		<div class="profile_box_right">
+			<h3>PROFILE</h3>
+			<div class="prof_table">
+				<dl>
+					<dt>name</dt>
+					<dd>
+						<!--{$staff.name}-->&nbsp;&nbsp;
+						<!-- 出張アイコン -->
+						<!--{foreach $staff.class as $class}-->
+						<!--{if $class.image != ''}-->
+						<img src="<!--{$smarty.const.IMAGES_URL}-->/<!--{$class.image}-->" alt="<!--{$class.value}-->">
+						<!--{/if}-->
+						<!--{/foreach}-->
+						<!-- //出張アイコン -->
+					</dd>
+				</dl>
+
+				<dl>
+					<dt>size</dt>
+					<dd><!--{$staff.t}-->cm</dd>
+				</dl>
+
+				<!-- セラピストコメント -->
+				<!--{if $staff.long_comment2 != ''}-->
+				<dl>
+					<dt><!--{$staff.name}-->さんからのコメント</dt>
+					<dd><!--{$staff.long_comment2|nl2br}--></dd>
+				</dl>
+				<!--{/if}-->
+				<!-- //セラピストコメント -->
+
+				<!-- 店舗コメント -->
+				<!--{if $staff.long_comment1 != ''}-->
+				<dl>
+					<dt>お店からのコメント</dt>
+					<dd><!--{$staff.long_comment1|nl2br}--></dd>
+				</dl>
+				<!--{/if}-->
+				<!-- //店舗コメント -->
+				
+				<!-- お客さまからのコメント -->
+				<!--{if $staff.long_comment3 != ''}-->
+				<dl>
+					<dt>お客様からのコメント</dt>
+					<dd><!--{$staff.long_comment3|nl2br}--></dd>
+				</dl>
+				<!--{/if}-->
+				<!-- //お客さまからのコメント -->
+
+				<!-- ツイッター -->
+				<!--{if $staff.url != ''}-->
+				<dl>
+					<dt>Twitter</dt>
+					<dd> 
+						<div class="twitter_border">
+                        <a class="twitter-timeline" data-height="350" href="<!--{$staff.url}-->"></a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>               
+                    	</div>
+                </dd>
+				</dl>
+				<!--{/if}-->
+				<!-- //ツイッター -->
+
+			</div><!-- //prof_box終わり -->
+
+			<!--{if $form.item.name.1 != ''}-->
+			<h3><!--{$form.item.name.1}--></h3>
+			<table class="table_01 text_box">
+				<!--{foreach $staff.item.1 as $k => $v}-->
+				<tr>
+					<th width="30%"><!--{$v.name}--></th>
+					<td><!--{$v.value|default:$smarty.const.DEFAULT_PROFILE}--></td>
+				</tr>
+				<!--{/foreach}-->
+			</table>
+
+			<!--{/if}-->
+
+		</div><!-- //profile_box_right終わり -->
+		<!-- //右 -->
+
+	</div>
+</section>
+
+<!-- 出勤スケジュールテーブル -->
+<section class="profile_box_schedule">
+	<div id="contents" class="inner">
+		<h3>SCHEDULE</h3>
+		<div class="profile_sch_box">
+			<!--{section name=schedule start=0 loop=7 step=1}-->
+			<!--{assign index $smarty.section.schedule.index}-->
+			<div class="profile_sch_variable">
+				<div class="profile_sch_date">
+							<!--{if $week.$index|day_of_week == '土'}-->
+							<span class="atten_03"><!--{$week.$index|substr:4:2}-->月<!--{$week.$index|substr:6:2}-->日(<!--{$week.$index|day_of_week}-->)</span>
+							<!--{elseif $week.$index|day_of_week == '日'}-->
+							<span class="atten_04"><!--{$week.$index|substr:4:2}-->月<!--{$week.$index|substr:6:2}-->日(<!--{$week.$index|day_of_week}-->)</span>
+							<!--{else}-->
+							<!--{$week.$index|substr:4:2}-->月<!--{$week.$index|substr:6:2}-->日(<!--{$week.$index|day_of_week}-->)
+							<!--{/if}-->
+				</div>
+				<div class="profile_sch_check">
+					<!--{$staff.schedule.$index.time}-->
+				</div>
+			</div>
+			<!--{/section}-->
+		</div>
+	</div>
+</section>
+<!-- 出勤スケジュールテーブル -->
+
+<!-- 口コミ一覧 -->
+<!--{if $enquete}-->
+<section id="anchor_impressions" class="profile_box_impressions">
+	<div id="contents" class="inner">
+		<h3>IMPRESSIONS&nbsp;LIST</h3>
+		<div class="profile_impre_box">
+			<div class="impre_frame">
+				<div class="impre_outer">
+					<ul>
+						<!--{foreach $enquete as $v}-->
+						<li>
+							<div class="user_box_left">
+								<div class="user">
+									<p class="pict"><i class="fa fa-lg fa-fw fa-user"></i></p>
+									<!--{*
+									<p><!--{$v.name}-->&nbsp;様</p>
+									*}-->
+									<div class="impre_sp">
+										<div class="evaluation">
+											<p><span class="impre_lead">ご利用日</span><!--{$v.use_year}-->/<!--{$v.use_month}-->/<!--{$v.use_day}--></p>
+											<p><span class="impre_lead">総合満足度</span><span class="review_star"><!--{$v.total}--></span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="user_box_right">
+								<div class="evaluation impre_pc">
+									<p><span class="impre_lead">ご利用日</span><!--{$v.use_year}-->/<!--{$v.use_month}-->/<!--{$v.use_day}--></p>
+									<p><span class="impre_lead">総合満足度</span><span class="review_star"><!--{$v.total}--></span></p>
+								</div>
+								<div class="use_message">
+									<p><span class="impre_lead">ご意見ご要望、メッセージなど</span></p>
+									<p><!--{$v.comment|nl2br}--></p>
+								</div>
+							</div>
+						</li>
+						<!--{/foreach}-->
+					</ul>
+					<div class="btn_impre_list">
+						<!--{if $page_info.prev.url != ''}--><a href="<!--{$page_info.prev.url}-->#anchor_impressions" class="prev link_act_01"><span>戻る</span></a><!--{/if}-->
+						<!--{if $page_info.next.url != ''}--><a href="<!--{$page_info.next.url}-->#anchor_impressions" class="next link_act_01"><span>進む</span></a><!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!-- //口コミ一覧 -->
+
+<!--{/block}-->

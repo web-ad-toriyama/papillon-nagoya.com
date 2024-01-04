@@ -1,0 +1,66 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- お問合せ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<form method="post" action="?mode=finish">
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.name != ''}--><font color="#ff007e"><!--{$error.name}--></font><!--{else}--><!--{$posts.name}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.mail != ''}--><font color="#ff007e"><!--{$error.mail}--></font><!--{else}--><!--{$posts.mail}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">電話番号<br />
+		<!--{$posts.tel}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">年齢&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.age != ''}--><font color="#ff007e"><!--{$error.age}--></font><!--{else}--><!--{$posts.age}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">エステ関連の仕事経験&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.exp != ''}--><font color="#ff007e"><!--{$error.exp}--></font><!--{else}--><!--{$posts.exp}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">経験者の方は業種・経歴・資格等をご記入ください。(500文字以内)<br />
+		<!--{$posts.career}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">どの求人サイトをご覧になりましたか？<br />
+              <!--{if $error.site != ''}-->
+                  <span class="atten_01"><!--{$error.site}--></span>
+              <!--{else}-->
+                  <!--{foreach $posts.site as $value}-->
+                  ・<!--{$value}-->&nbsp;
+                  <!--{/foreach}-->
+              <!--{/if}-->
+		<hr size="1" color="#fafafa" />
+
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お問合せ内容(500文字以内)<br />
+		<!--{$posts.want}--><br>
+		<!--{$posts.detail|nl2br}-->
+		<br /><br />
+
+      <input type="hidden" name="name" value="<!--{$posts.name}-->">
+      <input type="hidden" name="mail" value="<!--{$posts.mail}-->">
+      <input type="hidden" name="tel" value="<!--{$posts.tel}-->">
+      <input type="hidden" name="age" value="<!--{$posts.age}-->">
+      <input type="hidden" name="exp" value="<!--{$posts.exp}-->">
+      <input type="hidden" name="career" value="<!--{$posts.career}-->">
+      <input type="hidden" name="site" value="<!--{$posts.site_value}-->">
+			<input type="hidden" name="want" value="<!--{$posts.want}-->">
+			<input type="hidden" name="detail" value="<!--{$posts.detail}-->">
+			<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+		<!--{if $error == ''}-->
+		<input type="submit" name="send" value="送信">
+		<!--{/if}-->
+		<input type="button" value="戻る" onclick="history.back();">
+		</form>
+	<br />
+	<!-- //お問合せ -->
+
+<!--{/block}-->

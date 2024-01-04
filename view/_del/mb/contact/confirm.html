@@ -1,0 +1,40 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- お問合せ -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<form method="post" action="?mode=finish">
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お名前&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.name != ''}--><font color="#ff007e"><!--{$error.name}--></font><!--{else}--><!--{$posts.name}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.mail1 != ''}--><font color="#ff007e"><!--{$error.mail1}--></font><!--{else}--><!--{$posts.mail1}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">ﾒｰﾙｱﾄﾞﾚｽ(確認)&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.mail2 != ''}--><font color="#ff007e"><!--{$error.mail2}--></font><!--{else}--><!--{$posts.mail2}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お問合せの種類&nbsp;<font color="#ff007e">※</font><br />
+		<!--{if $error.item != ''}--><font color="#ff007e"><!--{$error.item}--></font><!--{else}--><!--{$posts.item}--><!--{/if}-->
+		<hr size="1" color="#fafafa" />
+		<img src="<!--{$smarty.const.IMAGES_MB_URL}-->/icon_check.gif" alt="ﾁｪｯｸ">お問合せ内容<br />
+		<!--{if $error.detail != ''}--><font color="#ff007e"><!--{$error.detail}--></font><!--{else}--><!--{$posts.detail|nl2br}--><!--{/if}-->
+		<br /><br />
+
+		<input type="hidden" name="name" value="<!--{$posts.name}-->">
+		<input type="hidden" name="mail1" value="<!--{$posts.mail1}-->">
+		<input type="hidden" name="mail2" value="<!--{$posts.mail2}-->">
+		<input type="hidden" name="item" value="<!--{$posts.item}-->">
+		<input type="hidden" name="detail" value="<!--{$posts.detail}-->">
+		<input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+		<!--{if $error == ''}-->
+		<input type="submit" name="send" value="送信">
+		<!--{/if}-->
+		<input type="button" value="戻る" onclick="history.back();">
+		</form>
+	<br />
+	<!-- //お問合せ -->
+
+<!--{/block}-->

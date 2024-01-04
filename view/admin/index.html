@@ -1,0 +1,90 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="page_title"}-->ホーム<!--{/block}-->
+<!--{block name="main"}-->
+<div class="content-panel">
+<section id="no-more-tables">
+    <table class="table table-bordered table-condensed cf table-home">
+        <thead class="cf">
+        <tr>
+            <th>設定値</th>
+            <th>備考</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>店舗名<span class="txt-sm">（システムで使用する店舗名）</span></td>
+            <td><!--{$smarty.const.SHOP_NAME}--></td>
+        </tr>
+        <!--{if $smarty.const.SHOP_TEL !=''}-->
+        <tr>
+            <td>電話番号<span class="txt-sm">（お問い合わせで使用）</span></td>
+            <td><!--{$smarty.const.SHOP_TEL}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_TEL_RECRUIT !=''}-->
+        <tr>
+            <td>求人用電話番号</td>
+            <td><!--{$smarty.const.SHOP_TEL_RECRUIT}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_OPEN !=''}-->
+        <tr>
+            <td>営業時間</td>
+            <td><!--{$smarty.const.SHOP_OPEN}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_RECEPTION !=''}-->
+        <tr>
+            <td>受付時間</td>
+            <td><!--{$smarty.const.SHOP_RECEPTION}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_AREA !=''}-->
+        <tr>
+            <td>店舗の住所・エリア</td>
+            <td><!--{$smarty.const.SHOP_AREA}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_INFO !=''}-->
+        <tr>
+            <td>メールアドレス<span class="txt-sm">（お問い合わせで使用）</span></td>
+            <td><!--{$smarty.const.SHOP_MAIL_INFO}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_RECRUIT !=''}-->
+        <tr>
+            <td>求人用メールアドレス</td>
+            <td><!--{$smarty.const.SHOP_MAIL_RECRUIT}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_ENQUETE !=''}-->
+        <tr>
+            <td>アンケート用メールアドレス</td>
+            <td><!--{$smarty.const.SHOP_MAIL_ENQUETE}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_MAIL_RESERVE !=''}-->
+        <tr>
+            <td>WEB予約用メールアドレス</td>
+            <td><!--{$smarty.const.SHOP_MAIL_RESERVE}--></td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $smarty.const.SHOP_LINEID !=''}-->
+        <tr>
+            <td>店舗LINE&nbsp;ID</td>
+            <td><!--{$smarty.const.SHOP_LINEID}--></td>
+        </tr>
+        <!--{/if}-->
+        <tr>
+            <td>スケジュール更新時間</td>
+            <td><!--{$smarty.const.SHOP_TODAY}-->時<!--{if $smarty.const.SHOP_TODAY2 != 0}--><!--{$smarty.const.SHOP_TODAY2}-->分<!--{/if}--></td>
+        </tr>
+        <tr>
+            <td><!--{$smarty.const.STAFF_CALL}-->画像の最大サイズ</td>
+            <td>横：<!--{$smarty.const.IMAGE_SIZE_PC_W}-->&nbsp;縦：<!--{$smarty.const.IMAGE_SIZE_PC_H}--></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</div>
+<!--{/block}-->

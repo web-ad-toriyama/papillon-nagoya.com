@@ -1,0 +1,61 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+<div class="shutter"><div class="spinner"></div><p class="text">Papillon</p></div>
+<section id="contents_system">
+	<!-- サブビジュアル -->
+	<div class="subvisual">
+			<p class="center">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/mainvisual_center.png" alt="波紋">
+			</p>
+			<p class="left">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_left.png" alt="左バラ">
+			</p>
+			<p class="right">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/subvisual_right.png" alt="右バラ">
+			</p>
+		<h2 class="contents_title">
+			<p class="main"><!--{$page.name}--></p>
+			<p class="sub"><!--{$html.name_kana.system}--></p>
+		</h2>
+	</div>
+	<!-- //サブビジュアル -->
+
+	<div id="contents" class="inner">
+
+		<div class="top_box01">
+			<div class="img">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/system_01.jpg" alt="料金ページ01">
+			</div>
+			<div class="txt">
+				<p>
+					優雅で落ち着いた大人たちの贅沢な時間。<br>
+					最高級メンズエステならではの至福の癒し。<br>
+					都心にありながら一歩足を踏み入れると<br>
+					そこには<span class="fs_18em">「特別」 </span>で<span class="fs_18em">「刺激的」</span>な空間
+				</p>
+			</div>
+		</div>
+
+		<div class="top_box02">
+			<div class="img">
+				<img src="<!--{$smarty.const.IMAGES_URL}-->/system_02.jpg" alt="料金ページ02">
+			</div>
+			<div class="txt">
+				<p>
+					扉を開けたら<br>
+					暖かいお部屋で優しく包み込む手のぬくもりに<br>
+					<span class="fs_18em">ほっ</span>と心を休めませんか？<br>
+					基本となる「接客マナー」「施術テクニック」に加え<br>
+					<span class="fs_18em">「真心」</span>を込めお客様をおもてなし致します。
+				</p>
+			</div>
+		</div>
+
+		<!-- メニュー内容は管理画面から読み込んでます -->
+		<!--{$system.detail}-->		
+		<!-- //料金表オワリ -->
+
+	</div>
+	
+</section>
+<!--{/block}-->

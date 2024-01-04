@@ -1,0 +1,65 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->修正依頼フォーム<!--{/block}-->
+<!--{block name="main"}-->
+
+<div class="content-panel">
+    <!--{if $msg != ''}-->
+    <div class="alert alert-success">
+        <!--{$msg}-->
+    </div>
+    <!--{/if}-->    
+   <form class="form-horizontal style-form"  method="post" onsubmit="return formCheck(this)">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="page">修正ページ <span class="btn-danger btn-xs txt-sm">必須</span></label>
+            <div class="col-sm-9">
+                <input type="text" name="page" id="page" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="comment">修正内容 <span class="btn-danger btn-xs txt-sm">必須</span></label>
+            <div class="col-sm-9">
+                <textarea name="comment" id="comment" class="form-control" rows="8"></textarea>
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="col-sm-3 control-label" for="img">画像</label>
+            <div class="col-sm-9">
+                <p id="img_div">
+                    <img src="<!--{$smarty.const.ROOT_URL}-->/images/no_image.jpg" >
+                </p>
+                <p>
+                    <input type="button" class="btn btn-primary" id="img" onclick="return uploadFile(this.name,'');" name="img" value="アップロード">
+					<input type="hidden" value="" id="img_f_name" name="img">
+                </p>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <p class="mt text-center">
+            <button class="btn btn-primary btn-smart" type="submit" name="submit" value="送信">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;送信
+            </button>
+            &nbsp;
+            <button class="btn btn-default btn-smart" type="button" name="back" value="戻る" onclick="history.back();">
+                <i class="fa fa-mail-reply" aria-hidden="true"></i>&nbsp;&nbsp;戻る
+            </button>
+            </p>
+
+
+
+        </div>
+    </form>
+
+    <!--{*
+    <p class="alert alert-warning alert-warning_line">
+        LINEでの修正依頼をご希望される場合、下記の２次元バーコードからLINEの登録をお願い致します。
+    </p>
+    <p class="text-center">
+        <img src="<!--{$smarty.const.ROOT_URL}-->/images/line_qr.png">
+    </p>
+    *}-->
+
+</div><!-- // <div class="content-panel"> -->
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/contact.js"></script>
+<!--{/block}-->

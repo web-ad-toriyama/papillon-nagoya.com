@@ -1,0 +1,34 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}-->システム情報登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="" method="post">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">内容</label>
+
+            <div class="col-sm-10">
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckeditor/ckeditor.js"></script>
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckfinder/ckfinder.js"></script>
+                <textarea id="editor1" name="detail">
+                    <!--{$data.detail|default:''}-->
+                </textarea>
+                <script type="text/javascript">
+                    if (typeof CKEDITOR == 'undefined') {
+                    } else {
+                        var editor = CKEDITOR.replace('editor1');
+                        CKFinder.setupCKEditor(editor, '<!--{$smarty.const.AD_URL}-->/js/ckfinder/');
+                        CKEDITOR.config.height = '1000px';
+                    }
+                </script>
+            </div>
+        </div>
+        <p class="mt text-center">
+            <input type="submit" name="register" class="btn btn-primary btn-smart" value="登録">
+            <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<!-- /content-panel -->
+<!--{/block}-->

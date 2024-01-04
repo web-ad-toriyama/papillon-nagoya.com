@@ -1,0 +1,42 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+	<!-- ランキング -->
+	<div align="center" style="background-color:#eeeeee; padding:5px; margin-bottom: 10px;">
+	<font color="#111111"><!--{$page.name}--></font>
+	</div>
+	<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444"><!--{$form.ranking.1}--></font>
+	</div>
+	<!--{foreach $ranking.1 as $v}-->
+	<div style="padding-bottom: 20px;">
+		<p style="float:left; margin:3px;"><!--{include file="./common/staff/thumbnail.html" width=60 height=90}--></p>
+		<!--{include file="./common/staff/icon_class.html"}--><br />
+		<!--{include file="./common/staff/icon_check.html"}--><br />
+		No.<!--{$v.no}-->&nbsp;<!--{$v.name}-->&nbsp;(<!--{$v.age}-->)<br />
+		<!--{include file="./common/staff/size.html"}--><br />
+		<font color="#ff007e"><!--{$v.schedule.time}--></font>&nbsp;<!--{include file="./common/staff/work_info.html"}--><br />
+		<!--{$v.free_text}--><br />
+	</div>
+	<hr size="1" style="clear:both;" color="#fafafa" />
+	<!--{/foreach}-->
+
+	<br />
+	<div align="center" style="background-color:#e8be3d; padding:5px; margin-bottom: 10px;">
+	<font color="#444444"><!--{$form.ranking.2}--></font>
+	</div>
+	<!--{foreach $ranking.2 as $v}-->
+	<div style="padding-bottom: 20px;">
+		<p style="float:left; margin:3px;"><!--{include file="./common/staff/thumbnail.html" width=60 height=90}--></p>
+		<!--{include file="./common/staff/icon_class.html"}--><br />
+		<!--{include file="./common/staff/icon_check.html"}--><br />
+		No.<!--{$v.no}-->&nbsp;<!--{$v.name}-->&nbsp;(<!--{$v.age}-->)<br />
+		<!--{include file="./common/staff/size.html"}--><br />
+		<font color="#ff007e"><!--{$v.schedule.time}--></font>&nbsp;<!--{include file="./common/staff/work_info.html"}--><br />
+		<!--{$v.free_text}--><br />
+	</div>
+	<hr size="1" color="#fafafa" />
+	<!--{/foreach}-->
+	<!-- //ランキング -->
+
+<!--{/block}-->

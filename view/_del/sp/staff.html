@@ -1,0 +1,68 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+<!-- 女の子一覧 -->
+<section class="section_box">
+    <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_staff.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+    <ul class="wrap cast_box">
+        <!--{foreach $staff as $v}-->
+        <li>
+            <h3><!--{$v.name}-->(<!--{$v.age}-->) <!--{include file="./common/staff/icon_new.html"}--></h3>
+            <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->" class="wrap">
+                <p class="img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+                <div class="txt_box">
+                    <p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+                    <p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+                    <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                    <p class="time"><!--{$v.schedule.time}--></p>
+                    <p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+                </div>
+            </a>
+        </li>
+        <!--{/foreach}-->
+    </ul>
+    <div class="wrap">
+        <!--{if $page_info.prev.url != ''}-->
+        <a href="<!--{$page_info.prev.url}-->" class="btn_one_02">◀&nbsp;BACK</a>
+        <!--{/if}-->
+        <!--{if $page_info.next.url != ''}-->
+        <a href="<!--{$page_info.next.url}-->" class="btn_one_02">NEXT&nbsp;▶</a>
+        <!--{/if}-->
+    </div>
+</section>
+<!-- //女の子一覧 -->
+<!-- 女の子一覧 ver02-->
+<section class="section_box cast_box_2column">
+    <h2><img src="images/icon_staff.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+    <ul class="wrap">
+        <!--{foreach $staff as $v}-->
+        <a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->">
+            <li>
+                <p class="img_box"><!--{include file="./common/staff/thumbnail.html"}--></p>
+                <div class="txt_box">
+                    <p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+                    <p class="name"><!--{$v.name}-->(<!--{$v.age}-->歳)<!--{include file="./common/staff/icon_class.html"}--><span class="icon_new"><!--{include file="./common/staff/icon_new.html"}--></span></p>
+                    <p class="size"><!--{include file="./common/staff/size.html"}--></p>
+                    <!--<p class="time"><!--{$v.schedule.time}-->&nbsp;<!--{include file="./common/staff/work_info.html"}--></p>-->
+                </div>
+            </li>
+        </a>
+        <!--{/foreach}-->
+    </ul>
+</section>
+<!-- //女の子一覧 -->
+
+<ul class="btn_two_01">
+    <!--{if $page_info.prev.url != ''}-->
+    <a href="<!--{$page_info.prev.url}-->"><li>
+        ◀&nbsp;BACK
+    </li></a>
+    <!--{/if}-->
+    <!--{if $page_info.next.url != ''}-->
+    <a href="<!--{$page_info.next.url}-->"><li>
+        NEXT&nbsp;▶
+    </li></a>
+    <!--{/if}-->
+</ul>
+<!-- //女の子一覧 ver02 -->
+<!--{/block}-->

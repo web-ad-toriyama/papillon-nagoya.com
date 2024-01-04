@@ -1,0 +1,67 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$form.link[$params.pid]}-->フリースペース登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?pid=<!--{$params.pid}-->&p=<!--{$params.p}-->" method="post"
+          onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="pid" value="<!--{$params.pid}-->">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">パソコン用</label>
+            <div class="col-sm-10">
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckeditor/ckeditor.js"></script>
+                <script src="<!--{$smarty.const.AD_URL}-->/js/ckfinder/ckfinder.js"></script>
+                <textarea id="editor1" name="detail_pc">
+                    <!--{$data.detail_pc|default:''}-->
+                </textarea>
+                <script type="text/javascript">
+                    if (typeof CKEDITOR == 'undefined') {
+                    } else {
+                        var editor = CKEDITOR.replace('editor1');
+                        CKFinder.setupCKEditor(editor, '<!--{$smarty.const.AD_URL}-->/js/ckfinder/');
+                    }
+                </script>
+            </div>
+        </div>
+
+        <!--{*<div class="form-group">
+            <label class="col-sm-2 control-label">モバイル用</label>
+            <div class="col-sm-10">
+                <textarea id="editor2" name="detail_mb">
+                    <!--{$data.detail_mb|default:''}-->
+                </textarea>
+                <script type="text/javascript">
+                    if (typeof CKEDITOR == 'undefined') {
+                    } else {
+                        var editor2 = CKEDITOR.replace('editor2');
+                        CKFinder.setupCKEditor(editor2, '<!--{$smarty.const.AD_URL}-->/js/ckfinder/');
+                    }
+                </script>
+            </div>
+        </div>*}-->
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">スマホ用</label>
+            <div class="col-sm-10">
+                <textarea id="editor3" name="detail_sp">
+                    <!--{$data.detail_sp|default:''}-->
+                </textarea>
+                <script type="text/javascript">
+                    if (typeof CKEDITOR == 'undefined') {
+                    } else {
+                        var editor2 = CKEDITOR.replace('editor3');
+                        CKFinder.setupCKEditor(editor3, '<!--{$smarty.const.AD_URL}-->/js/ckfinder/');
+                    }
+                </script>
+            </div>
+        </div>
+
+        <p class="mt text-right">
+            <input type="submit" name="edit_free" class="btn btn-primary" value="登録">
+            <input type="button" name="back" class="btn btn-default" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/link.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

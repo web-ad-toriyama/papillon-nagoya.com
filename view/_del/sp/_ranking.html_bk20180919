@@ -1,0 +1,57 @@
+<!--{extends file="./common/frame.html"}-->
+<!--{block name="main"}-->
+
+        <!-- ランキング -->
+        <section class="section_box">
+        <h2><img src="<!--{$smarty.const.IMAGES_SP_URL}-->/icon_schedule.png" alt="<!--{$page.name}-->" width="34"><!--{$page.name}--></h2>
+	<div class="wrap">
+		<section>
+			<h3 class="subtitle"><!--{$form.ranking.1}--></h3>
+
+		            <ul class="cast_box">
+				<!--{foreach $ranking.1 as $v}-->
+				<li>
+					<h3>No.<!--{$v.no}--> <!--{$v.name}-->(<!--{$v.age}-->)&nbsp;<!--{include file="./common/staff/icon_new.html"}--></h3>
+					<a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->" class="wrap">
+						<!--{include file="./common/staff/thumbnail.html" width=80 height=120}-->
+						<div>
+							<p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+							<p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+							<p class="size"><!--{include file="./common/staff/size.html"}--></p>
+							<p class="time"><!--{$v.schedule.time}--></p>
+							<p class="work"><!--{include file="./common/staff/work_info.html"}--></p>
+							<p class="comment"><!--{$v.free_text}--></p>
+						</div>
+					</a>
+				</li>
+				<!--{/foreach}-->
+		            </ul>
+		</section>
+
+		<section>
+			<h3 class="subtitle"><!--{$form.ranking.2}--></h3>
+
+		            <ul class="cast_box">
+				<!--{foreach $ranking.2 as $v}-->
+				<li>
+					<h3>No.<!--{$v.no}--> <!--{$v.name}-->(<!--{$v.age}-->)&nbsp;<!--{include file="./common/staff/icon_new.html"}--></h3>
+					<a href="<!--{$smarty.const.SP_URL}-->/profile.php?sid=<!--{$v.id}-->" class="wrap">
+						<!--{include file="./common/staff/thumbnail.html" width=80 height=120}-->
+						<div>
+							<p class="icon"><!--{include file="./common/staff/icon_class.html"}--></p>
+							<p class="icon"><!--{include file="./common/staff/icon_check.html"}--></p>
+							<p class="size"><!--{include file="./common/staff/size.html"}--></p>
+							<p class="time"><!--{$v.schedule.time}--></p>
+							<p><!--{include file="./common/staff/work_info.html"}--></p>
+							<p>コメント：<!--{$v.free_text}--></p>
+						</div>
+					</a>
+				</li>
+				<!--{/foreach}-->
+		            </ul>
+		</section>
+	</div>
+        </section>
+        <!-- //ランキング -->
+
+<!--{/block}-->

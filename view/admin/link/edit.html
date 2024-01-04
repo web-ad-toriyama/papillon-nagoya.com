@@ -1,0 +1,66 @@
+<!--{extends file="../common/frame.html"}-->
+<!--{block name="page_title"}--><!--{$form.link[$params.pid]}-->リンク登録<!--{/block}-->
+<!--{block name="main"}-->
+<div class="form-panel">
+    <form class="form-horizontal style-form" action="finish.php?pid=<!--{$params.pid}-->&p=<!--{$params.p}-->" method="post"
+          onsubmit="return formCheck(this)">
+        <input type="hidden" name="<!--{$smarty.const.TOKEN_KEY}-->" value="<!--{$token}-->">
+        <input type="hidden" name="id" value="<!--{$params.id|default:''}-->">
+        <input type="hidden" name="pid" value="<!--{$params.pid}-->">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">HP上に表示</label>
+
+            <div class="col-sm-10">
+                <!--{html_radios name='show_flg' options=$form.show selected=$data.show_flg|default:$smarty.const.SHOW_ON}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">タイトル <span class="btn-danger btn-xs txt-sm">必須</span>
+                <br/><span class="txt-sm">（30文字）</span></label>
+            <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" value="<!--{$data.title|default:''}-->">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">リンク先URL <span class="btn-danger btn-xs txt-sm">必須</span>
+                <br/><span class="txt-sm">（URL形式のみ）</span></label>
+            <div class="col-sm-10">
+                <input type="text" name="url" class="form-control" value="<!--{$data.url|default:''}-->">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">バナー画像 <span class="btn-danger btn-xs txt-sm">必須</span></label>
+            <div class="col-sm-10">
+                <p id="banner_div">
+                <!--{if $data.file_name != ''}-->
+                    <img src="<!--{$smarty.const.IMG_BANNER_URL}-->/<!--{$data.file_name}-->" width="88" height="31">
+                <!--{else}-->
+                    <img src="<!--{$smarty.const.IMAGES_URL}-->/no_banner.jpg" width="88" height="31">
+                <!--{/if}-->
+                </p>
+                <p>
+                    <input type="button" class="btn btn-primary" onclick="return uploadFile(this.name,'');" name="banner" value="アップロード">
+                    <input type="hidden" value="" id="banner_f_name" name="banner_name">
+                    <input type="hidden" value="<!--{$data.file_name}-->" name="banner_old">
+                </p>
+            </div>
+        </div>
+        <!--{if $params.id != ''}-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <label>
+                    <input type="checkbox" name="del" value="1"> <span class="label label-danger">データを削除する</span>
+                </label>
+            </div>
+        </div>
+        <!--{/if}-->
+        <p class="mt text-center">
+            <input type="submit" name="edit" class="btn btn-primary btn-smart" value="登録">
+            <input type="button" name="back" class="btn btn-default btn-smart" value="戻る" onclick="history.back();">
+        </p>
+    </form>
+</div>
+<script src="<!--{$smarty.const.AD_URL}-->/js/check/link.js"></script>
+<!-- /content-panel -->
+<!--{/block}-->

@@ -1,0 +1,84 @@
+<!--{extends file="../common/frame_02.html"}-->
+<!--{block name="main"}-->
+
+<section id="contents_impressins">
+ <h2 class="title mb_10"><!--{$page.name}--></h2>
+ <div class="inner">
+	 <div class="pagetext_box">
+		<p>
+			<span class="atten_01">※</span>は必須項目です。<br />
+			<span class="atten_01">※</span>頂いたメッセージはサイト上にご紹介させて頂く場合がございます。
+		</p>
+	</div>
+	<form method="post" action="?mode=confirm">
+		<table class="table_01 text_box">
+			<tr>
+				<th width="30%">お名前&nbsp;<span class="atten_01">※</span></th>
+				<td>
+				 <input type="text" name="name" size="30">
+			 </td>
+		 </tr>
+		 <tr>
+			<th width="30%">年代&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_options name='age' options=$form.impressions.age}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">ご利用回数&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_options name='use_count' options=$form.impressions.count}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">ご利用日&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_options name='use_year' options=$form.impressions.year selected=$year}-->年
+				<!--{html_options name='use_month' options=$form.impressions.month selected=$month}-->月
+				<!--{html_options name='use_day' options=$form.impressions.day selected=$day}-->日
+			</td>
+		</tr>
+		<tr>
+			<th width="20%">担当<!--{$smarty.const.STAFF_CALL}-->&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_options name='staff_id' options=$staff_list selected=$sid}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">マッサージ&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_radios name='massage' options=$form.impressions.detail}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">回春&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_radios name='kaishun' options=$form.impressions.detail}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">接客&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_radios name='service' options=$form.impressions.detail}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%">総合満足度&nbsp;<span class="atten_01">※</span></th>
+			<td>
+				<!--{html_radios name='total' options=$form.impressions.detail}-->
+			</td>
+		</tr>
+		<tr>
+			<th width="30%"><!--{$smarty.const.STAFF_CALL}-->へのメッセージ</th>
+			<td>
+			 <textarea name="comment" cols="35" rows="10"></textarea>
+		 </td>
+	 </tr>
+ </table>
+ <input type="submit" name="confirm" value="確認" class="reset_btn btn_form link_act_01" >
+ <input type="reset" name="reset" value="リセット" class="reset_btn btn_form link_act_01" >
+</form>
+</div>
+</section>
+
+<!--{/block}-->
